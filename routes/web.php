@@ -12,5 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/sports', function () {
+    return view('sports');
+});
+Route::get('/football', function () {
+    return view('sports/football');
+});
+Route::get('/lacrosse', function () {
+    return view('sports/lacrosse');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/myTeam', function () {
+    return view('myTeam');
 });
