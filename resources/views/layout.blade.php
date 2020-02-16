@@ -36,7 +36,7 @@
 			    </ul>
 			  </div>  
 			</nav>
-			<!--
+			<!--!!
 			<ul class="nav">
 				<li class="btn btn-outline-primary" class="{{ Request::path() == '/' ? 'current_page_item' : ''}}"><a class="nav-link" href="/" accesskey="1" title="">Homepage</a></li>
 
