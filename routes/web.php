@@ -32,3 +32,7 @@ Route::get('/about', function () {
 Route::get('/myTeam', function () {
     return view('myTeam');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
