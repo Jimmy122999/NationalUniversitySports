@@ -35,4 +35,16 @@ Route::get('/myTeam', function () {
 
 Auth::routes();
 
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
+
+Route::get('/captain', 'CaptainController@index')->name('captain')->middleware('captain');
+
+Route::get('/player', 'PlayerController@index')->name('player')->middleware('player');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Sports
+
+Route::get('/admin/sports', 'SportController@adminIndex');
+Route::get('/admin/sports/create', 'SportController@create');
+Route::post('/admin/sports/store', 'SportController@store');
