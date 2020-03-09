@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Division;
+use App\Sport;
 use Illuminate\Http\Request;
 
 class DivisionController extends Controller
@@ -22,9 +23,15 @@ class DivisionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Sport $sport)
     {
-        //
+      //  $sport = Sport::findorfail($id);
+
+        return view ('admin/divisions/create', compact('sport') );
+
+        
+
+
     }
 
     /**
@@ -33,9 +40,19 @@ class DivisionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Sport $sport)
     {
-        //
+      $sport->addDivision(request('name'));
+
+        // Division::create([
+        //     'sport_id' => ($sport->id),
+        //     'name' => request('name')
+
+
+        // ]);
+
+    
+       return redirect ('admin/sports');
     }
 
     /**
@@ -55,9 +72,10 @@ class DivisionController extends Controller
      * @param  \App\Division  $division
      * @return \Illuminate\Http\Response
      */
-    public function edit(Division $division)
+    public function edit(Sport $sport, Division $division)
     {
-        //
+        return view ('admin/divisions/edit', compact('sport') , compact('division'));
+        // dd('hello');
     }
 
     /**
@@ -67,9 +85,12 @@ class DivisionController extends Controller
      * @param  \App\Division  $division
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Division $division)
+    public function update(Sport $sport, Division $division)
     {
-        //
+        $division->name = request('name');
+        $division->save();
+        return redirect('admin/sports');
+        
     }
 
     /**
@@ -78,8 +99,9 @@ class DivisionController extends Controller
      * @param  \App\Division  $division
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Division $division)
+    public function destroy(Sport $sport , Division $division)
     {
-        //
+        $division->delete();
+        return redirect('admin/sports');
     }
 }

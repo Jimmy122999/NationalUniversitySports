@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Sport;
+use App\Division;
 use Illuminate\Http\Request;
 
 class SportController extends Controller
@@ -15,7 +16,9 @@ class SportController extends Controller
 
     public function index()
     {
-        //
+        $sports = Sport::all();
+
+        return view('sports' , ['sports' => $sports]);
     }
     public function adminIndex()
     {
@@ -59,7 +62,13 @@ class SportController extends Controller
      */
     public function show(Sport $sport)
     {
-        //
+        // $sport = Sport::findOrFail($id);
+    }
+
+    public function adminShow(Sport $sport)
+    {
+         // $sport = Sport::findOrFail($id);
+        return view ('admin/sports/show' , compact('sport'));
     }
 
     /**
@@ -70,7 +79,7 @@ class SportController extends Controller
      */
     public function edit(Sport $sport)
     {
-        //
+        return view ('admin/sports/edit', compact('sport'));
     }
 
     /**
@@ -80,9 +89,17 @@ class SportController extends Controller
      * @param  \App\Sport  $sport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sport $sport)
+    public function update(Sport $sport)
     {
-        //
+        $sport->name = request('name');
+        $sport->save();
+        return redirect('admin/sports');
+       
+
+        
+
+
+
     }
 
     /**
@@ -93,6 +110,7 @@ class SportController extends Controller
      */
     public function destroy(Sport $sport)
     {
-        //
+        $sport->delete();
+        return redirect('admin/sports');
     }
 }

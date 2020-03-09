@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Division extends Model
 {
+	protected $fillable = [
+		'name', 'sport_id'
+
+	];
+
     public function sport()
     {
 

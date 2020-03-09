@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/sports', function () {
-    return view('sports');
-});
+Route::get('/sports', 'SportController@index');
 Route::get('/football', function () {
     return view('sports/football');
 });
@@ -43,8 +41,20 @@ Route::get('/player', 'PlayerController@index')->name('player')->middleware('pla
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Sports
+//Admin Sports
 
-Route::get('/admin/sports', 'SportController@adminIndex');
-Route::get('/admin/sports/create', 'SportController@create');
-Route::post('/admin/sports/store', 'SportController@store');
+Route::get('/admin/sports', 'SportController@adminIndex')->middleware('admin');
+Route::get('/admin/sports/create', 'SportController@create')->middleware('admin');
+Route::get('/admin/sports/{sport}', 'SportController@adminShow')->middleware('admin');
+Route::post('/admin/sports', 'SportController@store')->middleware('admin');
+Route::get('/admin/sports/{sport}/edit', 'SportController@edit')->middleware('admin');
+Route::patch('/admin/sports/{sport}/edit', 'SportController@update')->middleware('admin');
+Route::delete('/admin/sports/{sport}', 'SportController@destroy')->middleware('admin');
+
+//Admin Divisions
+
+Route::get('/admin/sports/{sport}/create', 'DivisionController@create')->middleware('admin');
+Route::post('/admin/sports/{sport}', 'DivisionController@store')->middleware('admin');
+Route::get('/admin/sports/{sport}/{division}/edit', 'DivisionController@edit')->middleware('admin');
+Route::patch('/admin/sports/{sport}/{division}/edit', 'DivisionController@update')->middleware('admin');
+Route::delete('/admin/sports/{sport}/{division}', 'DivisionController@destroy')->middleware('admin');

@@ -34,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                          <a class="nav-link" href="admin/sports">Sports</a>
+                          <a class="nav-link" href="/admin/sports">Sports</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="/fixtures">Fixtures</a>
