@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Team;
+use App\TeamMember;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -44,9 +45,16 @@ class TeamController extends Controller
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function adminShow(Team $team)
     {
-        //
+
+        // $teamMembers = TeamMember::all();
+        return view ('admin/teams/show', compact('team'));
+        // dd($teamMembers->name);
+
+
+        
+
     }
 
     /**

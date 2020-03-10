@@ -17,4 +17,9 @@ class Team extends Model
 
     	return $this->belongsTo(Division::class);
     }
+
+    public function member(){
+
+    	return $this->hasmany(TeamMember::class);
+    }
 }

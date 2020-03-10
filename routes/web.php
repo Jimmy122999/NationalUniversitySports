@@ -33,6 +33,12 @@ Route::get('/myTeam', function () {
 
 Auth::routes();
 
+View::composer(['*'], function($view){
+	$user = Auth::user();
+	$view->with('user',$user);
+
+});
+
 Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
 
 Route::get('/captain', 'CaptainController@index')->name('captain')->middleware('captain');
@@ -58,3 +64,7 @@ Route::post('/admin/sports/{sport}', 'DivisionController@store')->middleware('ad
 Route::get('/admin/sports/{sport}/{division}/edit', 'DivisionController@edit')->middleware('admin');
 Route::patch('/admin/sports/{sport}/{division}/edit', 'DivisionController@update')->middleware('admin');
 Route::delete('/admin/sports/{sport}/{division}', 'DivisionController@destroy')->middleware('admin');
+
+//Admin Teams
+
+Route::get('/admin/teams/{team}' , 'TeamController@adminShow')->middleware('admin');

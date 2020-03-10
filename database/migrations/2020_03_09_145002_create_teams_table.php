@@ -33,8 +33,8 @@ class CreateTeamsTable extends Migration
 
             $table->foreign('captain_id')
             ->references('id')
-            ->on('users')
-            ->onDelete('cascade');
+            ->on('users');
+            
         });
     }
 
