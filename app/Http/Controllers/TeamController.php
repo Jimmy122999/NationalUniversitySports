@@ -37,7 +37,26 @@ class TeamController extends Controller
         $sports = Sport::all(['id', 'name']);
         $divisions = Division::all(['id', 'name' , 'sport_id']);
         
-        return view ('admin/teams/create' , compact('captains' , $captains) , compact('sports' , $sports) , compact('divisions', $divisions));
+        return view ('admin/teams/create' , compact('captains' , $captains) , compact('sports' , $sports))->with(compact('divisions' , $divisions));
+    }
+
+    public function fetch(Request $request)
+    {
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('divisions')->where($select, $value)->groupBy($dependent)->get();
+
+        $output= '<option value="">Select '.ucfirst($dependent).'</option>';
+
+        foreach($data as $row)
+        {
+            $output .= '<option value= "'.$row->$dependent.'">
+            '.$row->$dependent.'</option>';
+            echo $output;
+        }
+        
+
     }
 
     /**

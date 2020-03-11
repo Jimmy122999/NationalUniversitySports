@@ -9,9 +9,14 @@
 	@csrf
 	
 
-	<div>
-		<input type="text" name="name" placeholder="Name" class="input" required>
-	</div>
+	
+	
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text" id="inputGroup-sizing-default">Sport Name</span>
+		  </div>
+		  <input type="text" class="form-control" name='name'>
+		</div>
 	
 
 	<div>
