@@ -53,6 +53,7 @@ class DivisionController extends Controller
 
     
        return redirect ('admin/sports');
+      
     }
 
     /**

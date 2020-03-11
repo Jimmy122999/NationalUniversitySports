@@ -68,6 +68,6 @@ Route::delete('/admin/sports/{sport}/{division}', 'DivisionController@destroy')-
 //Admin Teams
 Route::get('/admin/teams/create', 'TeamController@create')->middleware('admin');
 Route::get('/admin/teams/{team}' , 'TeamController@adminShow')->middleware('admin');
-Route::post('admin/teams/create/fetch', 'dynamicdependent@fetch')->name("dynamicdependent.fetch");
+Route::post('/admin/teams/create/fetch', 'dynamicdependent@fetch')->name("dynamicdependent.fetch");
 
 

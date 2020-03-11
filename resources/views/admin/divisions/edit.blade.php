@@ -12,13 +12,19 @@
   
 
   <div class ='row'>
-    <div class="col-sm-3"><input type="text" value='{{$division->name}}' name="name" placeholder="Name" class="input" required style='width: 100%'></div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Sport Name</span>
+      </div>
+      <input type="text" value='{{$division->name}}' name="name" placeholder="Name" class="form-control" required>
+    </div>
+   
     <div class="col-sm-1"><input class="btn btn-primary" type="submit" value="Edit Name"></div> </form>
 
     <form METHOD ="POST" action="/admin/sports/{{$sport->id}}/{{$division->id}}">
       @csrf
       @method('delete')
-    <div class="col-sm-1"><input class="btn btn-danger" type="submit" value="Delete"></div>
+    <div class="col-sm-1"><input class="btn btn-danger ml-3" type="submit" value="Delete"></div>
     </form>
 
 

@@ -25,7 +25,7 @@
     <form METHOD ="POST" action="/admin/sports/{{$sport->id}}">
       @csrf
       @method('delete')
-    <div class="col-sm-1"><input class="btn btn-danger" type="submit" value="Delete"></div>
+    <div class="col-sm-1"><input class="btn btn-danger ml-3" type="submit" value="Delete"></div>
     </form>
 
 
