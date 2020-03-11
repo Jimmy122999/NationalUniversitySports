@@ -16,7 +16,23 @@
 
 
 			</div>
-			<div class='col-6 border'><h1>{{$team->name}}</h1></div>
+			<div class='col-6 border'><h1>{{$team->name}}</h1>
+					<div class="container">
+					    <div class="row justify-content">
+					        <div class="col-md-8">
+					            <div class="card">
+					                <div class="card-header">Dashboard</div>
+
+					                <div class="card-body">
+					                   
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+
+
+			</div>
 			<div class='col border'><h1>Top Scorers</h1>
 				<ul class="list-group">
 				  <li class="list-group-item">Cras justo odio</li>
