@@ -8,6 +8,8 @@ class dynamicdependent extends Controller
 {
     public function fetch(Request $request)
     {
+
+
         $select = $request->get('select');
         $value = $request->get('value');
         $dependent = $request->get('dependent');
@@ -21,7 +23,7 @@ class dynamicdependent extends Controller
             '.$row->$dependent.'</option>';
             echo $output;
         }
-        dd('sdfdsf');
+     
 
     }
 }

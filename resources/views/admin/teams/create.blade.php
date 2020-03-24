@@ -5,14 +5,8 @@
 	<div class="container">
 <h1 class='title'>Create a new Team</h1>
 
-@foreach ($divisions as $division)
 
-{{$division->name}}
-
-@endforeach
-
-
-<form METHOD ="POST" action="/admin/sports">
+<form METHOD ="POST" action="/admin/teams/create/">
 	@csrf
 	
 
@@ -25,7 +19,7 @@
 
 	<div class="input-group mb-3 dynamic">
 		  <div class="input-group-prepend dynamic">
-		    	<label class="input-group-text dynamic" for="inputGroupSelect01">Sport</label>
+		    	<label class="input-group-text dynamic">Sport</label>
 		  </div>
 			  <select class="custom-select dynamic" id='sport' name='sport' data-dependent='division'>
 
@@ -37,28 +31,26 @@
 	</div>
 
 	<div class="input-group mb-3 dynamic">
-		  <div class="input-group-prepend dynamic">
-		    	<label class="input-group-text dynamic" for="inputGroupSelect01">Division</label>
-		  </div>
-			  
-			  <select class="custom-select dynamic" name='division' id='division'>
+			  <div class="input-group-prepend dynamic" >
+			    	<label class="input-group-text dynamic" >Division</label>
+			  </div>
+				  <select class="custom-select dynamic" name='division' id='division' data-dependent='sport'>
+				  
+				 	
+				  	
+					
+				  </select>
 
-			 <!--  	@foreach ($divisions as $div)
-			  	<option value="{{$div->id}}" name='sport'>{{$div->name}}</option>
-			  	@endforeach
- -->
-			  
-			
+			</div>
+			<input class="btn btn-primary" type="submit" value="Submit">
+		</div>
 
-			  </select>
-
-			  
-	</div>
+	
 
 	
 
 	<div>
-		<input class="btn btn-primary" type="submit" value="Submit">
+		
 	</div>
 
 	
@@ -68,20 +60,30 @@
 </html>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
 
-	$('.sport').change(function(){
+	$('#sport').change(function(){
+
+
 		if($(this).val() != ''){
 			var select =$(this).attr('id');
 			var value =$(this).val();
-			var dependant = $(this).data('dependent');
-			var _token = $('input[name='_token']').val();
+			var dependent = $(this).data('dependent');
+			var _token = $('input[name="_token"]').val();
+
+
 			$.ajax({
 				url:"{{ route('dynamicdependent.fetch')}}",
 				method:"POST",
-				data:{select:select, value:value, _token:_token, dependent:dependent},
+				data:{
+					select:select, 
+					value:value, 
+					_token: _token, 
+					dependent:dependent
+				},
 				success:function(result)
 				{
 					$('#'+dependent).html(result);

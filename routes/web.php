@@ -61,13 +61,15 @@ Route::delete('/admin/sports/{sport}', 'SportController@destroy')->middleware('a
 
 Route::get('/admin/sports/{sport}/create', 'DivisionController@create')->middleware('admin');
 Route::post('/admin/sports/{sport}', 'DivisionController@store')->middleware('admin');
+Route::get('/admin/sports/{sport}/{division}', 'DivisionController@adminShow')->middleware('admin');
 Route::get('/admin/sports/{sport}/{division}/edit', 'DivisionController@edit')->middleware('admin');
 Route::patch('/admin/sports/{sport}/{division}/edit', 'DivisionController@update')->middleware('admin');
 Route::delete('/admin/sports/{sport}/{division}', 'DivisionController@destroy')->middleware('admin');
 
 //Admin Teams
-Route::get('/admin/teams/create', 'TeamController@create')->middleware('admin');
+Route::get('/admin/teams/create', 'TeamController@createSport')->middleware('admin');
 Route::get('/admin/teams/{team}' , 'TeamController@adminShow')->middleware('admin');
 Route::post('/admin/teams/create/fetch', 'dynamicdependent@fetch')->name("dynamicdependent.fetch");
+Route::get('/admin/teams/create/{sport}' , 'TeamController@Division')->middleware('admin');
 
 

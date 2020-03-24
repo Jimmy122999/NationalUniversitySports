@@ -31,10 +31,19 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createSport()
+    {
+        // $captains = User::all(['id' , 'name' , 'user_group'])->where('user_group', 2);
+        $sports = Sport::all(['id', 'name']);
+        // $divisions = Division::all(['id', 'name' , 'sport_id']);
+        $selectedSport = '';
+        
+        return view ('admin/teams/create' , compact('sports' , $sports), compact('selectedSport' , $selectedSport));
+    }
+
+    public function createDivision(Sport $sport , Request $request)
     {
         $captains = User::all(['id' , 'name' , 'user_group'])->where('user_group', 2);
-        $sports = Sport::all(['id', 'name']);
         $divisions = Division::all(['id', 'name' , 'sport_id']);
         
         return view ('admin/teams/create' , compact('captains' , $captains) , compact('sports' , $sports))->with(compact('divisions' , $divisions));

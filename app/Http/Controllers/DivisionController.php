@@ -62,6 +62,12 @@ class DivisionController extends Controller
      * @param  \App\Division  $division
      * @return \Illuminate\Http\Response
      */
+
+    public function adminShow(Sport $sport, Division $division)
+    {
+        return view ('admin/divisions/show' , compact('sport') , compact('division'));
+    }
+
     public function show(Division $division)
     {
         //
