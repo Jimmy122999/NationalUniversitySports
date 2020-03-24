@@ -26,6 +26,9 @@ class AdminController extends Controller
     public function create()
     {
         //
+
+        // TeamMember::get(DB::raw('SELECT club_id as home_id'))
+
     }
 
     /**

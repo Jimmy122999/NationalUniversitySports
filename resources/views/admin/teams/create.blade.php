@@ -21,8 +21,8 @@
 		  <div class="input-group-prepend dynamic">
 		    	<label class="input-group-text dynamic">Sport</label>
 		  </div>
-			  <select class="custom-select dynamic" id='sport' name='sport' data-dependent='division'>
-
+			  <select class="custom-select dynamic" id='sport_id' name='sport' data-dependent='id'>
+			  	<option value="#" selected='true' disabled='disabled'>Select a Sport</option>
 			  	@foreach ($sports as $sport)
 			    
 			    <option value="{{$sport->id}}" name='sport'>{{$sport->name}}</option>
@@ -65,7 +65,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-	$('#sport').change(function(){
+	$('#sport_id').change(function(){
 
 
 		if($(this).val() != ''){
@@ -73,8 +73,6 @@ $(document).ready(function(){
 			var value =$(this).val();
 			var dependent = $(this).data('dependent');
 			var _token = $('input[name="_token"]').val();
-
-
 			$.ajax({
 				url:"{{ route('dynamicdependent.fetch')}}",
 				method:"POST",
@@ -86,7 +84,7 @@ $(document).ready(function(){
 				},
 				success:function(result)
 				{
-					$('#'+dependent).html(result);
+					$('#division').html(result);
 				}
 			})
 
@@ -94,8 +92,14 @@ $(document).ready(function(){
 
 	});
 
+
+
+
 });
 
+
+
+	
 
 </script>
 
