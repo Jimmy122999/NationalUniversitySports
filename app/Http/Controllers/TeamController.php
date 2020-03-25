@@ -31,23 +31,24 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createSport()
+    public function create()
     {
         // $captains = User::all(['id' , 'name' , 'user_group'])->where('user_group', 2);
         $sports = Sport::all(['id', 'name']);
+        $captains = User::all(['id' , 'name' , 'user_group'])->where('user_group', 2);
         // $divisions = Division::all(['id', 'name' , 'sport_id']);
         $selectedSport = '';
         
-        return view ('admin/teams/create' , compact('sports' , $sports), compact('selectedSport' , $selectedSport));
+        return view ('admin/teams/create' , compact('sports' , $sports), compact('selectedSport' , $selectedSport))->with(compact('captains' , $captains));
     }
 
-    public function createDivision(Sport $sport , Request $request)
-    {
-        $captains = User::all(['id' , 'name' , 'user_group'])->where('user_group', 2);
-        $divisions = Division::all(['id', 'name' , 'sport_id']);
+    // public function createDivision(Sport $sport , Request $request)
+    // {
+    //     $captains = User::all(['id' , 'name' , 'user_group'])->where('user_group', 2);
+    //     $divisions = Division::all(['id', 'name' , 'sport_id']);
         
-        return view ('admin/teams/create' , compact('captains' , $captains) , compact('sports' , $sports))->with(compact('divisions' , $divisions));
-    }
+    //     return view ('admin/teams/create' , compact('captains' , $captains) , compact('sports' , $sports))->with(compact('divisions' , $divisions));
+    // }
 
     public function fetch(Request $request)
     {
@@ -76,7 +77,22 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+      Team::create([
+            'name' => request('name'),
+            'division_id' => request('division_id'),
+            'captain_id' => request('captain_id'),
+            'wins' => '0',
+            'draws' => '0',
+            'losses' => '0',
+            'points' => '0',
+
+        ]);
+
+      
+
+
+        return redirect ('admin');
     }
 
     /**

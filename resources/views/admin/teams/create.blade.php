@@ -6,7 +6,7 @@
 <h1 class='title'>Create a new Team</h1>
 
 
-<form METHOD ="POST" action="/admin/teams/create/">
+<form METHOD ="POST" action="/admin/teams">
 	@csrf
 	
 
@@ -21,7 +21,7 @@
 		  <div class="input-group-prepend dynamic">
 		    	<label class="input-group-text dynamic">Sport</label>
 		  </div>
-			  <select class="custom-select dynamic" id='sport_id' name='sport' data-dependent='id'>
+			  <select class="custom-select dynamic" id='sport_id' name='sport_id' data-dependent='id'>
 			  	<option value="#" selected='true' disabled='disabled'>Select a Sport</option>
 			  	@foreach ($sports as $sport)
 			    
@@ -34,17 +34,31 @@
 			  <div class="input-group-prepend dynamic" >
 			    	<label class="input-group-text dynamic" >Division</label>
 			  </div>
-				  <select class="custom-select dynamic" name='division' id='division' data-dependent='sport'>
+				  <select class="custom-select dynamic" name='division_id' id='division' data-dependent='sport'>
 				  
 				 	
 				  	
 					
 				  </select>
 
-			</div>
+	</div>
+
+	<div class="input-group mb-3 dynamic">
+		  <div class="input-group-prepend dynamic">
+		    	<label class="input-group-text dynamic">Captain</label>
+		  </div>
+			  <select class="custom-select dynamic" id='captain' name='captain_id'>
+			  	<option value="#" selected='true' disabled='disabled'>Select a Captain (Leave blank if captain not yet available)</option>
+			  	@foreach ($captains as $captain)
+			    
+			    <option value="{{$captain->id}}" name='sport'>{{$captain->name}}</option>
+			    @endforeach
+			  </select>
+	</div>
 			<input class="btn btn-primary" type="submit" value="Submit">
 		</div>
 
+		
 	
 
 	
