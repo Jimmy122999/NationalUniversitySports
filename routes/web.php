@@ -74,5 +74,6 @@ Route::post('/admin/teams/create/fetch', 'TeamController@fetch')->name("teamcont
 Route::post('/admin/teams', 'TeamController@store')->middleware('admin');
 Route::get('/admin/teams/{team}/edit', 'TeamController@edit')->middleware('admin');
 Route::patch('/admin/teams/{team}/edit', 'TeamController@update')->middleware('admin');
+Route::delete('/admin/teams/{team}', 'TeamController@destroy')->middleware('admin');
 
 

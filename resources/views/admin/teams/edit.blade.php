@@ -27,7 +27,7 @@
             <option value="{{$team->sport_id}}" selected='true' disabled='disabled'>Select a Sport</option>
             @foreach ($sports as $sport)
             
-            <option value="{{$sport->id}}" name='sport'>{{$sport->name}}</option>
+              <option value="{{$sport->id}}" name='sport'>{{$sport->name}}</option>
             @endforeach
           </select>
     </div>
@@ -36,10 +36,20 @@
           <div class="input-group-prepend dynamic" >
               <label class="input-group-text dynamic" >Division</label>
           </div>
+
+
             <select class="custom-select dynamic" name='division_id' id='division' data-dependent='sport'>
-            <option value="{{$team->division_id}}" selected='true' disabled='disabled'>Select Division</option>
-            
-              
+              <option value="#" selected='true' disabled='disabled'>Select Division</option>
+              @foreach ($divisions as $division_id => $division_name)
+
+                @if($division_id == $team->division_id)
+                  <option value="{{$division_id}}" name='division' selected="true">{{$division_name}}</option>
+                @else
+
+                  <option value="{{$division_id}}" name='division'>{{$division_name}}</option>
+                @endif
+
+              @endforeach              
             
             </select>
 
@@ -52,8 +62,7 @@
           <select class="custom-select dynamic" id='captain' name='captain_id'>
             <option value="{{$team->captain_id}}" selected='true' disabled='disabled'>Select a Captain (Leave blank if captain not yet available)</option>
             @foreach ($captains as $captain)
-            
-            <option value="{{$captain->id}}" name='sport'>{{$captain->name}}</option>
+              <option value="{{$captain->id}}" name='sport'>{{$captain->name}}</option>
             @endforeach
           </select>
     </div>
@@ -122,7 +131,10 @@ $(document).ready(function(){
 
 
 
+
 });
+
+@push('scripts')
 
 
 
@@ -130,4 +142,3 @@ $(document).ready(function(){
 
 </script>
 
-@push('scripts')

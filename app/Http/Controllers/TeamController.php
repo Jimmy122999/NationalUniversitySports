@@ -126,7 +126,14 @@ class TeamController extends Controller
 
         $sports = Sport::all();
         $captains = User::all(['id' , 'name' , 'user_group'])->where('user_group', 2);
-        return view ('admin/teams/edit', compact('team'), compact('sports' , $sports))->with(compact('captains', $captains));
+        $divisions = Division::where('id', '=', $team->division_id)->pluck('name', 'id')->toArray();
+
+        // $returnData =[];
+        // $returnData['divisions'] = $divisions;
+        // dd($returnData);
+
+
+        return view ('admin/teams/edit', compact('team'), compact('sports' , $sports))->with(compact('captains', $captains))->with('divisions' , $divisions);
     }
 
     /**
@@ -153,6 +160,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        //
+        $team->delete();
+        return redirect('admin/sports');
     }
 }
