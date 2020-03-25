@@ -16,8 +16,9 @@
 
 
 			</div>
-			<div class='col-6 border'><h1>{{$team->name}}</h1>
+			<div class='col-6 border'><h1>{{$team->name}}</h1> 
 					<div class="container">
+						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/edit" role="button">Edit Team</a>
 					    <div class="row justify-content">
 					        <div class="col-md-8">
 					            <div class="card">
@@ -44,7 +45,12 @@
 			</div>
 			<div class='col-1'></div> <!-- Pushing container in  -->
 		</div>
+		<div class='row'>
+			<div class ='col-6'>
 	
+			<
+		</div>
 </div>
+
 
 @endsection

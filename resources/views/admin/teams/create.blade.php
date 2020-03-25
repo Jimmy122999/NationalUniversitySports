@@ -88,7 +88,7 @@ $(document).ready(function(){
 			var dependent = $(this).data('dependent');
 			var _token = $('input[name="_token"]').val();
 			$.ajax({
-				url:"{{ route('dynamicdependent.fetch')}}",
+				url:"{{ route('teamcontroller.fetch')}}",
 				method:"POST",
 				data:{
 					select:select, 

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Team;
 use App\TeamMember;
 use App\Division;
 use App\Sport;
 use App\User;
 use Illuminate\Http\Request;
+
 
 class TeamController extends Controller
 {
@@ -23,7 +25,7 @@ class TeamController extends Controller
 
     public function index()
     {
-        //
+        return view ('admin/teams/index');
     }
 
     /**
@@ -55,17 +57,17 @@ class TeamController extends Controller
         $select = $request->get('select');
         $value = $request->get('value');
         $dependent = $request->get('dependent');
-        $data = DB::table('divisions')->where($select, $value)->groupBy($dependent)->get();
+        $data = DB::table('divisions')->where($select, $value)->pluck('name', 'id');
 
-        $output= '<option value="">Select '.ucfirst($dependent).'</option>';
+        $output= '<option value="#" selected="true" disabled="disabled">Select Division</option>';
 
-        foreach($data as $row)
+        foreach($data as $id => $value)
         {
-            $output .= '<option value= "'.$row->$dependent.'">
-            '.$row->$dependent.'</option>';
-            echo $output;
+            $output .= '<option value= "'.$id.'">'.$value.'</option>';
         }
-        
+
+
+        return $output;
 
     }
 
@@ -121,7 +123,10 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        //
+
+        $sports = Sport::all();
+        $captains = User::all(['id' , 'name' , 'user_group'])->where('user_group', 2);
+        return view ('admin/teams/edit', compact('team'), compact('sports' , $sports))->with(compact('captains', $captains));
     }
 
     /**
@@ -133,7 +138,11 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        //
+        $team->name = request('name');
+        $team->division_id = request('division_id');
+        $team->captain_id = request('captain_id');
+        $team->save();
+        return redirect('admin');
     }
 
     /**
