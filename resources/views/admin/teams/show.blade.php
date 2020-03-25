@@ -9,7 +9,7 @@
 			<div class='col border'><h1>Squad</h1>
 				<ul class="list-group">
 				@foreach ($team->member as $teamMember)
-				<li class="list-group-item">{{ $teamMember->name }}asd</li>
+				<li class="list-group-item">{{ $teamMember->name }}</li>
 				@endforeach
 				</ul>
 

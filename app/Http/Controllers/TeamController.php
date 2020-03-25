@@ -20,7 +20,8 @@ class TeamController extends Controller
      */
     public function adminIndex()
     {
-        return view('admin/teams/index');
+        $teams = Team::all(['id', 'name']);
+        return view('admin/teams/index' , compact('teams', $teams));
     }
 
     public function index()
