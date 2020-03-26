@@ -11,4 +11,10 @@ class TeamMember extends Model
 
     	return $this->belongsTo(Team::class);
     }
+
+    public function post()
+    {
+
+    	return $this->hasMany(TeamPost::class);
+    }
 }

@@ -75,5 +75,9 @@ Route::post('/admin/teams', 'TeamController@store')->middleware('admin');
 Route::get('/admin/teams/{team}/edit', 'TeamController@edit')->middleware('admin');
 Route::patch('/admin/teams/{team}/edit', 'TeamController@update')->middleware('admin');
 Route::delete('/admin/teams/{team}', 'TeamController@destroy')->middleware('admin');
+//Posts Section for Teams
+Route::get('/admin/teams/{team}/{teamMember}/post' , 'TeamPostController@adminCreate')->middleware('admin');
+Route::post('/admin/teams/{team}/{teamMember}/post' , 'TeamPostController@adminStore')->middleware('admin');
+
 
 

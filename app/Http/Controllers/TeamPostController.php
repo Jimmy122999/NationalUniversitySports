@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\TeamPost;
+use App\Team;
+use App\TeamMember;
 use Illuminate\Http\Request;
 
 class TeamPostController extends Controller
@@ -22,9 +24,11 @@ class TeamPostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function adminCreate(Team $team , TeamMember $teamMember)
     {
-        //
+        
+        return view ('admin/teams/create_post' , compact('team' , $team), compact('teamMember', $teamMember));
+
     }
 
     /**
@@ -33,9 +37,17 @@ class TeamPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function adminStore(Request $request, Team $team, TeamMember $teamMember)
     {
-        //
+        TeamPost::create([
+                    'member_id' => $teamMember->id,
+                    'team_id' => $team->id,
+                    'title' => request('title'),
+                    'body' => request('body')
+
+                ]);
+
+        return redirect('admin');
     }
 
     /**
