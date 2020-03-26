@@ -22,16 +22,27 @@
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/post" role="button">Create New Post</a>
 					    <div class="row justify-content">
 					        <div class="col-md-8">
+
 					        	@foreach ($team->post as $post)
-					            <div class="card">
+					            <div class="card mb-4">
+
 					                <div class="card-header">
-					                	{{$teamMember->name}}
+					                	<div class="row">
+					                	<div class="col-md-10">
+					                	{{$teamMember->name}}<br>	{{$post->created_at->format('d/m/Y H:i')}}
+					                	</div>
+					                	<div class="col-md-2">
+											<a class="btn btn-primary" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/post/{{$post->id}}/edit" role="button">Edit</a>
+					                	</div>
+					                </div>
+
 					                </div>
 
 					                <div class="card-body">
 					                   {{$post->body}}
 					                </div>
 					            </div>
+					            <a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/edit" role="button">Edit Team</a>
 					            @endforeach
 					        </div>
 					    </div>

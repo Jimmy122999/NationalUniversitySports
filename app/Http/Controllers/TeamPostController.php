@@ -27,7 +27,7 @@ class TeamPostController extends Controller
     public function adminCreate(Team $team , TeamMember $teamMember)
     {
         
-        return view ('admin/teams/create_post' , compact('team' , $team), compact('teamMember', $teamMember));
+        return view ('admin/teams/posts/create' , compact('team' , $team), compact('teamMember', $teamMember));
 
     }
 
@@ -66,9 +66,11 @@ class TeamPostController extends Controller
      * @param  \App\TeamPost  $teamPost
      * @return \Illuminate\Http\Response
      */
-    public function edit(TeamPost $teamPost)
+    public function adminEdit(Team $team, TeamMember $teamMember, TeamPost $teamPost)
     {
-        //
+        
+        return view ('admin/teams/posts/edit' , compact('teamPost' , $teamPost), compact('teamMember', $teamMember))->with('team' , $team);
+
     }
 
     /**
@@ -78,9 +80,11 @@ class TeamPostController extends Controller
      * @param  \App\TeamPost  $teamPost
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TeamPost $teamPost)
+    public function update(Request $request, Team $team, TeamMember $teamMember, TeamPost $teamPost)
     {
-        //
+        $teamPost->body = request('body');
+        $teamPost->save();
+        return redirect()->route('adminTeamShow' , [$team]);
     }
 
     /**
@@ -89,8 +93,9 @@ class TeamPostController extends Controller
      * @param  \App\TeamPost  $teamPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TeamPost $teamPost)
+    public function destroy(Team $team, TeamMember $teamMember, TeamPost $teamPost)
     {
-        //
+        $teamPost->delete();
+        return redirect()->route('adminTeamShow' , [$team]);
     }
 }
