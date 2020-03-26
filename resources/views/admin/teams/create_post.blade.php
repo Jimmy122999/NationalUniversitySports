@@ -8,17 +8,7 @@
 	@csrf
 	
 
-	<div>
-		
-		<div class="input-group mb-3">
-		  <div class="input-group-prepend">
-		    <span class="input-group-text" id="inputGroup-sizing-default">Post Title</span>
-		  </div>
-		  <input type="text" class="form-control" name='title'>
-		</div>
-		
-		<input type="hidden" name="" class="input" value="" required>
-	</div>
+	
 
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">

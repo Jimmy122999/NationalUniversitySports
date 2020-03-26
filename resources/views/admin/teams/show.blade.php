@@ -22,13 +22,17 @@
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/post" role="button">Create New Post</a>
 					    <div class="row justify-content">
 					        <div class="col-md-8">
+					        	@foreach ($team->post as $post)
 					            <div class="card">
-					                <div class="card-header">Dashboard</div>
+					                <div class="card-header">
+					                	{{$teamMember->name}}
+					                </div>
 
 					                <div class="card-body">
-					                   
+					                   {{$post->body}}
 					                </div>
 					            </div>
+					            @endforeach
 					        </div>
 					    </div>
 					</div>

@@ -17,7 +17,6 @@ class CreateTeamPostsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('member_id');
             $table->unsignedBigInteger('team_id');
-            $table->string('title');
             $table->text('body');
             $table->timestamps();
 

@@ -42,12 +42,11 @@ class TeamPostController extends Controller
         TeamPost::create([
                     'member_id' => $teamMember->id,
                     'team_id' => $team->id,
-                    'title' => request('title'),
                     'body' => request('body')
 
                 ]);
 
-        return redirect('admin');
+        return redirect()->route('adminTeamShow' , [$team]); //Adding Wildcard to Route
     }
 
     /**

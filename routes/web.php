@@ -69,7 +69,7 @@ Route::delete('/admin/sports/{sport}/{division}', 'DivisionController@destroy')-
 //Admin Teams
 Route::get('/admin/teams/index', 'TeamController@adminIndex')->middleware('admin');
 Route::get('/admin/teams/create', 'TeamController@create')->middleware('admin');
-Route::get('/admin/teams/{team}' , 'TeamController@adminShow')->middleware('admin');
+Route::get('/admin/teams/{team}' , 'TeamController@adminShow')->middleware('admin')->name('adminTeamShow');
 Route::post('/admin/teams/create/fetch', 'TeamController@fetch')->name("teamcontroller.fetch");
 Route::post('/admin/teams', 'TeamController@store')->middleware('admin');
 Route::get('/admin/teams/{team}/edit', 'TeamController@edit')->middleware('admin');
