@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Division::class, function (Faker $faker) {
     return [
-        //
+    	
     ];
 });

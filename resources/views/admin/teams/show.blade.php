@@ -18,21 +18,23 @@
 			</div>
 			<div class='col-6 border'><h1>{{$team->name}}</h1> 
 					<div class="container">
+						@if(isset($teamMember))
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/edit" role="button">Edit Team</a>
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/post" role="button">Create New Post</a>
 					    <div class="row justify-content">
 					        <div class="col-md-8">
 
-					        	@foreach ($team->post as $post)
+					        	@foreach ($posts as $post)
 					            <div class="card mb-4">
 
 					                <div class="card-header">
 					                	<div class="row">
 					                	<div class="col-md-10">
-					                	{{$teamMember->name}}<br>	{{$post->created_at->format('d/m/Y H:i')}}
+					                		
+					                	{{$post->name}}<br>	{{$post->created_at->format('d/m/Y H:i')}}
 					                	</div>
 					                	<div class="col-md-2">
-											<a class="btn btn-primary" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/post/{{$post->id}}/edit" role="button">Edit</a>
+											<a class="btn btn-primary" href="/admin/teams/{{$team->id}}/{{$post->teamMemberId}}/post/{{$post->id}}/edit" role="button">Edit</a>
 					                	</div>
 					                </div>
 
@@ -46,6 +48,10 @@
 					            @endforeach
 					        </div>
 					    </div>
+					    @else
+					    <h1>No Team Members :(</h1>
+					   @endif
+
 					</div>
 
 

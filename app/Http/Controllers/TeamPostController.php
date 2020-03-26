@@ -39,6 +39,12 @@ class TeamPostController extends Controller
      */
     public function adminStore(Request $request, Team $team, TeamMember $teamMember)
     {
+
+
+       
+
+
+
         TeamPost::create([
                     'member_id' => $teamMember->id,
                     'team_id' => $team->id,

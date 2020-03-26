@@ -108,7 +108,23 @@ class TeamController extends Controller
     {
 
         // $teamMembers = TeamMember::all();
-        return view ('admin/teams/show', compact('team'));
+
+        $posts = $team->leftJoin('team_posts', 'teams.id', '=', 'team_posts.team_id')
+             ->leftJoin('team_members', 'team_posts.member_id', '=', 'team_members.id')
+             ->where('team_posts.team_id', '=', $team->id)
+             ->select([
+                'team_posts.id',
+                'team_posts.body',
+                'team_posts.created_at',
+                'team_members.id as teamMemberId',
+                'team_members.name'
+
+             ])
+             ->get();
+             // dd($posts);
+
+
+        return view ('admin/teams/show', compact('team'))->with(compact('posts', $posts));
         // dd($teamMembers->name);
 
 

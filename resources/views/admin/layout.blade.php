@@ -45,8 +45,9 @@
                           <a class="nav-link" href="/about">About</a>
                         </li>
                         <li class="nav-item">
+                            @if(isset($user->member->team_id))
                           <a class="nav-link" href="/admin/teams/{{$user->member->team_id}}">My Team</a>
-
+                            @endif
                           <li class="nav-item">
                             <a class="nav-link" href="/admin">Admin</a>
                         </li>
