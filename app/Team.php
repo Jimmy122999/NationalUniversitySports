@@ -31,4 +31,9 @@ class Team extends Model
 
         return $this->hasmany(TeamPost::class);
     }
+
+    public function application(){
+
+        return $this->hasmany(TeamApplicant::class);
+    }
 }

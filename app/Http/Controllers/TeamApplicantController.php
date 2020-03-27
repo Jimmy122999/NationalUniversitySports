@@ -14,9 +14,9 @@ class TeamApplicantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function adminIndex(Team $team)
     {
-        //
+        return view('admin/teams/apply/index' , compact('team', $team));
     }
 
     /**

@@ -21,6 +21,7 @@
 						@if($user->hasTeam == 0)
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/apply" role="button">Join Team</a>
 						@endif
+						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/applications" role="button">View Applications</a>
 						@if(isset($teamMember))
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/edit" role="button">Edit Team</a>
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/post" role="button">Create New Post</a>
