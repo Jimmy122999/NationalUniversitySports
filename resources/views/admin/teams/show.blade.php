@@ -18,6 +18,9 @@
 			</div>
 			<div class='col-6 border'><h1>{{$team->name}}</h1> 
 					<div class="container">
+						@if($user->hasTeam == 0)
+						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/apply" role="button">Join Team</a>
+						@endif
 						@if(isset($teamMember))
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/edit" role="button">Edit Team</a>
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/post" role="button">Create New Post</a>
@@ -68,9 +71,10 @@
 			<div class='col-1'></div> <!-- Pushing container in  -->
 		</div>
 		<div class='row'>
+
 			<div class ='col-6'>
 	
-			<
+			
 		</div>
 </div>
 

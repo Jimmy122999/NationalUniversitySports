@@ -82,5 +82,9 @@ Route::get('/admin/teams/{team}/{teamMember}/post/{teamPost}/edit' , 'TeamPostCo
 Route::patch('/admin/teams/{team}/{teamMember}/post/{teamPost}/edit' , 'TeamPostController@update')->middleware('admin');
 Route::delete('/admin/teams/{team}/{teamMember}/post/{teamPost}' , 'TeamPostController@destroy')->middleware('admin');
 
+//Application Admin
+
+Route::get('/admin/teams/{team}/apply' , 'TeamApplicantController@adminCreate')->middleware('admin');
+
 
 
