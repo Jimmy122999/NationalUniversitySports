@@ -24,11 +24,13 @@ class CreateTeamMembersTable extends Migration
 
             $table->foreign('user_id')
             ->references('id')
-            ->on('users');
+            ->on('users')
+            ->onDelete('cascade');
 
             $table->foreign('team_id')
             ->references('id')
-            ->on('teams');
+            ->on('teams')
+            ->onDelete('cascade');
         });
     }
 

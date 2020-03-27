@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\TeamApplicant;
 use App\Team;
+use App\User;
+use App\TeamMember;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -48,6 +50,38 @@ class TeamApplicantController extends Controller
 
         return redirect()->route('adminTeamShow' , [$team]);
     }
+
+    public function adminAccept(Team $team, TeamApplicant $application)
+    {
+        TeamMember::create([
+                    'name' => $application->name,
+                    'team_id' => $team->id,
+                    'user_id' => Auth::user()->id,
+
+
+        ]);
+
+        $user = User::find(Auth::user()->id);
+        $user->update(['hasTeam' => 1]);
+        $user->save();
+
+        $application->update(['approved' => 1]);
+
+
+
+
+
+
+        return back();
+        
+    }
+
+    public function adminDeny(Team $team, TeamApplicant $application)
+    {
+        $application->delete();
+        return back();
+    }
+
 
     /**
      * Display the specified resource.

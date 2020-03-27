@@ -87,5 +87,7 @@ Route::get('/admin/teams/{team}/applications' , 'TeamApplicantController@adminIn
 Route::get('/admin/teams/{team}/apply' , 'TeamApplicantController@adminCreate')->middleware('admin');
 Route::post('/admin/teams/{team}/apply' , 'TeamApplicantController@adminStore')->middleware('admin');
 Route::get('/admin/teams/{team}/applications' , 'TeamApplicantController@adminIndex')->middleware('admin');
+Route::post('/admin/teams/{team}/{application}/applications/approve', 'TeamApplicantController@adminAccept')->middleware('admin');
+Route::post('/admin/teams/{team}/{application}/applications/deny', 'TeamApplicantController@adminDeny')->middleware('admin');
 
 

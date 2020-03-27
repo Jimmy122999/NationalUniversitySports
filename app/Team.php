@@ -36,4 +36,10 @@ class Team extends Model
 
         return $this->hasmany(TeamApplicant::class);
     }
+
+    public function pendingApplication(){
+
+        return $this->hasmany(TeamApplicant::class)->where('approved', '=', 0);
+    }
+
 }

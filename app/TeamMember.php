@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeamMember extends Model
 {
+
+	protected $guarded = [
+		
+	];
     public function team()
     {
 

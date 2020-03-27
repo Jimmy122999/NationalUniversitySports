@@ -5,14 +5,30 @@
 	<h1>{{$team->name}}'s Applications</h1>
 <ul class="list-group">
  
-  @foreach ($team->application as $application)
+  @foreach ($team->pendingApplication as $application)
   <div class="row">
-  	<div class="col-sm-9 mb-1">
+  	<div class="col-sm-8 mb-1">
   <li class ='list-group-item'>
-  	<a href='/admin/teams/{{$team->id}}/{{$application->id}}'>
+  	<a href='/admin/profile/{{$user->id}}'>
   		{{ $application->name }}</a>
+
       
   </li>
+
+  </div>
+  	 	 <div class="col-sm-1">
+  	 	 	<form method="POST" action='/admin/teams/{{$team->id}}/{{$application->id}}/applications/approve'>
+  	 	 		@csrf
+  	 	 		 <input class="btn btn-success" type="submit" value="Approve">
+  	 	 	</form>
+  	 	 </div>
+  	 	 <div class="col-sm-1">
+  	 	 	<form method="POST" action='/admin/teams/{{$team->id}}/{{$application->id}}/applications/deny'>
+  	 	 		@csrf
+  	 	 		 <input class="btn btn-danger" type="submit" value="Deny">
+  	 	 	</form>
+  		 </div>
+    
   @endforeach
 
   @endsection
