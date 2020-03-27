@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TeamApplicant;
 use App\Team;
+use Auth;
 use Illuminate\Http\Request;
 
 class TeamApplicantController extends Controller
@@ -25,6 +26,7 @@ class TeamApplicantController extends Controller
      */
     public function adminCreate(Team $team)
     {
+        
         return view('admin/teams/apply/create', compact('team', $team));
     }
 
@@ -34,9 +36,17 @@ class TeamApplicantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function adminStore(Request $request , Team $team)
     {
-        //
+        TeamApplicant::create([
+                    'team_id' => $team->id,
+                    'user_id' => Auth::user()->user_group,
+                    'name' => request('name'),
+                    'approved' => 0
+
+                ]);
+
+        return redirect()->route('adminTeamShow' , [$team]);
     }
 
     /**

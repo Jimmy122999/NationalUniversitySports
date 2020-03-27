@@ -85,6 +85,7 @@ Route::delete('/admin/teams/{team}/{teamMember}/post/{teamPost}' , 'TeamPostCont
 //Application Admin
 
 Route::get('/admin/teams/{team}/apply' , 'TeamApplicantController@adminCreate')->middleware('admin');
-
+Route::post('/admin/teams/{team}/apply' , 'TeamApplicantController@adminStore')->middleware('admin');
+Route::get('/admin/teams/{team}/applications' , 'TeamApplicantController@adminIndex')->middleware('admin');
 
 
