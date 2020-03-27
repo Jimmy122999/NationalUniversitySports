@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\TeamMember;
+use App\Team;
+use Auth;
+use App\User;
 use Illuminate\Http\Request;
 
 class TeamMemberController extends Controller
@@ -24,8 +27,20 @@ class TeamMemberController extends Controller
      */
     public function create()
     {
-        //
+       
     }
+
+    public function leaveTeam(Team $team, TeamMember $teamMember)
+    {
+        $user = User::find(Auth::user()->id);
+
+       $teamMember->where('user_id' , $user->id)->delete();
+       $user->update(['hasTeam' => 0]);
+       $user->save();
+       return back();
+
+    }
+
 
     /**
      * Store a newly created resource in storage.

@@ -25,6 +25,7 @@
 						@if(isset($teamMember))
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/edit" role="button">Edit Team</a>
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/post" role="button">Create New Post</a>
+						<a class="btn btn-danger ml-6" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/leave" role="button">Leave Team</a>
 					    <div class="row justify-content">
 					        <div class="col-md-8">
 
@@ -48,7 +49,7 @@
 					                   {{$post->body}}
 					                </div>
 					            </div>
-					            <a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/edit" role="button">Edit Team</a>
+					           
 					            @endforeach
 					        </div>
 					    </div>
