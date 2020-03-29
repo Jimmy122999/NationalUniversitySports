@@ -25,7 +25,7 @@
     <form METHOD ="POST" action="/admin/sports/{{$sport->id}}">
       @csrf
       @method('delete')
-    <div class="col-sm-1"><input class="btn btn-danger ml-3" type="submit" value="Delete"></div>
+    <div class="col-sm-1"><input id='delete' class="btn btn-danger ml-3" type="submit" value="Delete"></div>
     </form>
 
 
@@ -45,3 +45,23 @@
 
 
 @endsection
+
+<script type="text/javascript">
+  window.onload = function(){
+  var del = document.getElementById('delete');
+
+  del.onclick = function(){
+    var x = confirm('Are you sure you want to delete this sport? It will remove all divisions and teams associated with it?');
+    if(x == true){
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+}
+
+
+
+</script>

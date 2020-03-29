@@ -72,7 +72,7 @@
     <form METHOD ="POST" action="/admin/teams/{{$team->id}}">
       @csrf
       @method('delete')
-    <div class="col-sm-1"><input class="btn btn-danger ml-6" type="submit" value="Delete"></div>
+    <div class="col-sm-1"><input id='delete' class="btn btn-danger ml-6" type="submit" value="Delete"></div>
     </form>
 
 
@@ -97,6 +97,24 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  window.onload = function(){
+  var del = document.getElementById('delete');
+
+  del.onclick = function(){
+    var x = confirm('Are you sure you want to delete this team?');
+    if(x == true){
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+}
+</script>
+
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -133,6 +151,8 @@ $(document).ready(function(){
 
 
 });
+
+
 
 @push('scripts')
 
