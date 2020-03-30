@@ -5,13 +5,13 @@
 <div class='container-fluid' width:>
 <div class='row'>
 			<div class='col-1 '></div>  <!-- Pushing container in  -->
-			<div class='col border'><h1>Squad</h1>
+			<div class='col border'><h1>About Me</h1>
 				<ul class="list-group">
 </ul>
 </div>
 <div class='col-6 border'>
 </div>
-<div class='col border'><h1>{{$userProfile->bio}}</h1>
+<div class='col border'><h1>{{$userProfile->member->name}}</h1>
 				<ul class="list-group">
 				  <li class="list-group-item">{{$userProfile->id}}</li>
 				  <li class="list-group-item">Dapibus ac facilisis in</li>

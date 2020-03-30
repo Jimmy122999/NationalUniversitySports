@@ -19,12 +19,11 @@ class UserProfile extends Model
     	return $this->hasOne(User::class);
     }
     
+    public function member()
+    {
 
-    // public function getRouteKeyName()
-    // {
+        return $this->hasOne(TeamMember::class , 'id' , 'team_member_id');
+    }
 
-    //     return user()->name;
-
-
-    // }
+   
 }
