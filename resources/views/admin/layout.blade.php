@@ -52,10 +52,12 @@
                           <a class="nav-link" href="/admin/teams/{{$user->member->team_id}}">My Team</a>
                             @endif
                         <li class="nav-item">
+                            @if(isset($user->member->team_id))
                             @if(isset($user->profile->id))
                           <a class="nav-link" href="/admin/profile/{{$user->profile->id}}">My Profile</a>
                             @else
                             <a class="nav-link" href="/admin/profile/create">My Profile</a>
+                            @endif
                             @endif
                           <li class="nav-item">
                             <a class="nav-link" href="/admin">Admin</a>

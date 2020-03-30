@@ -17,7 +17,7 @@ class CreateUserProfilesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('team_id');
-            $table->unsignedBigInteger('member_id');
+            $table->unsignedBigInteger('team_member_id');
             $table->text('bio');
             $table->string('position');
             $table->timestamps();
@@ -33,7 +33,7 @@ class CreateUserProfilesTable extends Migration
            ->on('teams')
            ->onDelete('cascade');
 
-            $table->foreign('member_id')
+            $table->foreign('team_member_id')
             ->references('id')
             ->on('team_members')
             ->onDelete('cascade');

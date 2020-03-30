@@ -11,9 +11,9 @@
 </div>
 <div class='col-6 border'>
 </div>
-<div class='col border'><h1>Top Scorers</h1>
+<div class='col border'><h1>{{$userProfile->bio}}</h1>
 				<ul class="list-group">
-				  <li class="list-group-item">Cras justo odio</li>
+				  <li class="list-group-item">{{$userProfile->id}}</li>
 				  <li class="list-group-item">Dapibus ac facilisis in</li>
 				  <li class="list-group-item">Morbi leo risus</li>
 				  <li class="list-group-item">Porta ac consectetur ac</li>

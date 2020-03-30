@@ -111,13 +111,15 @@ class TeamController extends Controller
 
         $posts = $team->leftJoin('team_posts', 'teams.id', '=', 'team_posts.team_id')
              ->leftJoin('team_members', 'team_posts.member_id', '=', 'team_members.id')
+             ->leftJoin('user_profiles', 'team_members.id', '=', 'user_profiles.team_member_id')
              ->where('team_posts.team_id', '=', $team->id)
              ->select([
                 'team_posts.id',
                 'team_posts.body',
                 'team_posts.created_at',
                 'team_members.id as teamMemberId',
-                'team_members.name'
+                'team_members.name',
+                'user_profiles.id as userProfileId'
 
              ])
              ->get();

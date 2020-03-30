@@ -21,4 +21,10 @@ class TeamMember extends Model
 
     	return $this->hasMany(TeamPost::class);
     }
+
+    public function profile()
+    {
+
+        return $this->hasOne(UserProfile::class);
+    }
 }

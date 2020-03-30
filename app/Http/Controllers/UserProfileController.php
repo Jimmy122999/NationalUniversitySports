@@ -42,7 +42,7 @@ class UserProfileController extends Controller
        $userProfile = UserProfile::create([
             'user_id' => $user->id,
             'team_id' => $user->member->team_id,
-            'member_id' => $user->member->id,
+            'team_member_id' => $user->member->id,
             'position' => request('position'),
             'bio' => request('bio')
 

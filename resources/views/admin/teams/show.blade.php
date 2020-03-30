@@ -9,7 +9,12 @@
 			<div class='col border'><h1>Squad</h1>
 				<ul class="list-group">
 				@foreach ($team->member as $teamMember)
+				@if (isset($teamMember->profile->id))
+				<li class="list-group-item"><a href="/admin/profile/{{$user->profile->id}}">{{ $teamMember->name }}</a></li>
+				
+				@else
 				<li class="list-group-item">{{ $teamMember->name }}</li>
+				@endif
 				@endforeach
 				</ul>
 
@@ -31,12 +36,16 @@
 
 					        	@foreach ($posts as $post)
 					            <div class="card mb-4">
-
+									
 					                <div class="card-header">
 					                	<div class="row">
 					                	<div class="col-md-10">
-					                		
+					                	@if(isset($post->userProfileId))	
+					                <a href="/admin/profile/{{$post->userProfileId}}">{{$post->name}}</a><br>	{{$post->created_at->format('d/m/Y H:i')}}
+					                	@else
 					                	{{$post->name}}<br>	{{$post->created_at->format('d/m/Y H:i')}}
+					                	@endif
+
 					                	</div>
 					                	<div class="col-md-2">
 											<a class="btn btn-primary" href="/admin/teams/{{$team->id}}/{{$post->teamMemberId}}/post/{{$post->id}}/edit" role="button">Edit</a>
