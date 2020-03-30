@@ -41,4 +41,11 @@ class User extends Authenticatable
 
         return $this->hasOne(TeamMember::class);
     }
+
+    public function profile()
+    {
+
+        return $this->hasOne(UserProfile::class);
+
+    }
 }

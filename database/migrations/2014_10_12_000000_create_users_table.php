@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('user_group');
             $table->boolean('hasTeam');
+            $table->boolean('hasProfile');
             $table->rememberToken();
             $table->timestamps();
 

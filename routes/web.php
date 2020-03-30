@@ -51,7 +51,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/sports', 'SportController@adminIndex')->middleware('admin');
 Route::get('/admin/sports/create', 'SportController@create')->middleware('admin');
-Route::get('/admin/sports/{sport}', 'SportController@adminShow')->middleware('admin');
+Route::get('/admin/sports/{sport}', 'SportController@adminShow')->middleware('admin')->name('adminSportShow');
 Route::post('/admin/sports', 'SportController@store')->middleware('admin');
 Route::get('/admin/sports/{sport}/edit', 'SportController@edit')->middleware('admin');
 Route::patch('/admin/sports/{sport}/edit', 'SportController@update')->middleware('admin');
@@ -90,5 +90,12 @@ Route::post('/admin/teams/{team}/apply' , 'TeamApplicantController@adminStore')-
 Route::get('/admin/teams/{team}/applications' , 'TeamApplicantController@adminIndex')->middleware('admin');
 Route::post('/admin/teams/{team}/{application}/applications/approve', 'TeamApplicantController@adminAccept')->middleware('admin');
 Route::post('/admin/teams/{team}/{application}/applications/deny', 'TeamApplicantController@adminDeny')->middleware('admin');
+
+//Admin Profile
+Route::get('/admin/profile/create' , 'UserProfileController@adminCreate')->middleware('admin');
+Route::post('/admin/profile/create' , 'UserProfileController@store')->middleware('admin');
+
+Route::get('/admin/profile/{userProfile}' , 'UserProfileController@adminShow')->middleware('admin')->name('adminProfileShow');
+
 
 

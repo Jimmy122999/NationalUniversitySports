@@ -12,7 +12,7 @@
 
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
-	    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+	    <span class="input-group-text" id="inputGroup-sizing-default">Display Name</span>
 	  </div>
 	  	<input type="text" class="form-control" name='name'>
 	</div>

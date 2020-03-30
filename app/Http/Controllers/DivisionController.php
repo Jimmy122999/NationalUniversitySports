@@ -52,7 +52,7 @@ class DivisionController extends Controller
         // ]);
 
     
-       return redirect ('admin/sports');
+       return redirect()->route('adminSportShow' , [$sport]);
       
     }
 
@@ -96,7 +96,8 @@ class DivisionController extends Controller
     {
         $division->name = request('name');
         $division->save();
-        return redirect('admin/sports');
+        // return redirect('admin/sports');
+        return redirect()->route('adminSportShow' , [$sport]);
         
     }
 
@@ -109,6 +110,6 @@ class DivisionController extends Controller
     public function destroy(Sport $sport , Division $division)
     {
         $division->delete();
-        return redirect('admin/sports');
+        return redirect()->route('adminSportShow' , [$sport]);
     }
 }

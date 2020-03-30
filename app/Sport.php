@@ -28,5 +28,14 @@ class Sport extends Model
 
     	]);
     }
+
+    public function getRouteKeyName()
+    {
+
+        return 'name';
+
+
+    }
+     
 }
 

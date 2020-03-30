@@ -166,7 +166,7 @@ class TeamController extends Controller
         $team->division_id = request('division_id');
         $team->captain_id = request('captain_id');
         $team->save();
-        return redirect('admin');
+        return redirect()->route('adminTeamShow' , [$team]);
     }
 
     /**

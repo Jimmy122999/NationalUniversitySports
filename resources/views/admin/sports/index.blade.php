@@ -9,14 +9,14 @@
   <div class="row">
   	<div class="col-sm-9 mb-1">
   <li class ='list-group-item'>
-  	<a href='/admin/sports/{{$sport->id}}'>
+  	<a href='/admin/sports/{{$sport->name}}'>
   		{{ $sport->name }}</a>
       
   </li>
 
 </div>
   <div class="col-sm-3">
-  <a class="btn btn-primary ml-auto" href="/admin/sports/{{ $sport-> id}}/edit" role="button">Edit</a>
+  <a class="btn btn-primary ml-auto" href="/admin/sports/{{ $sport-> name}}/edit" role="button">Edit</a>
 </div>
 </div>
 

@@ -5,7 +5,7 @@
   <div class="container">
 <h1 class='title'>Edit Division</h1>
 
-<form METHOD ="POST" action="/admin/sports/{{$sport->id}}/{{$division->id}}/edit">
+<form METHOD ="POST" action="/admin/sports/{{$sport->name}}/{{$division->id}}/edit">
   @csrf
 
   @method('patch')
@@ -21,7 +21,7 @@
    
     <div class="col-sm-1"><input class="btn btn-primary" type="submit" value="Edit Name"></div> </form>
 
-    <form METHOD ="POST" action="/admin/sports/{{$sport->id}}/{{$division->id}}">
+    <form METHOD ="POST" action="/admin/sports/{{$sport->name}}/{{$division->id}}">
       @csrf
       @method('delete')
     <div class="col-sm-1"><input id='delete' class="btn btn-danger ml-3" type="submit" value="Delete"></div>

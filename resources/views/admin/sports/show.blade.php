@@ -10,13 +10,13 @@
     <div class="row">
       <div class="col-sm-9">
     <li class ='list-group-item'>
-      <a href='/admin/sports/{{$sport->id}}/{{$division->id}}'>
+      <a href='/admin/sports/{{$sport->name}}/{{$division->id}}'>
         {{ $division->name }}</a>
 
     </li>
   </div>
     <div class="col-sm-3">
-    <a class="btn btn-primary ml-auto" href="/admin/sports/{{$sport-> id}}/{{$division->id}}/edit" role="button">Edit</a>
+    <a class="btn btn-primary ml-auto" href="/admin/sports/{{$sport-> name}}/{{$division->id}}/edit" role="button">Edit</a>
   </div>
 
   </div>
@@ -25,7 +25,7 @@
 
     </ul>
 
-    <a class="btn btn-primary" href="/admin/sports/{{$sport->id}}/create" role="button">Create new Division</a>
+    <a class="btn btn-primary" href="/admin/sports/{{$sport->name}}/create" role="button">Create new Division</a>
 
   
 </div>

@@ -5,7 +5,7 @@
 	<div class="container">
 <h1 class='title'>Create a new Division</h1>
 
-<form METHOD ="POST" action="/admin/sports/{{$sport->id}}">
+<form METHOD ="POST" action="/admin/sports/{{$sport->name}}">
 	@csrf
 	
 
@@ -18,7 +18,7 @@
 		  <input type="text" class="form-control" name='name'>
 		</div>
 		
-		<input type="hidden" name="sportID" class="input" value="{{$sport->id}}" required>
+		<input type="hidden" name="sportID" class="input" value="{{$sport->name}}" required>
 	</div>
 	
 
