@@ -31,6 +31,38 @@
 			
 		</div>
 			<div class='col-6 border'>
+				<h1>{{$userProfile->member->name}}</h1>
+				<a class="btn btn-primary ml-6" href="/admin/profile/{{$userProfile->id}}/post/create" role="button">Create New Post</a>
+				    <div class="row justify-content">
+				        <div class="col-md-8">
+
+				        	@foreach ($userProfile->post as $post)
+				            <div class="card mb-4">
+								
+				                <div class="card-header">
+				                	<div class="row">
+				                	<div class="col-md-10">
+				                	
+				                	{{$userProfile->member->name}}<br>	{{$post->created_at->format('d/m/Y H:i')}}
+				                	
+
+				                	</div>
+				                	<div class="col-md-2">
+										<a class="btn btn-primary" href="/admin/profile/{{$userProfile->id}}/post/{{$post->id}}/edit" role="button">Edit</a>
+				                	</div>
+				                </div>
+
+				                </div>
+
+				                <div class="card-body">
+				                   {{$post->body}}
+				                </div>
+				            </div>
+				           
+				            @endforeach
+				        </div>
+				    </div>
+
 			</div>
 			<div class='col border'><h1>{{$userProfile->member->name}}</h1>
 							<ul class="list-group">

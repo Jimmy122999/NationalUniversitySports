@@ -94,9 +94,16 @@ Route::post('/admin/teams/{team}/{application}/applications/deny', 'TeamApplican
 //Admin Profile
 Route::get('/admin/profile/create' , 'UserProfileController@adminCreate')->middleware('admin');
 Route::post('/admin/profile/create' , 'UserProfileController@store')->middleware('admin');
-
 Route::get('/admin/profile/{userProfile}' , 'UserProfileController@adminShow')->middleware('admin')->name('adminProfileShow');
 Route::post('/admin/profile/{userProfile}/image' , 'UserProfileController@adminAddImage')->middleware('admin');
+
+//Admin Profile Posts
+
+Route::get('/admin/profile/{userProfile}/post/create' , 'UserProfilePostController@adminCreate')->middleware('admin');
+Route::post('/admin/profile/{userProfile}/post/create' , 'UserProfilePostController@adminStore')->middleware('admin');
+Route::get('/admin/profile/{userProfile}/post/{userProfilePost}/edit' , 'UserProfilePostController@adminEdit')->middleware('admin');
+Route::patch('/admin/profile/{userProfile}/post/{userProfilePost}/edit' , 'UserProfilePostController@adminUpdate')->middleware('admin');
+Route::delete('/admin/profile/{userProfile}/post/{userProfilePost}' , 'UserProfilePostController@adminDestroy')->middleware('admin');
 
 
 

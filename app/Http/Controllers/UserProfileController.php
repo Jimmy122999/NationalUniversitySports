@@ -70,7 +70,7 @@ class UserProfileController extends Controller
 
     }
 
-   
+
 
     /**
      * Display the specified resource.
@@ -80,6 +80,7 @@ class UserProfileController extends Controller
      */
     public function adminShow(UserProfile $userProfile)
     {
+
         return view('admin/profile/show', compact('userProfile' , $userProfile));
     }
 
@@ -119,6 +120,7 @@ class UserProfileController extends Controller
      */
     public function destroy(UserProfile $userProfile)
     {
-        //
+        $teamPost->delete();
+        return redirect()->route('adminTeamShow' , [$team]);
     }
 }

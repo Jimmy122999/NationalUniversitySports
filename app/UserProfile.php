@@ -25,5 +25,11 @@ class UserProfile extends Model
         return $this->hasOne(TeamMember::class , 'id' , 'team_member_id');
     }
 
+    public function post()
+    {
+
+        return $this->hasMany(UserProfilePost::class , 'profile_id' , 'id');
+    }
+
    
 }
