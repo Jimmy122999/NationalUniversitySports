@@ -96,6 +96,8 @@ Route::get('/admin/profile/create' , 'UserProfileController@adminCreate')->middl
 Route::post('/admin/profile/create' , 'UserProfileController@store')->middleware('admin');
 
 Route::get('/admin/profile/{userProfile}' , 'UserProfileController@adminShow')->middleware('admin')->name('adminProfileShow');
+Route::post('/admin/profile/{userProfile}/image' , 'UserProfileController@adminAddImage')->middleware('admin');
+
 
 
 

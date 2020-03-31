@@ -19,7 +19,10 @@
 		</div>
 		
 		<input type="hidden" name="sportID" class="input" value="{{$sport->name}}" required>
+		
 	</div>
+
+
 	
 
 	<div>

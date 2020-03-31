@@ -20,6 +20,7 @@ class CreateUserProfilesTable extends Migration
             $table->unsignedBigInteger('team_member_id');
             $table->text('bio');
             $table->string('position');
+            $table->string('image')->nullable();
             $table->timestamps();
 
 

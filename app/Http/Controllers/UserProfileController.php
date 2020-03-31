@@ -52,6 +52,26 @@ class UserProfileController extends Controller
 
     }
 
+    public function adminAddImage(UserProfile $userProfile)
+    {
+
+
+        if (request()->hasFile('image')) {
+
+            
+           request()->validate([
+                'image' => 'file|image|max:5000'
+            ]);
+           $userProfile->update([
+            'image' => request()->image->store('uploads' , 'public')
+           ]);
+        }
+        return redirect()->route('adminProfileShow' , [$userProfile]);
+
+    }
+
+   
+
     /**
      * Display the specified resource.
      *
