@@ -35,8 +35,10 @@
 			<div class='col-6 border'>
 				<h1>{{$userProfile->member->name}}</h1>
 				<a class="btn btn-primary ml-6" href="/admin/profile/{{$userProfile->id}}/post/create" role="button">Create New Post</a>
+				<a class="btn btn-primary ml-6" href="/admin/profile/{{$userProfile->id}}/edit" role="button">Edit Profile</a>
+				
 				    <div class="row justify-content">
-				        <div class="col-md-8">
+				        <div class="col-md-8 py-4">
 
 				        	@foreach ($userProfile->post as $post)
 				            <div class="card mb-4">

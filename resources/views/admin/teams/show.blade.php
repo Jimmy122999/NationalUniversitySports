@@ -32,7 +32,7 @@
 						<a class="btn btn-primary ml-6" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/post" role="button">Create New Post</a>
 						<a id='leave' class="btn btn-danger ml-6" href="/admin/teams/{{$team->id}}/{{$teamMember->id}}/leave" role="button">Leave Team</a>
 					    <div class="row justify-content">
-					        <div class="col-md-8">
+					        <div class="col-md-8 py-4">
 
 					        	@foreach ($posts as $post)
 					            <div class="card mb-4">

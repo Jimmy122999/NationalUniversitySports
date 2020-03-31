@@ -100,6 +100,11 @@ class UserProfileController extends Controller
      * @param  \App\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
+    public function adminEdit(UserProfile $userProfile)
+    {
+        return view('admin/profile/edit' , compact('userProfile', $userProfile));
+    }
+
     public function edit(UserProfile $userProfile)
     {
         //
@@ -112,6 +117,14 @@ class UserProfileController extends Controller
      * @param  \App\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
+    public function adminUpdate(Request $request, UserProfile $userProfile)
+    {
+        $userProfile->position = request('position');
+        $userProfile->bio = request('bio');
+        $userProfile->save();
+        return redirect()->route('adminProfileShow' , [$userProfile]);
+
+    }
     public function update(Request $request, UserProfile $userProfile)
     {
         //
@@ -125,7 +138,7 @@ class UserProfileController extends Controller
      */
     public function destroy(UserProfile $userProfile)
     {
-        $teamPost->delete();
-        return redirect()->route('adminTeamShow' , [$team]);
+        $userProfile->delete();
+        return redirect('admin');
     }
 }

@@ -99,7 +99,7 @@ class TeamPostController extends Controller
      * @param  \App\TeamPost  $teamPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team, TeamMember $teamMember, TeamPost $teamPost)
+    public function adminDestroy(Team $team, TeamMember $teamMember, TeamPost $teamPost)
     {
         $teamPost->delete();
         return redirect()->route('adminTeamShow' , [$team]);
