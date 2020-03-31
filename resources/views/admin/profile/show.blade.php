@@ -25,7 +25,9 @@
 				 </form>
 			  	@endif
 			  <div class="card-body">
-			    <p class="card-text"><h1>{{$userProfile->member->name}}</h1></p>
+			    <p class="card-text">Name: {{$userProfile->member->name}}</p>
+			    <p class="card-text">Team: <a href="/admin/teams/{{$userProfile->member->team->id}}">{{$userProfile->member->team->name}}</p></a>
+			    <p class="card-text">Position: {{$userProfile->position}}</p>
 			  </div>
 			</div>	
 			

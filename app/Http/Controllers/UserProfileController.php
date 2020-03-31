@@ -6,6 +6,7 @@ use App\UserProfile;
 Use Auth;
 Use App\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class UserProfileController extends Controller
 {
@@ -66,6 +67,10 @@ class UserProfileController extends Controller
             'image' => request()->image->store('uploads' , 'public')
            ]);
         }
+        $image = Image::make(public_path('storage/' . $userProfile->image))->fit(300,300);
+        $image->save();
+
+
         return redirect()->route('adminProfileShow' , [$userProfile]);
 
     }
