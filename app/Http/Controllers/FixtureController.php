@@ -6,6 +6,7 @@ use App\Fixture;
 use App\Sport;
 use App\Division;
 use App\Team;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -44,7 +45,7 @@ class FixtureController extends Controller
         Fixture::create([
             'home_team_id' => request('homeTeam'),
             'away_team_id' => request('awayTeam'),
-            'time' => request('time'),
+            'time' => Carbon::parse(request('time')),
             'notes' => request('notes')
         ]);
         return redirect('admin');

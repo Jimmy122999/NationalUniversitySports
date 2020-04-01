@@ -143,9 +143,17 @@ class TeamController extends Controller
              ])
              ->get();
              // dd($posts);
+        $homeFixtures = $team->homeFixture()->get();
+        $awayFixtures = $team->awayFixture()->get();
 
+        $allFixtures = $homeFixtures->merge($awayFixtures);
+        
+        
+        
 
-        return view ('admin/teams/show', compact('team'))->with(compact('posts', $posts));
+        
+
+        return view ('admin/teams/show', compact('team' , $team))->with(compact('posts', $posts))->with(compact('allFixtures', $allFixtures));
         // dd($teamMembers->name);
 
 

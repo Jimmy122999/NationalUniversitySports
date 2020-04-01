@@ -42,9 +42,12 @@ class Team extends Model
         return $this->hasmany(TeamApplicant::class)->where('approved', '=', 0);
     }
 
-    public function fixture(){
-
-        return $this->hasmany(Fixture::class);
+    public function homeFixture(){
+        return $this->hasmany(Fixture::class , 'home_team_id' , 'id');
     }
+    public function awayFixture(){
+        return $this->hasmany(Fixture::class , 'away_team_id' , 'id');
+    }
+
 
 }

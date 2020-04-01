@@ -11,6 +11,8 @@ class Fixture extends Model
 
     ];
 
+    protected $dates = ['time'];
+
     public function homeTeam()
     {
 

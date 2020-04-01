@@ -34,6 +34,7 @@
 					    <div class="row justify-content">
 					        <div class="col-md-8 py-4">
 
+
 					        	@foreach ($posts as $post)
 					            <div class="card mb-4">
 									
@@ -70,14 +71,21 @@
 
 
 			</div>
-			<div class='col border'><h1>Top Scorers</h1>
-				<ul class="list-group">
-				  <li class="list-group-item">Cras justo odio</li>
-				  <li class="list-group-item">Dapibus ac facilisis in</li>
-				  <li class="list-group-item">Morbi leo risus</li>
-				  <li class="list-group-item">Porta ac consectetur ac</li>
-				  <li class="list-group-item">Vestibulum at eros</li>
-				</ul>
+			<div class='col border'><h1>Upcoming Fixtures</h1>
+				<tbody>
+					
+					
+					@foreach($allFixtures as $fixture)
+					<tr>
+						<td><a href="/admin/teams/{{$fixture->home_team_id}}"><center>{{$fixture->homeTeam->name}}</center></a></td>
+						<td><center>{{$fixture->time->format('d/m/Y H:i')}}</center><br><center>{{$fixture->notes}}</center></td>
+						<td><a href="/admin/teams/{{$fixture->away_team_id}}"><center>{{$fixture->awayTeam->name}}</center></a></td>
+					</tr>		
+					@endforeach
+
+
+					
+				</tbody>
 			</div>
 			<div class='col-1'></div> <!-- Pushing container in  -->
 		</div>
