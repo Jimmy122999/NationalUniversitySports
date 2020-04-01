@@ -108,6 +108,11 @@ Route::get('/admin/profile/{userProfile}/post/{userProfilePost}/edit' , 'UserPro
 Route::patch('/admin/profile/{userProfile}/post/{userProfilePost}/edit' , 'UserProfilePostController@adminUpdate')->middleware('admin');
 Route::delete('/admin/profile/{userProfile}/post/{userProfilePost}' , 'UserProfilePostController@adminDestroy')->middleware('admin');
 
+//Admin Fixtures
 
+Route::get('/admin/fixtures' , 'FixtureController@index')->middleware('admin');
+Route::get('/admin/fixtures/create' , 'FixtureController@create')->middleware('admin');
+Route::post('/admin/fixtures/create' , 'FixtureController@store')->middleware('admin');
+Route::post('/admin/fixtures/create/fetch' , 'TeamController@teamFetch')->middleware('admin')->name('teamcontroller.teamfetch');
 
 

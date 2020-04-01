@@ -72,6 +72,25 @@ class TeamController extends Controller
 
     }
 
+    public function teamfetch(Request $request)
+    {
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('teams')->where($select, $value)->pluck('name', 'id');
+
+        $output= '<option value="#" selected="true" disabled="disabled">Select Team</option>';
+
+        foreach($data as $id => $value)
+        {
+            $output .= '<option value= "'.$id.'">'.$value.'</option>';
+        }
+
+
+        return $output;
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -15,7 +15,7 @@
 		    	<label class="input-group-text dynamic">Position</label>
 		  </div>
 			  <select class="custom-select dynamic" name='position'>
-			  	<option value="{{$userProfile->position}}" selected='true' disabled="true">{{$userProfile->position}}</option>
+			  	
 			  	<option value="Goalkeeper">Goalkeeper</option>
 			  	<option value="Defender">Defender</option>
 			  	<option value="Midfielder">Midfielder</option>
