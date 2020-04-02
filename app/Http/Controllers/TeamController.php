@@ -104,10 +104,12 @@ class TeamController extends Controller
             'name' => request('name'),
             'division_id' => request('division_id'),
             'captain_id' => request('captain_id'),
+            'played' => '0',
             'wins' => '0',
             'draws' => '0',
             'losses' => '0',
             'points' => '0',
+
 
         ]);
 

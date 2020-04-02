@@ -115,4 +115,10 @@ Route::get('/admin/fixtures/create' , 'FixtureController@create')->middleware('a
 Route::post('/admin/fixtures/create' , 'FixtureController@store')->middleware('admin');
 Route::post('/admin/fixtures/create/fetch' , 'TeamController@teamFetch')->middleware('admin')->name('teamcontroller.teamfetch');
 
+//Fixture Results
+
+Route::get('/admin/fixtures/{fixture}/result' , 'FixtureResultController@create')->middleware('admin');
+Route::post('/admin/fixtures/{fixture}/result' , 'FixtureResultController@store')->middleware('admin');
+
+
 
