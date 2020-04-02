@@ -58,17 +58,20 @@ class UserProfileController extends Controller
 
 
         if (request()->hasFile('image')) {
-
+            
             
            request()->validate([
                 'image' => 'file|image|max:5000'
             ]);
+           $image = Image::make(request()->image->getRealPath())->fit(300 , 300);
+           
+           $image->save();
            $userProfile->update([
+
             'image' => request()->image->store('uploads' , 'public')
            ]);
         }
-        $image = Image::make(public_path('storage/' . $userProfile->image))->fit(300,300);
-        $image->save();
+
 
 
         return redirect()->route('adminProfileShow' , [$userProfile]);

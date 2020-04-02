@@ -15,7 +15,7 @@
       </thead>
       <tbody>
 
-        @foreach ($division->team as $team)
+        @foreach ($teams as $team)
        <tr>
          <th scope="row"><a href="/admin/teams/{{$team->id}}">{{$team->name}}</a></th>
          <td>{{$team->played}}</td>

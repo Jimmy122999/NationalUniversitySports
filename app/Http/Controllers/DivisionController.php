@@ -65,7 +65,9 @@ class DivisionController extends Controller
 
     public function adminShow(Sport $sport, Division $division)
     {
-        return view ('admin/divisions/show' , compact('sport') , compact('division'));
+        $teams = $division->team->sortByDesc('points');
+        
+        return view ('admin/divisions/show' , compact('sport') , compact('division'))->with(compact('teams' , $teams));
     }
 
     public function show(Division $division)
