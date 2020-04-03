@@ -24,10 +24,10 @@ class TeamPostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminCreate(Team $team , TeamMember $teamMember)
+    public function create(Team $team , TeamMember $teamMember)
     {
         
-        return view ('admin/teams/posts/create' , compact('team' , $team), compact('teamMember', $teamMember));
+        return view ('teams/posts/create' , compact('team' , $team), compact('teamMember', $teamMember));
 
     }
 
@@ -37,7 +37,7 @@ class TeamPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function adminStore(Request $request, Team $team, TeamMember $teamMember)
+    public function store(Request $request, Team $team, TeamMember $teamMember)
     {
 
 
@@ -52,7 +52,7 @@ class TeamPostController extends Controller
 
                 ]);
 
-        return redirect()->route('adminTeamShow' , [$team]); //Adding Wildcard to Route
+        return redirect()->route('teamShow' , [$team]); //Adding Wildcard to Route
     }
 
     /**
@@ -72,10 +72,10 @@ class TeamPostController extends Controller
      * @param  \App\TeamPost  $teamPost
      * @return \Illuminate\Http\Response
      */
-    public function adminEdit(Team $team, TeamMember $teamMember, TeamPost $teamPost)
+    public function edit(Team $team, TeamMember $teamMember, TeamPost $teamPost)
     {
         
-        return view ('admin/teams/posts/edit' , compact('teamPost' , $teamPost), compact('teamMember', $teamMember))->with('team' , $team);
+        return view ('teams/posts/edit' , compact('teamPost' , $teamPost), compact('teamMember', $teamMember))->with('team' , $team);
 
     }
 
@@ -90,7 +90,7 @@ class TeamPostController extends Controller
     {
         $teamPost->body = request('body');
         $teamPost->save();
-        return redirect()->route('adminTeamShow' , [$team]);
+        return redirect()->route('teamShow' , [$team]);
     }
 
     /**
@@ -99,9 +99,9 @@ class TeamPostController extends Controller
      * @param  \App\TeamPost  $teamPost
      * @return \Illuminate\Http\Response
      */
-    public function adminDestroy(Team $team, TeamMember $teamMember, TeamPost $teamPost)
+    public function destroy(Team $team, TeamMember $teamMember, TeamPost $teamPost)
     {
         $teamPost->delete();
-        return redirect()->route('adminTeamShow' , [$team]);
+        return redirect()->route('teamShow' , [$team]);
     }
 }

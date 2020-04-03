@@ -25,9 +25,9 @@ class UserProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminCreate()
+    public function create()
     {
-        return view('admin/profile/create');
+        return view('profile/create');
     }
 
     /**
@@ -49,11 +49,11 @@ class UserProfileController extends Controller
 
 
          ]);
-       return redirect()->route('adminProfileShow' , [$userProfile]);
+       return redirect()->route('profileShow' , [$userProfile]);
 
     }
 
-    public function adminAddImage(UserProfile $userProfile)
+    public function addImage(UserProfile $userProfile)
     {
 
 
@@ -74,7 +74,7 @@ class UserProfileController extends Controller
 
 
 
-        return redirect()->route('adminProfileShow' , [$userProfile]);
+        return redirect()->route('profileShow' , [$userProfile]);
 
     }
 
@@ -86,16 +86,13 @@ class UserProfileController extends Controller
      * @param  \App\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function adminShow(UserProfile $userProfile)
-    {
-
-        return view('admin/profile/show', compact('userProfile' , $userProfile));
-    }
-
     public function show(UserProfile $userProfile)
     {
-        //
+
+        return view('profile/show', compact('userProfile' , $userProfile));
     }
+
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -103,15 +100,12 @@ class UserProfileController extends Controller
      * @param  \App\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function adminEdit(UserProfile $userProfile)
-    {
-        return view('admin/profile/edit' , compact('userProfile', $userProfile));
-    }
-
     public function edit(UserProfile $userProfile)
     {
-        //
+        return view('profile/edit' , compact('userProfile', $userProfile));
     }
+
+  
 
     /**
      * Update the specified resource in storage.
@@ -120,18 +114,15 @@ class UserProfileController extends Controller
      * @param  \App\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function adminUpdate(Request $request, UserProfile $userProfile)
+    public function update(Request $request, UserProfile $userProfile)
     {
         $userProfile->position = request('position');
         $userProfile->bio = request('bio');
         $userProfile->save();
-        return redirect()->route('adminProfileShow' , [$userProfile]);
+        return redirect()->route('profileShow' , [$userProfile]);
 
     }
-    public function update(Request $request, UserProfile $userProfile)
-    {
-        //
-    }
+  
 
     /**
      * Remove the specified resource from storage.

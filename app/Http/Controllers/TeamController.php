@@ -21,12 +21,12 @@ class TeamController extends Controller
     public function adminIndex()
     {
         $teams = Team::all(['id', 'name']);
-        return view('admin/teams/index' , compact('teams', $teams));
+        return view('teams/index' , compact('teams', $teams));
     }
 
     public function index()
     {
-        return view ('admin/teams/index');
+        return view ('teams/index');
     }
 
     /**
@@ -42,7 +42,7 @@ class TeamController extends Controller
         // $divisions = Division::all(['id', 'name' , 'sport_id']);
         $selectedSport = '';
         
-        return view ('admin/teams/create' , compact('sports' , $sports), compact('selectedSport' , $selectedSport))->with(compact('captains' , $captains));
+        return view ('teams/create' , compact('sports' , $sports), compact('selectedSport' , $selectedSport))->with(compact('captains' , $captains));
     }
 
     // public function createDivision(Sport $sport , Request $request)
@@ -50,7 +50,7 @@ class TeamController extends Controller
     //     $captains = User::all(['id' , 'name' , 'user_group'])->where('user_group', 2);
     //     $divisions = Division::all(['id', 'name' , 'sport_id']);
         
-    //     return view ('admin/teams/create' , compact('captains' , $captains) , compact('sports' , $sports))->with(compact('divisions' , $divisions));
+    //     return view ('teams/create' , compact('captains' , $captains) , compact('sports' , $sports))->with(compact('divisions' , $divisions));
     // }
 
     public function fetch(Request $request)
@@ -155,7 +155,7 @@ class TeamController extends Controller
 
         
 
-        return view ('admin/teams/show', compact('team' , $team))->with(compact('posts', $posts))->with(compact('allFixtures', $allFixtures));
+        return view ('teams/show', compact('team' , $team))->with(compact('posts', $posts))->with(compact('allFixtures', $allFixtures));
         // dd($teamMembers->name);
 
 
@@ -181,7 +181,7 @@ class TeamController extends Controller
         // dd($returnData);
 
 
-        return view ('admin/teams/edit', compact('team'), compact('sports' , $sports))->with(compact('captains', $captains))->with('divisions' , $divisions);
+        return view ('teams/edit', compact('team'), compact('sports' , $sports))->with(compact('captains', $captains))->with('divisions' , $divisions);
     }
 
     /**
@@ -197,7 +197,7 @@ class TeamController extends Controller
         $team->division_id = request('division_id');
         $team->captain_id = request('captain_id');
         $team->save();
-        return redirect()->route('adminTeamShow' , [$team]);
+        return redirect()->route('teamShow' , [$team]);
     }
 
     /**
@@ -209,6 +209,6 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         $team->delete();
-        return redirect('admin/sports');
+        return redirect('sports');
     }
 }

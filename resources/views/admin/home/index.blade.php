@@ -1,4 +1,4 @@
-@extends ('admin/layout')
+@extends ('layout')
 
 @section('content')
 
@@ -9,8 +9,8 @@
                 <div class="card-header">Teams</div>
 
                 <div class="card-body">
-                  	<a class="btn btn-success ml-auto" href="/admin/teams/create" role="button">Add</a>
-                    <a class="btn btn-primary ml-auto" href="/admin/teams/index" role="button">Edit</a>
+                  	<a class="btn btn-success ml-auto" href="/teams/create" role="button">Add</a>
+                    <a class="btn btn-primary ml-auto" href="/teams/index" role="button">Edit</a>
                 </div>
             </div>
         </div>
@@ -22,8 +22,8 @@
                 <div class="card-header">Fixtures</div>
 
                 <div class="card-body">
-                    <a class="btn btn-success ml-auto" href="/admin/fixtures/create" role="button">Add</a>
-                    <a class="btn btn-primary ml-auto" href="/admin/fixtures/index" role="button">Edit</a>
+                    <a class="btn btn-success ml-auto" href="/fixtures/create" role="button">Add</a>
+                    <a class="btn btn-primary ml-auto" href="/fixtures/index" role="button">Edit</a>
                 </div>
             </div>
         </div>

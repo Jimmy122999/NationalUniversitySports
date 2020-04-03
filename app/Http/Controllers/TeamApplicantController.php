@@ -16,9 +16,9 @@ class TeamApplicantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminIndex(Team $team)
+    public function index(Team $team)
     {
-        return view('admin/teams/apply/index' , compact('team', $team));
+        return view('teams/apply/index' , compact('team', $team));
     }
 
     /**
@@ -26,10 +26,10 @@ class TeamApplicantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminCreate(Team $team)
+    public function create(Team $team)
     {
         
-        return view('admin/teams/apply/create', compact('team', $team));
+        return view('teams/apply/create', compact('team', $team));
     }
 
     /**
@@ -38,7 +38,7 @@ class TeamApplicantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function adminStore(Request $request , Team $team)
+    public function store(Request $request , Team $team)
     {
         TeamApplicant::create([
                     'team_id' => $team->id,
@@ -48,10 +48,10 @@ class TeamApplicantController extends Controller
 
                 ]);
 
-        return redirect()->route('adminTeamShow' , [$team]);
+        return redirect()->route('teamShow' , [$team]);
     }
 
-    public function adminAccept(Team $team, TeamApplicant $application)
+    public function accept(Team $team, TeamApplicant $application)
     {
         TeamMember::create([
                     'name' => $application->name,
@@ -76,7 +76,7 @@ class TeamApplicantController extends Controller
         
     }
 
-    public function adminDeny(Team $team, TeamApplicant $application)
+    public function deny(Team $team, TeamApplicant $application)
     {
         $application->delete();
         return back();

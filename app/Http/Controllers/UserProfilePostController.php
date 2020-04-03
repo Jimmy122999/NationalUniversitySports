@@ -23,9 +23,9 @@ class UserProfilePostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminCreate(UserProfile $userProfile)
+    public function create(UserProfile $userProfile)
     {
-        return view('admin/profile/posts/create' , compact('userProfile' , $userProfile));
+        return view('profile/posts/create' , compact('userProfile' , $userProfile));
     }
 
     /**
@@ -34,7 +34,7 @@ class UserProfilePostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function adminStore(Request $request , UserProfile $userProfile)
+    public function store(Request $request , UserProfile $userProfile)
     {
         UserProfilePost::create([
             'member_id' => $userProfile->team_member_id,
@@ -43,7 +43,7 @@ class UserProfilePostController extends Controller
 
         ]);
 
-        return redirect()->route('adminProfileShow' , [$userProfile]);
+        return redirect()->route('profileShow' , [$userProfile]);
     }
 
     /**
@@ -52,20 +52,16 @@ class UserProfilePostController extends Controller
      * @param  \App\UserProfilePost  $userProfilePost
      * @return \Illuminate\Http\Response
      */
-    public function show(UserProfilePost $userProfilePost)
-    {
-        //
-    }
-
+  
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\UserProfilePost  $userProfilePost
      * @return \Illuminate\Http\Response
      */
-    public function adminEdit(UserProfile $userProfile , UserProfilePost $userProfilePost)
+    public function edit(UserProfile $userProfile , UserProfilePost $userProfilePost)
     {
-        return view('admin/profile/posts/edit' , compact('userProfile' , $userProfile), compact('userProfilePost' , $userProfilePost));
+        return view('profile/posts/edit' , compact('userProfile' , $userProfile), compact('userProfilePost' , $userProfilePost));
     }
 
     /**
@@ -75,11 +71,11 @@ class UserProfilePostController extends Controller
      * @param  \App\UserProfilePost  $userProfilePost
      * @return \Illuminate\Http\Response
      */
-    public function adminUpdate(Request $request, UserProfile $userProfile , UserProfilePost $userProfilePost)
+    public function update(Request $request, UserProfile $userProfile , UserProfilePost $userProfilePost)
     {
         $userProfilePost->body = request('body');
         $userProfilePost->save();
-        return redirect()->route('adminProfileShow' , [$userProfile]);
+        return redirect()->route('profileShow' , [$userProfile]);
     }
 
     /**
@@ -88,9 +84,9 @@ class UserProfilePostController extends Controller
      * @param  \App\UserProfilePost  $userProfilePost
      * @return \Illuminate\Http\Response
      */
-    public function adminDestroy( UserProfile $userProfile , UserProfilePost $userProfilePost)
+    public function destroy( UserProfile $userProfile , UserProfilePost $userProfilePost)
     {
         $userProfilePost->delete();
-        return redirect()->route('adminProfileShow' , [$userProfile]);
+        return redirect()->route('profileShow' , [$userProfile]);
     }
 }

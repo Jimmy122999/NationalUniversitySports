@@ -27,7 +27,7 @@ class DivisionController extends Controller
     {
       //  $sport = Sport::findorfail($id);
 
-        return view ('admin/divisions/create', compact('sport') );
+        return view ('divisions/create', compact('sport') );
 
         
 
@@ -67,7 +67,7 @@ class DivisionController extends Controller
     {
         $teams = $division->team->sortByDesc('points');
         
-        return view ('admin/divisions/show' , compact('sport') , compact('division'))->with(compact('teams' , $teams));
+        return view ('divisions/show' , compact('sport') , compact('division'))->with(compact('teams' , $teams));
     }
 
     public function show(Division $division)
@@ -83,7 +83,7 @@ class DivisionController extends Controller
      */
     public function edit(Sport $sport, Division $division)
     {
-        return view ('admin/divisions/edit', compact('sport') , compact('division'));
+        return view ('divisions/edit', compact('sport') , compact('division'));
         // dd('hello');
     }
 
@@ -98,8 +98,8 @@ class DivisionController extends Controller
     {
         $division->name = request('name');
         $division->save();
-        // return redirect('admin/sports');
-        return redirect()->route('adminSportShow' , [$sport]);
+        // return redirect('sports');
+        return redirect()->route('SportShow' , [$sport]);
         
     }
 
@@ -112,6 +112,6 @@ class DivisionController extends Controller
     public function destroy(Sport $sport , Division $division)
     {
         $division->delete();
-        return redirect()->route('adminSportShow' , [$sport]);
+        return redirect()->route('SportShow' , [$sport]);
     }
 }

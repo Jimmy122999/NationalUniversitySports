@@ -25,7 +25,7 @@ class FixtureResultController extends Controller
      */
     public function create(Fixture $fixture)
     {
-        return view('admin/fixtures/result/create' , compact('fixture' , $fixture));
+        return view('fixtures/result/create' , compact('fixture' , $fixture));
     }
 
     /**
@@ -104,7 +104,7 @@ class FixtureResultController extends Controller
         {
             $this->processResult('draw' , $fixture);
         }
-        return redirect('admin/fixtures');
+        return redirect('fixtures');
     }
 
     /**

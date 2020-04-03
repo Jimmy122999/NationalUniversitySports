@@ -20,7 +20,7 @@ class FixtureController extends Controller
     public function index()
     {
         $fixtures = Fixture::all();
-        return view('admin/fixtures/index', compact('fixtures' , $fixtures));
+        return view('fixtures/index', compact('fixtures' , $fixtures));
     }
 
     /**
@@ -31,7 +31,7 @@ class FixtureController extends Controller
     public function create()
     {
         $sports = Sport::all(['id', 'name']);
-        return view('admin/fixtures/create' , compact('sports' , $sports));
+        return view('fixtures/create' , compact('sports' , $sports));
     }
 
     /**

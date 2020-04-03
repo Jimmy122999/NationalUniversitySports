@@ -14,17 +14,12 @@ class SportController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    
     public function index()
     {
         $sports = Sport::all();
 
-        return view('sports' , ['sports' => $sports]);
-    }
-    public function adminIndex()
-    {
-        $sports = Sport::all();
-
-        return view('admin/sports/index' , ['sports' => $sports]);
+        return view('sports/index' , ['sports' => $sports]);
 
 
     }
@@ -36,7 +31,7 @@ class SportController extends Controller
      */
     public function create()
     {
-        return view('admin/sports/create');
+        return view('sports/create');
     }
 
     /**
@@ -47,11 +42,13 @@ class SportController extends Controller
      */
     public function store()
     {
+
+        $this->authorize('create' , Sport::class);
         Sport::create(request()->validate([
             'name' => 'required'
         ]));
 
-        return redirect('/admin/sports');
+        return redirect('/sports');
     }
 
     /**
@@ -60,15 +57,12 @@ class SportController extends Controller
      * @param  \App\Sport  $sport
      * @return \Illuminate\Http\Response
      */
+   
+
     public function show(Sport $sport)
     {
-        // $sport = Sport::findOrFail($id);
-    }
-
-    public function adminShow(Sport $sport)
-    {
          // $sport = Sport::findOrFail($id);
-        return view ('admin/sports/show' , compact('sport'));
+        return view ('sports/show' , compact('sport'));
     }
 
     /**
@@ -79,7 +73,7 @@ class SportController extends Controller
      */
     public function edit(Sport $sport)
     {
-        return view ('admin/sports/edit', compact('sport'));
+        return view ('sports/edit', compact('sport'));
     }
 
     /**
@@ -93,7 +87,7 @@ class SportController extends Controller
     {
         $sport->name = request('name');
         $sport->save();
-        return redirect('admin/sports');
+        return redirect('sports');
        
 
         
@@ -111,6 +105,6 @@ class SportController extends Controller
     public function destroy(Sport $sport)
     {
         $sport->delete();
-        return redirect('admin/sports');
+        return redirect('sports');
     }
 }
