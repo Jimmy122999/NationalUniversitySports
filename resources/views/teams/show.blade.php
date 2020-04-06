@@ -26,11 +26,21 @@
 						@if($user->hasTeam == 0)
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/apply" role="button">Join Team</a>
 						@endif
+						@can('viewApplications' , App\Team::class)
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/applications" role="button">View Applications</a>
+						@endcan
 						@if(isset($teamMember))
+						@can('update' , App\Team::class)
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/edit" role="button">Edit Team</a>
+						@endcan
+						
+						@can('view' , [App\Team::class , $team])
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/{{$teamMember->id}}/post" role="button">Create New Post</a>
+						@endcan
+
+						@can ('leave' , [App\Team::class , $team])
 						<a id='leave' class="btn btn-danger ml-6" href="/teams/{{$team->id}}/{{$teamMember->id}}/leave" role="button">Leave Team</a>
+						@endcan
 					    <div class="row justify-content">
 					        <div class="col-md-8 py-4">
 
@@ -63,7 +73,8 @@
 					            @endforeach
 					        </div>
 					    </div>
-					    @else
+					   
+					  
 					    
 					   @endif
 

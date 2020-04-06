@@ -61,7 +61,7 @@ class SportController extends Controller
 
     public function show(Sport $sport)
     {
-         // $sport = Sport::findOrFail($id);
+        
         return view ('sports/show' , compact('sport'));
     }
 
@@ -73,6 +73,7 @@ class SportController extends Controller
      */
     public function edit(Sport $sport)
     {
+
         return view ('sports/edit', compact('sport'));
     }
 
@@ -85,6 +86,7 @@ class SportController extends Controller
      */
     public function update(Sport $sport)
     {
+        $this->authorize('update' , Sport::class);
         $sport->name = request('name');
         $sport->save();
         return redirect('sports');
@@ -104,6 +106,7 @@ class SportController extends Controller
      */
     public function destroy(Sport $sport)
     {
+        $this->authorize('delete' , Sport::class);
         $sport->delete();
         return redirect('sports');
     }

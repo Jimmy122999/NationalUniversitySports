@@ -30,7 +30,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/admin') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('National University Sports', 'National University Sports') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -61,9 +61,13 @@
                             <a class="nav-link" href="/profile/create">My Profile</a>
                             @endif
                             @endif
+                            @if(isset($user))
+                            @if($user->user_group == 1)
                           <li class="nav-item">
                             <a class="nav-link" href="/admin">Admin</a>
                         </li>
+                            @endif
+                            @endif
 
                     </ul>
 

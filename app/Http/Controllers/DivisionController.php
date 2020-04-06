@@ -42,7 +42,8 @@ class DivisionController extends Controller
      */
     public function store(Sport $sport)
     {
-      $sport->addDivision(request('name'));
+        $this->authorize('create' , Division::class);
+        $sport->addDivision(request('name'));
 
         // Division::create([
         //     'sport_id' => ($sport->id),
@@ -52,7 +53,7 @@ class DivisionController extends Controller
         // ]);
 
     
-       return redirect()->route('adminSportShow' , [$sport]);
+       return redirect()->route('SportShow' , [$sport]);
       
     }
 
@@ -63,17 +64,14 @@ class DivisionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function adminShow(Sport $sport, Division $division)
+    public function show(Sport $sport, Division $division)
     {
         $teams = $division->team->sortByDesc('points');
         
         return view ('divisions/show' , compact('sport') , compact('division'))->with(compact('teams' , $teams));
     }
 
-    public function show(Division $division)
-    {
-        //
-    }
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -96,6 +94,7 @@ class DivisionController extends Controller
      */
     public function update(Sport $sport, Division $division)
     {
+        $this->authorize('update' , Division::class);
         $division->name = request('name');
         $division->save();
         // return redirect('sports');
@@ -111,6 +110,7 @@ class DivisionController extends Controller
      */
     public function destroy(Sport $sport , Division $division)
     {
+        $this->authorize('delete' , Division::class);
         $division->delete();
         return redirect()->route('SportShow' , [$sport]);
     }

@@ -22,7 +22,7 @@ class Admin
             return redirect()->route('login');
         }
         if (Auth::user()->user_group == 3) {
-                   return redirect()->route('player');
+                   return back();
                }
 
         if (Auth::user()->user_group == 2) {

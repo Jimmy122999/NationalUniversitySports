@@ -42,7 +42,7 @@ class TeamApplicantController extends Controller
     {
         TeamApplicant::create([
                     'team_id' => $team->id,
-                    'user_id' => Auth::user()->user_group,
+                    'user_id' => Auth::user()->id,
                     'name' => request('name'),
                     'approved' => 0
 
@@ -56,12 +56,12 @@ class TeamApplicantController extends Controller
         TeamMember::create([
                     'name' => $application->name,
                     'team_id' => $team->id,
-                    'user_id' => Auth::user()->id,
+                    'user_id' => $application->user_id,
 
 
         ]);
 
-        $user = User::find(Auth::user()->id);
+        $user = User::find($application->user_id);
         $user->update(['hasTeam' => 1]);
         $user->save();
 

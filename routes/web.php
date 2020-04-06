@@ -39,7 +39,7 @@ View::composer(['*'], function($view){
 
 });
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
 
 Route::get('/captain', 'CaptainController@index')->name('captain')->middleware('captain');
 
@@ -52,31 +52,31 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Admin Sports
 
 Route::get('/sports', 'SportController@index');
-Route::get('/sports/create', 'SportController@create');
+Route::get('/sports/create', 'SportController@create')->middleware('admin');
 Route::get('/sports/{sport}', 'SportController@show')->name('SportShow');
-Route::post('/sports', 'SportController@store');
-Route::get('/sports/{sport}/edit', 'SportController@edit');
-Route::patch('/sports/{sport}/edit', 'SportController@update');
-Route::delete('/sports/{sport}', 'SportController@destroy');
+Route::post('/sports', 'SportController@store')->middleware('admin');
+Route::get('/sports/{sport}/edit', 'SportController@edit')->middleware('admin');
+Route::patch('/sports/{sport}/edit', 'SportController@update')->middleware('admin');
+Route::delete('/sports/{sport}', 'SportController@destroy')->middleware('admin');
 
 // Divisions
 
-Route::get('/sports/{sport}/create', 'DivisionController@create');
-Route::post('/sports/{sport}', 'DivisionController@store');
-Route::get('/sports/{sport}/{division}', 'DivisionController@adminShow');
-Route::get('/sports/{sport}/{division}/edit', 'DivisionController@edit');
-Route::patch('/sports/{sport}/{division}/edit', 'DivisionController@update');
-Route::delete('/sports/{sport}/{division}', 'DivisionController@destroy');
+Route::get('/sports/{sport}/create', 'DivisionController@create')->middleware('admin');
+Route::post('/sports/{sport}', 'DivisionController@store')->middleware('admin');
+Route::get('/sports/{sport}/{division}', 'DivisionController@show');
+Route::get('/sports/{sport}/{division}/edit', 'DivisionController@edit')->middleware('admin');
+Route::patch('/sports/{sport}/{division}/edit', 'DivisionController@update')->middleware('admin');
+Route::delete('/sports/{sport}/{division}', 'DivisionController@destroy')->middleware('admin');
 
 // Teams
-Route::get('/teams/index', 'TeamController@adminIndex');
-Route::get('/teams/create', 'TeamController@create');
-Route::get('/teams/{team}' , 'TeamController@adminShow')->name('teamShow');
+Route::get('/teams/index', 'TeamController@index');
+Route::get('/teams/create', 'TeamController@create')->middleware('admin');
+Route::get('/teams/{team}' , 'TeamController@show')->name('teamShow');
 Route::post('/teams/create/fetch', 'TeamController@fetch')->name("teamcontroller.fetch");
-Route::post('/teams', 'TeamController@store');
-Route::get('/teams/{team}/edit', 'TeamController@edit');
-Route::patch('/teams/{team}/edit', 'TeamController@update');
-Route::delete('/teams/{team}', 'TeamController@destroy');
+Route::post('/teams', 'TeamController@store')->middleware('admin');
+Route::get('/teams/{team}/edit', 'TeamController@edit')->middleware('admin');
+Route::patch('/teams/{team}/edit', 'TeamController@update')->middleware('admin');
+Route::delete('/teams/{team}', 'TeamController@destroy')->middleware('admin');
 Route::get('/teams/{team}/{teamMember}/leave' , 'TeamMemberController@leaveTeam');
 //Posts Section for Teams
 Route::get('/teams/{team}/{teamMember}/post' , 'TeamPostController@create');
@@ -112,14 +112,14 @@ Route::delete('/profile/{userProfile}/post/{userProfilePost}' , 'UserProfilePost
 // Fixtures
 
 Route::get('/fixtures' , 'FixtureController@index');
-Route::get('/fixtures/create' , 'FixtureController@create');
-Route::post('/fixtures/create' , 'FixtureController@store');
+Route::get('/fixtures/create' , 'FixtureController@create')->middleware('admin');
+Route::post('/fixtures/create' , 'FixtureController@store')->middleware('admin');
 Route::post('/fixtures/create/fetch' , 'TeamController@teamFetch')->name('teamcontroller.teamfetch');
 
 //Fixture Results
 
-Route::get('/fixtures/{fixture}/result' , 'FixtureResultController@create');
-Route::post('/fixtures/{fixture}/result' , 'FixtureResultController@store');
+Route::get('/fixtures/{fixture}/result' , 'FixtureResultController@create')->middleware('admin');;
+Route::post('/fixtures/{fixture}/result' , 'FixtureResultController@store')->middleware('admin');;
 
 
 

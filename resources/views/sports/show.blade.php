@@ -15,18 +15,20 @@
 
     </li>
   </div>
+    @can('create' , App\Division::class)
     <div class="col-sm-3">
     <a class="btn btn-primary ml-auto" href="/sports/{{$sport-> name}}/{{$division->id}}/edit" role="button">Edit</a>
-  </div>
+    </div>
+    @endcan
 
   </div>
 
     @endforeach
 
     </ul>
-
+    @can('create' , App\Division::class)
     <a class="btn btn-primary" href="/sports/{{$sport->name}}/create" role="button">Create new Division</a>
-
+    @endcan
   
 </div>
 @endsection

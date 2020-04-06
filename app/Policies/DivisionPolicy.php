@@ -2,16 +2,16 @@
 
 namespace App\Policies;
 
-use App\Sport;
+use App\Division;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SportPolicy
+class DivisionPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any sports.
+     * Determine whether the user can view any divisions.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -22,19 +22,19 @@ class SportPolicy
     }
 
     /**
-     * Determine whether the user can view the sport.
+     * Determine whether the user can view the division.
      *
      * @param  \App\User  $user
-     * @param  \App\Sport  $sport
+     * @param  \App\Division  $division
      * @return mixed
      */
-    public function view(User $user, Sport $sport)
+    public function view(User $user, Division $division)
     {
         //
     }
 
     /**
-     * Determine whether the user can create sports.
+     * Determine whether the user can create divisions.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -45,49 +45,49 @@ class SportPolicy
     }
 
     /**
-     * Determine whether the user can update the sport.
+     * Determine whether the user can update the division.
      *
      * @param  \App\User  $user
-     * @param  \App\Sport  $sport
+     * @param  \App\Division  $division
      * @return mixed
      */
-    public function update(User $user, Sport $sport)
+    public function update(User $user, Division $division)
     {
         return in_array($user->user_group, ['1']);
     }
 
     /**
-     * Determine whether the user can delete the sport.
+     * Determine whether the user can delete the division.
      *
      * @param  \App\User  $user
-     * @param  \App\Sport  $sport
+     * @param  \App\Division  $division
      * @return mixed
      */
-    public function delete(User $user, Sport $sport)
+    public function delete(User $user, Division $division)
     {
         return in_array($user->user_group, ['1']);
     }
 
     /**
-     * Determine whether the user can restore the sport.
+     * Determine whether the user can restore the division.
      *
      * @param  \App\User  $user
-     * @param  \App\Sport  $sport
+     * @param  \App\Division  $division
      * @return mixed
      */
-    public function restore(User $user, Sport $sport)
+    public function restore(User $user, Division $division)
     {
         //
     }
 
     /**
-     * Determine whether the user can permanently delete the sport.
+     * Determine whether the user can permanently delete the division.
      *
      * @param  \App\User  $user
-     * @param  \App\Sport  $sport
+     * @param  \App\Division  $division
      * @return mixed
      */
-    public function forceDelete(User $user, Sport $sport)
+    public function forceDelete(User $user, Division $division)
     {
         //
     }

@@ -18,16 +18,13 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminIndex()
+    public function index()
     {
         $teams = Team::all(['id', 'name']);
         return view('teams/index' , compact('teams', $teams));
     }
 
-    public function index()
-    {
-        return view ('teams/index');
-    }
+   
 
     /**
      * Show the form for creating a new resource.
@@ -99,19 +96,19 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+          $this->authorize('create' , Team::class);
+          Team::create([
+                'name' => request('name'),
+                'division_id' => request('division_id'),
+                'captain_id' => request('captain_id'),
+                'played' => '0',
+                'wins' => '0',
+                'draws' => '0',
+                'losses' => '0',
+                'points' => '0',
 
-      Team::create([
-            'name' => request('name'),
-            'division_id' => request('division_id'),
-            'captain_id' => request('captain_id'),
-            'played' => '0',
-            'wins' => '0',
-            'draws' => '0',
-            'losses' => '0',
-            'points' => '0',
 
-
-        ]);
+            ]);
 
       
 
@@ -125,7 +122,7 @@ class TeamController extends Controller
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function adminShow(Team $team)
+    public function show(Team $team)
     {
 
         // $teamMembers = TeamMember::all();
@@ -193,6 +190,7 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
+        $this->authorize('update' , Team::class);
         $team->name = request('name');
         $team->division_id = request('division_id');
         $team->captain_id = request('captain_id');
@@ -208,7 +206,12 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
+        foreach($team->member as $member){
+            $member->user->hasTeam = 0;
+            $member->user->save();
+        }
         $team->delete();
+
         return redirect('sports');
     }
 }

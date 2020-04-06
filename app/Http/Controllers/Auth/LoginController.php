@@ -38,16 +38,7 @@ class LoginController extends Controller
                         break;
 
        
-                    case 2:
-                    $this->redirectTo = '/captain';
-                    return $this->redirectTo;
-                        break;
-
-       
-                    case 3:
-                    $this->redirectTo = '/player';
-                    return $this->redirectTo;
-                        break;
+                    
                      
                      default:
                     $this->redirectTo = '/login';
