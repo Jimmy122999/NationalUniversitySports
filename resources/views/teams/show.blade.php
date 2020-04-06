@@ -39,7 +39,7 @@
 						@endcan
 
 						@can ('leave' , [App\Team::class , $team])
-						<a id='leave' class="btn btn-danger ml-6" href="/teams/{{$team->id}}/{{$teamMember->id}}/leave" role="button">Leave Team</a>
+						<a id='leave' class="btn btn-danger ml-6" href="/teams/{{$team->id}}/{{Auth::user()->member->id}}/leave" role="button">Leave Team</a>
 						@endcan
 					    <div class="row justify-content">
 					        <div class="col-md-8 py-4">

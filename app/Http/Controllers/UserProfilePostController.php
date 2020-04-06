@@ -25,6 +25,7 @@ class UserProfilePostController extends Controller
      */
     public function create(UserProfile $userProfile)
     {
+        $this->authorize('createPost' , [UserProfile::class , $userProfile]);
         return view('profile/posts/create' , compact('userProfile' , $userProfile));
     }
 

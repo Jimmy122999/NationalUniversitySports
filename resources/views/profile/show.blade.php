@@ -9,20 +9,27 @@
 			<div class="card" style="width: 18rem;">
 				@if(isset($userProfile->image))
 			  <img src="/storage/{{$userProfile->image}}" class="card-img-top">
+			  	@can('view' , [App\UserProfile::class , $userProfile])
+			 
 			    	<form method="POST" action="/profile/{{$userProfile->id}}/image" enctype="multipart/form-data">
 			    		@csrf
 			  	  	<input type="file" name="image">
 			  	  	<div>{{$errors->first('image')}}</div>
 			  	  	<input class="btn btn-primary" type="submit" value="Edit Player Picture">
 			  	 </form>
+			  	 @endcan
+			  
 			  	@else
+			  	
 			  	<img src="/images/avatarPlaceHolder.jpg" class="card-img-top">
+			  	@can('view' , [App\UserProfile::class , $userProfile])
 			  	<form method="POST" action="/profile/{{$userProfile->id}}/image" enctype="multipart/form-data">
 			  		@csrf
 				  	<input type="file" name="image">
 				  	<div>{{$errors->first('image')}}</div>
 				  	<input class="btn btn-primary" type="submit" value="Upload Player Picture">
 				 </form>
+				 @endcan
 			  	@endif
 			  <div class="card-body">
 			    <p class="card-text">Name: {{$userProfile->member->name}}</p>
@@ -34,8 +41,10 @@
 		</div>
 			<div class='col-6 border'>
 				<h1>{{$userProfile->member->name}}</h1>
+				@can('view' , [App\UserProfile::class , $userProfile])
 				<a class="btn btn-primary ml-6" href="/profile/{{$userProfile->id}}/post/create" role="button">Create New Post</a>
 				<a class="btn btn-primary ml-6" href="/profile/{{$userProfile->id}}/edit" role="button">Edit Profile</a>
+				@endcan
 				
 				    <div class="row justify-content">
 				        <div class="col-md-8 py-4">
@@ -51,9 +60,11 @@
 				                	
 
 				                	</div>
+				                	@can('view' , [App\UserProfile::class , $userProfile])
 				                	<div class="col-md-2">
 										<a class="btn btn-primary" href="/profile/{{$userProfile->id}}/post/{{$post->id}}/edit" role="button">Edit</a>
 				                	</div>
+				                	@endcan
 				                </div>
 
 				                </div>

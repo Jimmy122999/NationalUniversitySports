@@ -1,4 +1,4 @@
-@extends('ayout')
+@extends('layout')
 
 @section('content')
 <body>

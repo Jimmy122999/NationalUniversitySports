@@ -69,11 +69,13 @@ class TeamPolicy
 
     public function leave(User $user, $team)
     {
+        if(isset($user->member->id)){
         if($user->user_group == 1)
         {
             return true;
         }
-        if(isset($user->member->id)){
+    
+        
         return in_array( $team->id , [$user->member->team_id]);
         }
     }
