@@ -26,6 +26,8 @@ class TeamPostController extends Controller
      */
     public function create(Team $team , TeamMember $teamMember)
     {
+
+
         $this->authorize('createPost' , [TeamPost::class , $team]);
         return view ('teams/posts/create' , compact('team' , $team), compact('teamMember', $teamMember));
 
@@ -39,9 +41,10 @@ class TeamPostController extends Controller
      */
     public function store(Request $request, Team $team, TeamMember $teamMember)
     {
+        
         $this->authorize('createPost' , [TeamPost::class , $team]);
         TeamPost::create([
-                    'member_id' => $teamMember->id,
+                    'member_id' => Auth::User()->member->id,
                     'team_id' => $team->id,
                     'body' => request('body')
 

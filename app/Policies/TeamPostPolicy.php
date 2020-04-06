@@ -64,9 +64,18 @@ class TeamPostPolicy
      * @param  \App\TeamPost  $teamPost
      * @return mixed
      */
-    public function update(User $user, TeamPost $teamPost)
+    public function update(User $user, $post)
     {
-        //
+        
+        if($user->user_group == 1)
+        {
+            return true;
+        }
+        if(isset($user->member->id)){
+            if ($post->teamMemberId == $user->member->id) {
+                return true;
+            }
+        }
     }
 
     /**

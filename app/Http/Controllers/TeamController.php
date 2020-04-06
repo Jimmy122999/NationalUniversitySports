@@ -149,7 +149,6 @@ class TeamController extends Controller
         
         
         
-
         
 
         return view ('teams/show', compact('team' , $team))->with(compact('posts', $posts))->with(compact('allFixtures', $allFixtures));

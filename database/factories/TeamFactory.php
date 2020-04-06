@@ -11,6 +11,7 @@ $factory->define(Team::class, function (Faker $faker) {
         'division_id' => function(){
         	return factory('App\Division')->create()->id;
         },
+        'played' => 0,
         'wins' => 0,
         'draws' => 0,
         'losses' => 0,

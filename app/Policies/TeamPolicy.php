@@ -55,12 +55,16 @@ class TeamPolicy
      */
     public function update(User $user)
     {
-        return in_array($user->user_group, ['1' , '2']); //Looking for Admin or Captain user group
+        return in_array($user->user_group, ['1']);
     }
 
-    public function viewApplications(User $user)
+    public function viewApplications(User $user , $team)
     {
-        return in_array($user->user_group, ['1' , '2']); //Looking for Admin or Captain user group
+        if($team->captain_id == $user->id)
+        {
+            return true;
+        }
+        return in_array($user->user_group, ['1']); //Looking for Admin or Captain user group
     }
 
     public function leave(User $user, $team)

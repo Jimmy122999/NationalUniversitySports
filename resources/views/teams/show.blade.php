@@ -10,7 +10,7 @@
 				<ul class="list-group">
 				@foreach ($team->member as $teamMember)
 				@if (isset($teamMember->profile->id))
-				<li class="list-group-item"><a href="/profile/{{$user->profile->id}}">{{ $teamMember->name }}</a></li>
+				<li class="list-group-item"><a href="/profile/{{$teamMember->profile->id}}">{{ $teamMember->name }}</a></li>
 				
 				@else
 				<li class="list-group-item">{{ $teamMember->name }}</li>
@@ -26,16 +26,16 @@
 						@if($user->hasTeam == 0)
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/apply" role="button">Join Team</a>
 						@endif
-						@can('viewApplications' , App\Team::class)
+						@can('viewApplications' , [App\Team::class , $team])
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/applications" role="button">View Applications</a>
 						@endcan
-						@if(isset($teamMember))
+						
 						@can('update' , App\Team::class)
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/edit" role="button">Edit Team</a>
 						@endcan
-						
+						@if(isset($teamMember))
 						@can('view' , [App\Team::class , $team])
-						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/{{$teamMember->id}}/post" role="button">Create New Post</a>
+						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/{{Auth::user()->member->id}}/post" role="button">Create New Post</a>
 						@endcan
 
 						@can ('leave' , [App\Team::class , $team])
@@ -58,9 +58,11 @@
 					                	@endif
 
 					                	</div>
+					                	@can('update' , [App\TeamPost::class , $post])
 					                	<div class="col-md-2">
 											<a class="btn btn-primary" href="/teams/{{$team->id}}/{{$post->teamMemberId}}/post/{{$post->id}}/edit" role="button">Edit</a>
 					                	</div>
+					                	@endcan
 					                </div>
 
 					                </div>
