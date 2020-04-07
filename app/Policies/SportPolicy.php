@@ -51,7 +51,7 @@ class SportPolicy
      * @param  \App\Sport  $sport
      * @return mixed
      */
-    public function update(User $user, Sport $sport)
+    public function update(User $user)
     {
         return in_array($user->user_group, ['1']);
     }
@@ -63,7 +63,7 @@ class SportPolicy
      * @param  \App\Sport  $sport
      * @return mixed
      */
-    public function delete(User $user, Sport $sport)
+    public function delete(User $user)
     {
         return in_array($user->user_group, ['1']);
     }

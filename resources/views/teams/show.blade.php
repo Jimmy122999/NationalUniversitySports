@@ -23,8 +23,10 @@
 			</div>
 			<div class='col-6 border'><h1>{{$team->name}}</h1> 
 					<div class="container">
+						@if(isset($user->hasteam))
 						@if($user->hasTeam == 0)
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/apply" role="button">Join Team</a>
+						@endif
 						@endif
 						@can('viewApplications' , [App\Team::class , $team])
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/applications" role="button">View Applications</a>

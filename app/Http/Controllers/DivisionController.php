@@ -43,14 +43,9 @@ class DivisionController extends Controller
     public function store(Sport $sport)
     {
         $this->authorize('create' , Division::class);
-        $sport->addDivision(request('name'));
-
-        // Division::create([
-        //     'sport_id' => ($sport->id),
-        //     'name' => request('name')
-
-
-        // ]);
+        $sport->addDivision(request()->validate([
+            'name' => 'required|alpha|max:30'
+        ]));
 
     
        return redirect()->route('SportShow' , [$sport]);

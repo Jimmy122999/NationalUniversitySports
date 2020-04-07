@@ -17,7 +17,7 @@
 		  </div>
 		  <input type="text" class="form-control" name='name'>
 		</div>
-		
+		@error('name') {{$message}} @enderror
 		<input type="hidden" name="sportID" class="input" value="{{$sport->name}}" required>
 		
 	</div>

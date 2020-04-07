@@ -17,6 +17,7 @@
 		  </div>
 		  <input type="text" class="form-control" name='name'>
 		</div>
+		@error('name') {{$message}} @enderror
 	
 
 	<div>

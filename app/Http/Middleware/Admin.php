@@ -26,7 +26,7 @@ class Admin
                }
 
         if (Auth::user()->user_group == 2) {
-                   return redirect()->route('captain');
+                   return back();
                }
 
 

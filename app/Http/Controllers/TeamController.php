@@ -97,6 +97,12 @@ class TeamController extends Controller
     public function store(Request $request)
     {
           $this->authorize('create' , Team::class);
+
+          $data = request()->validate([
+                'name' => 'required|alpha|max:50',
+                'division_id' => 'required',
+
+          ]);
           Team::create([
                 'name' => request('name'),
                 'division_id' => request('division_id'),
@@ -109,6 +115,8 @@ class TeamController extends Controller
 
 
             ]);
+
+
 
       
 

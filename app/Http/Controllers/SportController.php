@@ -45,7 +45,7 @@ class SportController extends Controller
 
         $this->authorize('create' , Sport::class);
         Sport::create(request()->validate([
-            'name' => 'required'
+            'name' => 'required|unique:sports|alpha|max:20'
         ]));
 
         return redirect('/sports');

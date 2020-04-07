@@ -18,7 +18,9 @@
         <span class="input-group-text" id="inputGroup-sizing-default">Sport Name</span>
       </div>
       <input type="text" value='{{$sport->name}}' name="name" placeholder="Name" class="form-control">
+      @error('name') {{$message}} @enderror
     </div>
+
    
     <div class="col-sm-1"><input class="btn btn-primary" type="submit" value="Edit Name"></div> </form>
 

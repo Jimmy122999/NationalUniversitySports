@@ -51,7 +51,7 @@ class DivisionPolicy
      * @param  \App\Division  $division
      * @return mixed
      */
-    public function update(User $user, Division $division)
+    public function update(User $user)
     {
         return in_array($user->user_group, ['1']);
     }
@@ -63,7 +63,7 @@ class DivisionPolicy
      * @param  \App\Division  $division
      * @return mixed
      */
-    public function delete(User $user, Division $division)
+    public function delete(User $user)
     {
         return in_array($user->user_group, ['1']);
     }

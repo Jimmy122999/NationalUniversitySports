@@ -15,8 +15,9 @@
 	    <span class="input-group-text" id="inputGroup-sizing-default">Team Name</span>
 	  </div>
 	  <input type="text" class="form-control" name='name'>
-	</div>
 
+	</div>
+	@error('name') {{$message}} @enderror
 	<div class="input-group mb-3 dynamic">
 		  <div class="input-group-prepend dynamic">
 		    	<label class="input-group-text dynamic">Sport</label>
@@ -40,6 +41,7 @@
 				  	
 					
 				  </select>
+				  @error('division_id') {{$message}} @enderror
 
 	</div>
 
