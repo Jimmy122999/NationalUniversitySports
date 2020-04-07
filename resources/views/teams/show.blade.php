@@ -47,22 +47,22 @@
 					        <div class="col-md-8 py-4">
 
 
-					        	@foreach ($posts as $post)
+					        	@foreach ($posts as $teamPost)
 					            <div class="card mb-4">
 									
 					                <div class="card-header">
 					                	<div class="row">
 					                	<div class="col-md-10">
-					                	@if(isset($post->userProfileId))	
-					                <a href="/profile/{{$post->userProfileId}}">{{$post->name}}</a><br>	{{$post->created_at->format('d/m/Y H:i')}}
+					                	@if(isset($teamPost->userProfileId))	
+					                <a href="/profile/{{$teamPost->userProfileId}}">{{$teamPost->name}}</a><br>	{{$teamPost->created_at->format('d/m/Y H:i')}}
 					                	@else
-					                	{{$post->name}}<br>	{{$post->created_at->format('d/m/Y H:i')}}
+					                	{{$teamPost->name}}<br>	{{$teamPost->created_at->format('d/m/Y H:i')}}
 					                	@endif
 
 					                	</div>
-					                	@can('update' , [App\TeamPost::class , $post])
+					                	@can('update' , [App\TeamPost::class , $teamPost])
 					                	<div class="col-md-2">
-											<a class="btn btn-primary" href="/teams/{{$team->id}}/{{$post->teamMemberId}}/post/{{$post->id}}/edit" role="button">Edit</a>
+											<a class="btn btn-primary" href="/teams/{{$team->id}}/{{$teamPost->teamMemberId}}/post/{{$teamPost->id}}/edit" role="button">Edit</a>
 					                	</div>
 					                	@endcan
 					                </div>
@@ -70,7 +70,7 @@
 					                </div>
 
 					                <div class="card-body">
-					                   {{$post->body}}
+					                   {{$teamPost->body}}
 					                </div>
 					            </div>
 					           

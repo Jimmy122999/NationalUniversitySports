@@ -43,6 +43,11 @@ class TeamPostController extends Controller
     {
         
         $this->authorize('createPost' , [TeamPost::class , $team]);
+        request()->validate([
+            'body' => 'required|max:1000'
+
+        ]);
+
         TeamPost::create([
                     'member_id' => Auth::User()->member->id,
                     'team_id' => $team->id,
@@ -72,7 +77,7 @@ class TeamPostController extends Controller
      */
     public function edit(Team $team, TeamMember $teamMember, TeamPost $teamPost)
     {
-        
+        $this->authorize('update' , [TeamPost::class , $teamPost]);
         return view ('teams/posts/edit' , compact('teamPost' , $teamPost), compact('teamMember', $teamMember))->with('team' , $team);
 
     }
@@ -86,6 +91,7 @@ class TeamPostController extends Controller
      */
     public function update(Request $request, Team $team, TeamMember $teamMember, TeamPost $teamPost)
     {
+        $this->authorize('update' , [TeamPost::class , $teamPost]);
         $teamPost->body = request('body');
         $teamPost->save();
         return redirect()->route('teamShow' , [$team]);

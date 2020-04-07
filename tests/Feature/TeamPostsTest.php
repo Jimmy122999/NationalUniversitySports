@@ -47,7 +47,7 @@ class TeamPostsTest extends TestCase
 
     private function populateData()
     {
-        Sport::create([
+       Sport::create([
             'name' => 'test'
         ]);
 
@@ -58,7 +58,7 @@ class TeamPostsTest extends TestCase
 
         Team::create([
             'name' => 'test',
-            'division_id' => '1',
+            'division_id' => 1,
             'played' => '0',
             'wins' => '0',
             'draws' => '0',
@@ -70,6 +70,50 @@ class TeamPostsTest extends TestCase
 
 
     }
+
+    private function populateDataWithPost()
+    {
+       $sport1 = Sport::create([
+            'name' => 'test'
+        ]);
+
+       $div1 = Division::create([
+            'name' => 'test',
+            'sport_id' => $sport1->id
+        ]);
+
+        $team1 =Team::create([
+            'name' => 'test',
+            'division_id' => $div1->id,
+            'played' => '0',
+            'wins' => '0',
+            'draws' => '0',
+            'losses' => '0',
+            'points' => '0',
+        ]);
+
+        $member1 =TeamMember::create([
+             'name' => 'testMember',
+             'team_id' => $team1->id,
+             'user_id' => 1,
+
+
+        ]);
+
+        $post1 = TeamPost::create([
+            'member_id' => $member1->id,
+            'team_id' => $team1->id,
+            'body' => 'testing post'
+        ]);
+
+
+
+        
+
+
+    }
+
+
     private function addMember()
     {
         TeamMember::create([
@@ -90,6 +134,55 @@ class TeamPostsTest extends TestCase
             'body' => 'testing post'
         ]);
 
+    }
+
+    /** @test */
+    public function Team_Posts_Cannot_Be_Created_By_Unauthenticated_Users()
+    {
+        $this->populateData();
+        $this->addMember();
+        
+        $team = Team::first();
+        $member = TeamMember::first();
+
+        $response = $this->post('/teams/' . $team->id . '/' . $member->id . '/post', [
+            'member_id' => $member->id,
+            'team_id' => $team->id,
+            'body' => 'Test Post'
+        ]);
+        $this->assertCount(0 , TeamPost::all());
+        
+    }
+
+    /** @test */
+    public function Team_Posts_Cannot_Be_Created_By_Non_Team_Members()
+    {
+        $this->populateData();
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
+        $this->addMember(); //Adds the previously created user to the team so that isPlayer() user is not added to the team
+
+        $this->isPlayer();
+        
+        $team = Team::first();
+        $member = TeamMember::first();
+
+        $response = $this->post('/teams/' . $team->id . '/' . $member->id . '/post', [
+            'member_id' => $member->id,
+            'team_id' => $team->id,
+            'body' => 'Test Post'
+        ]);
+        $this->assertCount(0 , TeamPost::all());
+        
     }
 
     /** @test */
@@ -173,7 +266,7 @@ class TeamPostsTest extends TestCase
     }
 
     /** @test */
-    public function Team_Posts_Can_Be_Updated_By_Members_Who_Are_Captains()
+    public function Team_Posts_Can_Be_Updated_By_Members_Who_Are_Captains_That_Own_The_Post()
     {
         
         $this->populateData();
@@ -197,7 +290,7 @@ class TeamPostsTest extends TestCase
 
 
     /** @test */
-    public function Team_Posts_Can_Be_Updated_By_Members_Who_Are_Players()
+    public function Team_Posts_Can_Be_Updated_By_Members_Who_Are_Players_That_Own_The_Post()
     {
         
         $this->populateData();
@@ -219,6 +312,114 @@ class TeamPostsTest extends TestCase
         
     }
 
+    /** @test */
+    public function Team_Posts_Can_Be_Updated_By_Admins_Who_Are_Not_Owners_Of_The_Post()
+    {
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
+        $this->populateDataWithPost();
+        $this->isAdmin();
+     
+        
+        $team = Team::first();
+        $member = TeamMember::first();
+        $post = TeamPost::first();
+
+        $createdTeam = Team::first();
+
+        $patch = $this->patch('/teams/' . $team->id . '/' . $member->id . '/post/' . $post->id . '/edit', [
+            'body' => 'New Test'
+        ]);
+
+        $this->assertEquals('New Test', TeamPost::First()->body);
+        
+    }
+
+    /** @test */
+    public function Team_Posts_Cannot_Be_Updated_By_Members_Who_Are_Not_Owners_Of_The_Post()
+    {
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
+        $this->populateDataWithPost();
+        $this->isPlayer();
+     
+        
+        $team = Team::first();
+        $member = TeamMember::first();
+        $post = TeamPost::first();
+
+        $createdTeam = Team::first();
+
+        $patch = $this->patch('/teams/' . $team->id . '/' . $member->id . '/post/' . $post->id . '/edit', [
+            'body' => 'New Test'
+        ]);
+
+        $this->assertEquals('testing post', TeamPost::First()->body);
+        
+        
+    }
+
+    /** @test */
+    public function A_Captain_Is_Unauthorized_From_Post_Edit_Form_If_Not_Owner()
+    {
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
+        $this->populateDataWithPost();
+        $this->isCaptain();        
+
+        $response = $this->get('/teams/1/1/post/1/edit')
+        ->assertStatus(403);
+    }
+
+    /** @test */
+    public function A_Player_Is_Unauthorized_From_Post_Edit_Form_If_Not_Owner()
+    {
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
+        $this->populateDataWithPost();
+        $this->isPlayer();        
+
+        $response = $this->get('/teams/1/1/post/1/edit')
+        ->assertStatus(403);
+    }
+
+   
 
 
 

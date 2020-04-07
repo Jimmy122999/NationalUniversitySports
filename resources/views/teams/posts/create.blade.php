@@ -16,6 +16,7 @@
 	  </div>
 	  <textarea class="form-control" name='body' aria-label="With textarea"></textarea>
 	</div>
+	@error('body') {{$message}}	@enderror
 	
 
 	<div>
