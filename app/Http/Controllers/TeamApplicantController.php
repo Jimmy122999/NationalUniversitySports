@@ -29,7 +29,7 @@ class TeamApplicantController extends Controller
      */
     public function create(Team $team)
     {
-        
+        $this->authorize('create' , TeamApplicant::class);
         return view('teams/apply/create', compact('team', $team));
     }
 
@@ -55,6 +55,7 @@ class TeamApplicantController extends Controller
 
     public function accept(Team $team, TeamApplicant $application)
     {
+        $this->authorize('acceptApplications' , [TeamApplicant::class , $team]);
         TeamMember::create([
                     'name' => $application->name,
                     'team_id' => $team->id,
@@ -80,6 +81,7 @@ class TeamApplicantController extends Controller
 
     public function deny(Team $team, TeamApplicant $application)
     {
+        $this->authorize('denyApplications' , [TeamApplicant::class , $team]);
         $application->delete();
         return back();
     }

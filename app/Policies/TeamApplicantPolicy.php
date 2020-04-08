@@ -41,7 +41,18 @@ class TeamApplicantPolicy
      */
     public function create(User $user)
     {
-        //
+        if(isset($user->member->id))
+        {
+            return false;
+
+        }
+
+        else
+        {
+            return true;
+
+        }
+        
     }
 
     public function viewApplications(User $user , $team)

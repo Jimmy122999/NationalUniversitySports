@@ -41,7 +41,7 @@ class LoginController extends Controller
                     
                      
                      default:
-                    $this->redirectTo = '/login';
+                    $this->redirectTo = '/';
                     return $this->redirectTo;
 
                  }

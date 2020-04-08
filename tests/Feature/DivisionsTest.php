@@ -196,6 +196,7 @@ class DivisionsTest extends TestCase
             'name' => 'test',
             'sport_id' => $sport->id
         ]);
+        $response->assertStatus(302); //Middleware Redirects
         $this->assertCount(0 , Division::all());
         
     }
@@ -213,6 +214,7 @@ class DivisionsTest extends TestCase
             'name' => 'test',
             'sport_id' => $sport->id
         ]);
+        $response->assertStatus(302); //Middleware Redirects
         $this->assertCount(0 , Division::all());
         
     }
@@ -252,6 +254,7 @@ class DivisionsTest extends TestCase
         $patch = $this->patch('/sports/' . $createdSport->name . '/' . $createdDivision->id . '/edit', [
             'name' => 'New Test'
         ]);
+        $patch->assertStatus(302); //Middleware Redirects
 
         $this->assertEquals('test', Division::First()->name);
 
@@ -272,6 +275,7 @@ class DivisionsTest extends TestCase
         $patch = $this->patch('/sports/' . $createdSport->name . '/' . $createdDivision->id . '/edit', [
             'name' => 'New Test'
         ]);
+        $patch->assertStatus(302); //Middleware Redirects
 
         $this->assertEquals('test', Division::First()->name);
 
@@ -310,7 +314,8 @@ class DivisionsTest extends TestCase
 
         $this->assertCount(1 , Division::all());
 
-        $delete = $this->delete('/sports/' . $createdSport->name . '/' . $createdDivision->id);
+        $response = $this->delete('/sports/' . $createdSport->name . '/' . $createdDivision->id);
+        $response->assertStatus(302); //Middleware Redirects
         $this->assertCount(1 , Division::all());
 
     }
@@ -329,7 +334,8 @@ class DivisionsTest extends TestCase
 
         $this->assertCount(1 , Division::all());
 
-        $delete = $this->delete('/sports/' . $createdSport->name . '/' . $createdDivision->id);
+        $response = $this->delete('/sports/' . $createdSport->name . '/' . $createdDivision->id);
+        $response->assertStatus(302); //Middleware Redirects
         $this->assertCount(1 , Division::all());
 
     }

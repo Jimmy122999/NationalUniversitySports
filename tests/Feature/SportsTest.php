@@ -152,6 +152,7 @@ class SportsTest extends TestCase
         $response = $this->post('/sports', [
             'name' => 'test'
         ]);
+        $response->assertStatus(302); //Middleware Redirects
         $this->assertCount(0 , Sport::all());
     }
 
@@ -163,6 +164,7 @@ class SportsTest extends TestCase
         $response = $this->post('/sports', [
             'name' => 'test'
         ]);
+        $response->assertStatus(302); //Middleware Redirects
         $this->assertCount(0 , Sport::all());
     }
 
@@ -197,7 +199,7 @@ class SportsTest extends TestCase
         $patch = $this->patch('/sports/' . $createdSport->name . '/edit', [
             'name' => 'New Test'
         ]);
-
+        $patch->assertStatus(302); //Middleware Redirects
         $this->assertEquals('test', Sport::First()->name);
     }
 
@@ -213,7 +215,7 @@ class SportsTest extends TestCase
         $patch = $this->patch('/sports/' . $createdSport->name . '/edit', [
             'name' => 'New Test'
         ]);
-
+        $patch->assertStatus(302); //Middleware Redirects
         $this->assertEquals('test', Sport::First()->name);
     }
 
@@ -229,6 +231,7 @@ class SportsTest extends TestCase
         $this->assertCount(1 , Sport::all());
 
         $delete = $this->delete('/sports/' . $createdSport->name);
+
         $this->assertCount(0 , Sport::all());
 
     }
@@ -244,6 +247,7 @@ class SportsTest extends TestCase
         $this->assertCount(1 , Sport::all());
 
         $delete = $this->delete('/sports/' . $createdSport->name);
+        $delete->assertStatus(302); //Middleware Redirects
         $this->assertCount(1 , Sport::all());
 
     }
@@ -259,6 +263,7 @@ class SportsTest extends TestCase
         $this->assertCount(1 , Sport::all());
 
         $delete = $this->delete('/sports/' . $createdSport->name);
+        $delete->assertStatus(302); //Middleware Redirects
         $this->assertCount(1 , Sport::all());
 
     }
