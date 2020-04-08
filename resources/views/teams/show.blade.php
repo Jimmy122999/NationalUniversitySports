@@ -52,7 +52,17 @@
 									
 					                <div class="card-header">
 					                	<div class="row">
-					                	<div class="col-md-10">
+					                		@if(isset($teamPost->userProfileImage))
+					                		<div class="col-md-2">
+					                			<img src="/storage/{{$teamPost->userProfileImage}}" class="card-img-top">
+					                		</div>
+					                		@else
+					                		<div class="col-md-2">
+					                			<img src="/images/avatarPlaceHolder.jpg" class="card-img-top">
+					                		</div>
+					                		@endif
+
+					                	<div class="col-md-8">
 					                	@if(isset($teamPost->userProfileId))	
 					                <a href="/profile/{{$teamPost->userProfileId}}">{{$teamPost->name}}</a><br>	{{$teamPost->created_at->format('d/m/Y H:i')}}
 					                	@else

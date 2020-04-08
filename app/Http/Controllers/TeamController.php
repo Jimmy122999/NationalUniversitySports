@@ -145,7 +145,8 @@ class TeamController extends Controller
                 'team_posts.created_at',
                 'team_members.id as teamMemberId',
                 'team_members.name',
-                'user_profiles.id as userProfileId'
+                'user_profiles.id as userProfileId',
+                'user_profiles.image as userProfileImage' 
 
              ])
              ->get();
