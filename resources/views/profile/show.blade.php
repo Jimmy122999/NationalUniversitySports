@@ -39,7 +39,7 @@
 			</div>	
 			
 		</div>
-			<div class='col-6 border'>
+			<div class='col-md-6 border'>
 				<h1>{{$userProfile->member->name}}</h1>
 				@can('update' , [App\UserProfile::class , $userProfile])
 				<a class="btn btn-primary ml-6" href="/profile/{{$userProfile->id}}/post/create" role="button">Create New Post</a>
@@ -79,7 +79,7 @@
 				    </div>
 
 			</div>
-			<div class='col border'><h1>{{$userProfile->member->name}}</h1>
+			<div class='col-md border'><h1>{{$userProfile->member->name}}</h1>
 							<ul class="list-group">
 							  <li class="list-group-item">{{$userProfile->id}}</li>
 							  <li class="list-group-item">Dapibus ac facilisis in</li>

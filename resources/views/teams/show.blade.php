@@ -5,7 +5,7 @@
 <div class='container-fluid' width:>
 	
 		<div class='row'>
-			<div class='col-1 '></div>  <!-- Pushing container in  -->
+			<div class='col-md-1 '></div>  <!-- Pushing container in  -->
 			<div class='col border'><h1>Squad</h1>
 				<ul class="list-group">
 				@foreach ($team->member as $teamMember)
@@ -21,7 +21,7 @@
 
 
 			</div>
-			<div class='col-6 border'><h1>{{$team->name}}</h1> 
+			<div class='col-md-6 border'><h1>{{$team->name}}</h1> 
 					<div class="container">
 						@if(isset($user))
 						@if($user->hasTeam == 0)
@@ -97,20 +97,27 @@
 
 			</div>
 			<div class='col border'><h1>Upcoming Fixtures</h1>
+				<div class="row">
 				<tbody>
 					
 					
 					@foreach($allFixtures as $fixture)
+					<div class='col-md-12 border'>
 					<tr>
+						<td><center>{{$fixture->time->format('d/m/Y H:i')}}</center></td>
 						<td><a href="/teams/{{$fixture->home_team_id}}"><center>{{$fixture->homeTeam->name}}</center></a></td>
-						<td><center>{{$fixture->time->format('d/m/Y H:i')}}</center><br><center>{{$fixture->notes}}</center></td>
+						<td><center>VS</center></td>
+						
 						<td><a href="/teams/{{$fixture->away_team_id}}"><center>{{$fixture->awayTeam->name}}</center></a></td>
+						<td><center>{{$fixture->notes}}</center></td>
 					</tr>		
+				</div>
 					@endforeach
 
 
 					
 				</tbody>
+				</div>
 			</div>
 			<div class='col-1'></div> <!-- Pushing container in  -->
 		</div>
