@@ -23,7 +23,7 @@
 			</div>
 			<div class='col-6 border'><h1>{{$team->name}}</h1> 
 					<div class="container">
-						@if(isset($user->hasteam))
+						@if(isset($user))
 						@if($user->hasTeam == 0)
 						<a class="btn btn-primary ml-6" href="/teams/{{$team->id}}/apply" role="button">Join Team</a>
 						@endif

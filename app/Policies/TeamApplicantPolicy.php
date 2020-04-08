@@ -2,16 +2,16 @@
 
 namespace App\Policies;
 
-use App\Team;
+use App\TeamApplicant;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TeamPolicy
+class TeamApplicantPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any teams.
+     * Determine whether the user can view any team applicants.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -22,40 +22,26 @@ class TeamPolicy
     }
 
     /**
-     * Determine whether the user can view the team.
+     * Determine whether the user can view the team applicant.
      *
      * @param  \App\User  $user
-     * @param  \App\Team  $team
+     * @param  \App\TeamApplicant  $teamApplicant
      * @return mixed
      */
-    public function view(User $user, $team)
+    public function view(User $user, TeamApplicant $teamApplicant)
     {
-    if(isset($user->member->id)){
-      return in_array( $team->id , [$user->member->team_id]);
-    }
+        //
     }
 
     /**
-     * Determine whether the user can create teams.
+     * Determine whether the user can create team applicants.
      *
      * @param  \App\User  $user
      * @return mixed
      */
     public function create(User $user)
     {
-        return in_array($user->user_group, ['1']);
-    }
-
-    /**
-     * Determine whether the user can update the team.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Team  $team
-     * @return mixed
-     */
-    public function update(User $user)
-    {
-        return in_array($user->user_group, ['1']);
+        //
     }
 
     public function viewApplications(User $user , $team)
@@ -85,53 +71,50 @@ class TeamPolicy
         return in_array($user->user_group, ['1']); //Looking for Admin or Captain user group
     }
 
-
-
-    public function leave(User $user, $team)
-    {
-        if(isset($user->member->id)){
-        if($user->user_group == 1)
-        {
-            return true;
-        }
-    
-        
-        return in_array( $team->id , [$user->member->team_id]);
-        }
-    }
-
     /**
-     * Determine whether the user can delete the team.
+     * Determine whether the user can update the team applicant.
      *
      * @param  \App\User  $user
-     * @param  \App\Team  $team
+     * @param  \App\TeamApplicant  $teamApplicant
      * @return mixed
      */
-    public function delete(User $user, Team $team)
+    public function update(User $user, TeamApplicant $teamApplicant)
     {
         //
     }
 
     /**
-     * Determine whether the user can restore the team.
+     * Determine whether the user can delete the team applicant.
      *
      * @param  \App\User  $user
-     * @param  \App\Team  $team
+     * @param  \App\TeamApplicant  $teamApplicant
      * @return mixed
      */
-    public function restore(User $user, Team $team)
+    public function delete(User $user, TeamApplicant $teamApplicant)
     {
         //
     }
 
     /**
-     * Determine whether the user can permanently delete the team.
+     * Determine whether the user can restore the team applicant.
      *
      * @param  \App\User  $user
-     * @param  \App\Team  $team
+     * @param  \App\TeamApplicant  $teamApplicant
      * @return mixed
      */
-    public function forceDelete(User $user, Team $team)
+    public function restore(User $user, TeamApplicant $teamApplicant)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can permanently delete the team applicant.
+     *
+     * @param  \App\User  $user
+     * @param  \App\TeamApplicant  $teamApplicant
+     * @return mixed
+     */
+    public function forceDelete(User $user, TeamApplicant $teamApplicant)
     {
         //
     }

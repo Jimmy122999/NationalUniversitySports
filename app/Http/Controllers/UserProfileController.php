@@ -27,6 +27,7 @@ class UserProfileController extends Controller
      */
     public function create()
     {
+        $this->authorize('create' , UserProfile::class);
         return view('profile/create');
     }
 
@@ -39,6 +40,12 @@ class UserProfileController extends Controller
     public function store(Request $request)
     {
         $user = User::find(Auth::user()->id);
+
+        $data = request()->validate([
+              'position' => 'required|alpha|max:20',
+              'bio' => 'required|max:500',
+
+        ]);
 
        $userProfile = UserProfile::create([
             'user_id' => $user->id,
@@ -102,6 +109,7 @@ class UserProfileController extends Controller
      */
     public function edit(UserProfile $userProfile)
     {
+        $this->authorize('update' , [UserProfile::class , $userProfile]);
         return view('profile/edit' , compact('userProfile', $userProfile));
     }
 
@@ -116,6 +124,7 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, UserProfile $userProfile)
     {
+        $this->authorize('update' , [UserProfile::class , $userProfile]);
         $userProfile->position = request('position');
         $userProfile->bio = request('bio');
         $userProfile->save();

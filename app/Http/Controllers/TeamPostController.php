@@ -105,6 +105,7 @@ class TeamPostController extends Controller
      */
     public function destroy(Team $team, TeamMember $teamMember, TeamPost $teamPost)
     {
+        $this->authorize('delete' , [TeamPost::class , $teamPost]);
         $teamPost->delete();
         return redirect()->route('teamShow' , [$team]);
     }

@@ -30,14 +30,7 @@ class UserProfilePolicy
      */
     public function view(User $user, UserProfile $userProfile)
     {
-        if($userProfile->user_id == $user->id)
-        {
-            return true;
-        }
-        elseif($user->user_group == 1)
-        {
-            return true;
-        }
+        
     }
 
     /**
@@ -60,7 +53,10 @@ class UserProfilePolicy
 
     public function create(User $user)
     {
-        //
+        if(isset($user->member->id)){
+            return true;
+
+        }
     }
 
     /**
@@ -72,7 +68,14 @@ class UserProfilePolicy
      */
     public function update(User $user, UserProfile $userProfile)
     {
-        //
+        if($userProfile->user_id == $user->id)
+        {
+            return true;
+        }
+        elseif($user->user_group == 1)
+        {
+            return true;
+        }
     }
 
     /**

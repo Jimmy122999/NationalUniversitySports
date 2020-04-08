@@ -18,6 +18,7 @@ class TeamApplicantController extends Controller
      */
     public function index(Team $team)
     {
+        $this->authorize('viewApplications' , [TeamApplicant::class , $team]);
         return view('teams/apply/index' , compact('team', $team));
     }
 
@@ -40,6 +41,7 @@ class TeamApplicantController extends Controller
      */
     public function store(Request $request , Team $team)
     {
+
         TeamApplicant::create([
                     'team_id' => $team->id,
                     'user_id' => Auth::user()->id,

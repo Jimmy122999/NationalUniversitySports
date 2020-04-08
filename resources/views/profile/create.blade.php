@@ -22,8 +22,10 @@
 			  	<option value="Attacker">Attacker</option>
 			    
 			  </select>
+			  
 
 		</div>
+		@error('position') {{$message}} @enderror
 
 		
 
@@ -32,7 +34,9 @@
 		    <span class="input-group-text">About Me</span>
 		  </div>
 		  <textarea class="form-control" name='bio' aria-label="With textarea"></textarea>
+		  
 		</div>
+		@error('bio') {{$message}} @enderror
 	
 
 	<div>

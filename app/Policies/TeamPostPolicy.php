@@ -88,9 +88,20 @@ class TeamPostPolicy
      * @param  \App\TeamPost  $teamPost
      * @return mixed
      */
-    public function delete(User $user, TeamPost $teamPost)
+    public function delete(User $user, $teamPost)
     {
-        //
+        if($user->user_group == 1)
+        {
+            return true;
+        }
+        if(isset($user->member->id)){
+            if ($teamPost->teamMemberId == $user->member->id) {
+                return true;
+            }
+            elseif ($teamPost->member_id == $user->member->id) {
+                return true;
+            }
+        }
     }
 
     /**

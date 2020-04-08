@@ -226,6 +226,7 @@ class TeamPostsTest extends TestCase
     /** @test */
     public function Team_Posts_Can_Be_Created_By_Members_Who_Are_Players()
     {
+
         $this->populateData();
         $this->isPlayer();
         $this->addMember();
@@ -419,6 +420,142 @@ class TeamPostsTest extends TestCase
         ->assertStatus(403);
     }
 
+
+    /** @test */
+    public function Any_Team_Post_Can_Be_Deleted_By_Admin()
+    {
+        $this->withoutExceptionHandling();
+        $this->populateData();
+        $this->isAdmin();
+        $this->addMember();
+        $this->addTeamPost();
+       
+        
+        
+      
+
+        $createdTeam = Team::first();
+        $createdMember = TeamMember::first();
+        $createdPost = TeamPost::First();
+
+        
+
+        $delete = $this->delete('/teams/' . $createdTeam->id . '/' . $createdMember->id . '/post/' . $createdPost->id);
+        $this->assertCount(0 , TeamPost::all());
+
+    }
+
+    /** @test */
+    public function A_Captain_Can_Delete_Their_Own_Team_Post()
+    {
+      
+        $this->populateData();
+        $this->isCaptain();
+        $this->addMember();
+        $this->addTeamPost();
+       
+        
+        
+      
+
+        $createdTeam = Team::first();
+        $createdMember = TeamMember::first();
+        $createdPost = TeamPost::First();
+
+        
+
+        $delete = $this->delete('/teams/' . $createdTeam->id . '/' . $createdMember->id . '/post/' . $createdPost->id);
+        $this->assertCount(0 , TeamPost::all());
+
+    }
+
+    /** @test */
+    public function A_Player_Can_Delete_Their_Own_Team_Post()
+    {
+       
+        $this->populateData();
+        $this->isPlayer();
+        $this->addMember();
+        $this->addTeamPost();
+       
+        
+        
+      
+
+        $createdTeam = Team::first();
+        $createdMember = TeamMember::first();
+        $createdPost = TeamPost::First();
+
+        
+
+        $delete = $this->delete('/teams/' . $createdTeam->id . '/' . $createdMember->id . '/post/' . $createdPost->id);
+        $this->assertCount(0 , TeamPost::all());
+
+    }
+
+    /** @test */
+    public function A_Captain_Cannot_Delete_Others_Team_Post()
+    {
+      
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
+        $this->populateDataWithPost();
+        $this->isCaptain();        
+            
+        
+      
+
+        $createdTeam = Team::first();
+        $createdMember = TeamMember::first();
+        $createdPost = TeamPost::First();
+
+        
+
+        $delete = $this->delete('/teams/' . $createdTeam->id . '/' . $createdMember->id . '/post/' . $createdPost->id);
+        $this->assertCount(1 , TeamPost::all());
+
+    }
+
+    /** @test */
+    public function A_Player_Cannot_Delete_Others_Team_Post()
+    {
+      
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
+        $this->populateDataWithPost();
+        $this->isPlayer();        
+            
+        
+      
+
+        $createdTeam = Team::first();
+        $createdMember = TeamMember::first();
+        $createdPost = TeamPost::First();
+
+        
+
+        $delete = $this->delete('/teams/' . $createdTeam->id . '/' . $createdMember->id . '/post/' . $createdPost->id);
+        $this->assertCount(1 , TeamPost::all());
+
+    }
    
 
 
@@ -426,3 +563,5 @@ class TeamPostsTest extends TestCase
 
         
 }
+
+
