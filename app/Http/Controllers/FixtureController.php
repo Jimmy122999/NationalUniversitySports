@@ -19,8 +19,9 @@ class FixtureController extends Controller
      */
     public function index()
     {
-        $fixtures = Fixture::all();
-        return view('fixtures/index', compact('fixtures' , $fixtures));
+        $fixtures = Fixture::all()->where('played' , 0);
+        $results = Fixture::all()->where('played' , 1);
+        return view('fixtures/index', compact('fixtures' , $fixtures) , compact('results' , $results));
     }
 
     /**
@@ -54,7 +55,8 @@ class FixtureController extends Controller
             'home_team_id' => request('homeTeam'),
             'away_team_id' => request('awayTeam'),
             'time' => Carbon::parse(request('time')),
-            'notes' => request('notes')
+            'notes' => request('notes'),
+            'played' => 0
         ]);
         return redirect('admin');
     }

@@ -120,9 +120,12 @@ Route::patch('/fixtures/{fixture}/edit' , 'FixtureController@update')->middlewar
 Route::delete('/fixtures/{fixture}' , 'FixtureController@destroy')->middleware('admin');
 
 //Fixture Results
-
+Route::get('/results', 'FixtureResultController@index');
 Route::get('/fixtures/{fixture}/result' , 'FixtureResultController@create')->middleware('admin');
 Route::post('/fixtures/{fixture}/result' , 'FixtureResultController@store')->middleware('admin');
+Route::get('/fixtures/{fixture}/result/{fixtureResult}/edit' , 'FixtureResultController@edit')->middleware('admin');
+Route::patch('/fixtures/{fixture}/result/{fixtureResult}' , 'FixtureResultController@update')->middleware('admin');
+Route::delete('/fixtures/{fixture}/result/{fixtureResult}' , 'FixtureResultController@destroy')->middleware('admin');
 
 
 

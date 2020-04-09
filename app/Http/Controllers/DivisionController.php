@@ -44,7 +44,7 @@ class DivisionController extends Controller
     {
         $this->authorize('create' , Division::class);
         $sport->addDivision(request()->validate([
-            'name' => 'required|alpha|max:30'
+            'name' => 'required|max:30'
         ]));
 
     

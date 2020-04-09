@@ -3,8 +3,12 @@
 
 @section('content')
 <div class = container>
+	<div class="row">
+		<div class='col-md-12'><center><h1>Upcoming Fixtures</h1><center></div>
+	</div>
 	<table class="table table-bordered">
 		<tbody>
+
 			@foreach($fixtures as $fixture)
 			<tr>
 				<td><a href="/teams/{{$fixture->homeTeam->id}}"><center>{{$fixture->homeTeam->name}}</center></a></td>

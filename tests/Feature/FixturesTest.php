@@ -88,7 +88,8 @@ class FixturesTest extends TestCase
             'home_team_id' => 1,
             'away_team_id' => 2,
             'time' => '2020-04-09 10:20:31',
-            'notes' => 'testing'
+            'notes' => 'testing',
+            'played' => 0
         ]);
     }
 
@@ -205,7 +206,7 @@ class FixturesTest extends TestCase
     /** @test */
         public function An_Admin_Can_Create_A_Fixture()
         {
-            $this->withoutExceptionHandling();
+           
             $this->isAdmin();
             $this->populateData();
              
@@ -214,7 +215,8 @@ class FixturesTest extends TestCase
                 'homeTeam' => 1,
                 'awayTeam' => 2,
                 'time' => '2020-04-09 10:20:31',
-                'notes' => 'testing'
+                'notes' => 'testing',
+                
             ]);
             $this->assertCount(1 , Fixture::all());
             
@@ -223,7 +225,7 @@ class FixturesTest extends TestCase
     /** @test */
         public function A_Captain_Cannot_Create_A_Fixture()
         {
-            $this->withoutExceptionHandling();
+            
             $this->isCaptain();
             $this->populateData();
              
@@ -232,7 +234,8 @@ class FixturesTest extends TestCase
                 'homeTeam' => 1,
                 'awayTeam' => 2,
                 'time' => '2020-04-09 10:20:31',
-                'notes' => 'testing'
+                'notes' => 'testing',
+                
             ]);
             $response->assertStatus(302);
             $this->assertCount(0 , Fixture::all());
@@ -242,7 +245,7 @@ class FixturesTest extends TestCase
         /** @test */
             public function A_Player_Cannot_Create_A_Fixture()
             {
-                $this->withoutExceptionHandling();
+                
                 $this->isPlayer();
                 $this->populateData();
                  
@@ -251,7 +254,8 @@ class FixturesTest extends TestCase
                     'homeTeam' => 1,
                     'awayTeam' => 2,
                     'time' => '2020-04-09 10:20:31',
-                    'notes' => 'testing'
+                    'notes' => 'testing',
+                   
                 ]);
 
                 $response->assertStatus(302);

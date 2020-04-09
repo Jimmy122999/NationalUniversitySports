@@ -14,6 +14,6 @@ class FixtureResult extends Model
     public function fixture()
     {
 
-    	return $this->hasOne(Fixture::class);
+    	return $this->hasOne(Fixture::class , 'id' , 'fixture_id');
     }
 }

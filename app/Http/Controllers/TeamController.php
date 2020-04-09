@@ -99,7 +99,7 @@ class TeamController extends Controller
           $this->authorize('create' , Team::class);
 
           $data = request()->validate([
-                'name' => 'required|alpha|max:50',
+                'name' => 'required|unique:teams|max:50',
                 'division_id' => 'required',
 
           ]);

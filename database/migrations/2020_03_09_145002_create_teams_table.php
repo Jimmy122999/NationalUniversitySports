@@ -18,11 +18,11 @@ class CreateTeamsTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('division_id')->nullable();
             $table->unsignedBigInteger('captain_id')->nullable();
-            $table->unsignedBigInteger('played')->nullable();
-            $table->unsignedBigInteger('wins')->nullable();
-            $table->unsignedBigInteger('draws')->nullable();
-            $table->unsignedBigInteger('losses')->nullable();
-            $table->unsignedBigInteger('points')->nullable();
+            $table->integer('played')->nullable();
+            $table->integer('wins')->nullable();
+            $table->integer('draws')->nullable();
+            $table->integer('losses')->nullable();
+            $table->integer('points')->nullable();
 
             $table->timestamps();
 

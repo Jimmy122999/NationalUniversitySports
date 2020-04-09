@@ -47,7 +47,7 @@
                           <a class="nav-link" href="/fixtures">Fixtures</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="/about">About</a>
+                          <a class="nav-link" href="/results">Results</a>
                         </li>
                         <li class="nav-item">
                             @if(isset($user->member->team_id))
