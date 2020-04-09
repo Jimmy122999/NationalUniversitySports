@@ -30,6 +30,7 @@ class FixtureController extends Controller
      */
     public function create()
     {
+        $this->authorize('create' , Fixture::class);
         $sports = Sport::all(['id', 'name']);
         return view('fixtures/create' , compact('sports' , $sports));
     }
@@ -42,6 +43,13 @@ class FixtureController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create' , Fixture::class);
+        $validatedData = request()->validate([
+            'time' => 'required|date',
+            'notes' => 'required|max:300',
+
+        ]);
+      
         Fixture::create([
             'home_team_id' => request('homeTeam'),
             'away_team_id' => request('awayTeam'),
@@ -70,7 +78,8 @@ class FixtureController extends Controller
      */
     public function edit(Fixture $fixture)
     {
-        //
+        $sports = Sport::all(['id', 'name']);
+        return view('fixtures/edit' , compact('fixture', $fixture) , compact('sports' , $sports));
     }
 
     /**
@@ -82,7 +91,16 @@ class FixtureController extends Controller
      */
     public function update(Request $request, Fixture $fixture)
     {
-        //
+
+        $this->authorize('update' , Fixture::class);
+        $fixture->home_team_id = request('homeTeam');
+        $fixture->away_team_id = request('awayTeam');
+        $fixture->time = Carbon::parse(request('time'));
+        $fixture->notes = request('notes');
+        $fixture->save();
+        // return redirect('sports');
+        return redirect('/fixtures');
+
     }
 
     /**
@@ -93,7 +111,10 @@ class FixtureController extends Controller
      */
     public function destroy(Fixture $fixture)
     {
-        //
+        $this->authorize('delete' , Fixture::class);
+        $fixture->delete();
+        return redirect('/fixtures');
+
     }
 }
 

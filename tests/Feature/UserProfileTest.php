@@ -263,7 +263,7 @@ class UserProfileTest extends TestCase
     }
 
     /** @test */
-    public function An_Member_Of_A_Team_Can_Create_A_Profile()
+    public function A_Member_Of_A_Team_Can_Create_A_Profile()
     {
         
         $this->isPlayer();
@@ -282,7 +282,7 @@ class UserProfileTest extends TestCase
     }
 
     /** @test */
-    public function An_Captain_Of_A_Team_Can_Create_A_Profile()
+    public function A_Captain_Of_A_Team_Can_Create_A_Profile()
     {
         
         $this->isCaptain();
@@ -301,7 +301,7 @@ class UserProfileTest extends TestCase
     }
 
     /** @test */
-    public function An_Non_Member_Of_A_Team_Cannot_Create_A_Profile()
+    public function A_Non_Member_Of_A_Team_Cannot_Create_A_Profile()
     {
 
         User::create([

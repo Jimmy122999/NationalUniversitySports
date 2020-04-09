@@ -6,8 +6,9 @@
 <h1 class='title mb-3'>Create a Fixture</h1>
 
 
-<form METHOD ="POST" action="/fixtures/create">
+<form METHOD ="POST" action="/fixtures/{{$fixture->id}}/edit">
 	@csrf
+	@method('patch')
 	
 
 	<div class="card mb-3">
@@ -52,11 +53,10 @@
 	    		 </div>
 	    			  
 	    			 <select class="custom-select dynamic" name='homeTeam' id='homeTeam' data-dependent='division'>
-	    			  
+	    			  <option value="{{$fixture->homeTeam->id}}" selected='{{$fixture->homeTeam->id}}'>{{$fixture->homeTeam->name}}</option>
 	    			 </select>
 
 	    </div>
-	    @error ('homeTeam') {{$message}} @enderror
 
 	    <div class="input-group mb-3 dynamic">
 	    		 <div class="input-group-prepend dynamic" >
@@ -64,15 +64,15 @@
 	    		 </div>
 	    			 
 	    			<select class="custom-select dynamic" name='awayTeam' id='awayTeam' data-dependent='division'>
+	    				<option value="{{$fixture->awayTeam->id}}" selected='{{$fixture->awayTeam->id}}'>{{$fixture->awayTeam->name}}</option>
 	    			  
 	    			</select>
 
 	    </div>
-	    @error ('awayTeam') {{$message}} @enderror
 	  </div>
 	</div>
 
-	<div class="card">
+	<div class="card mb-3">
 	  <div class="card-body">
 	  	<h1>Information</h1>
 	    <div class="input-group mb-3 dynamic">
@@ -85,7 +85,6 @@
 	    			
 
 	    </div>
-	    @error ('time') {{$message}} @enderror
 
 	    <div class="input-group mb-3 dynamic">
 	    		 <div class="input-group-prepend dynamic" >
@@ -95,11 +94,18 @@
 	    		<textarea class="form-control" name='notes' aria-label="With textarea"></textarea>
 
 	    </div>
-	    @error ('notes') {{$message}} @enderror
 	  </div>
 	</div>
+	<div class="row">
+	<div class="col-sm-1"><input class="btn btn-primary" type="submit" value="Confirm"></div> 
+	</form>
+	<form METHOD ="POST" action="/fixtures/{{$fixture->id}}">
+	  @csrf
+	  @method('delete')
+	<div class="col-sm-1"><input id='delete' class="btn btn-danger ml-6" type="submit" value="Delete"></div>
+	</form>
+</div>
 
-	<div class="col-sm-1"><input class="btn btn-primary" type="submit" value="Create"></div>
 
 
 

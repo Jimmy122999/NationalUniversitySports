@@ -69,9 +69,12 @@ class FixturePolicy
      * @param  \App\Fixture  $fixture
      * @return mixed
      */
-    public function delete(User $user, Fixture $fixture)
+    public function delete(User $user)
     {
-        //
+        if($user->user_group == 1)
+        {
+            return true;
+        }
     }
 
     /**

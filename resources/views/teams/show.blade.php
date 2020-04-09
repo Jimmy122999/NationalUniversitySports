@@ -102,7 +102,7 @@
 					
 					
 					@foreach($allFixtures as $fixture)
-					<div class='col-md-12 border'>
+					<div class='col-md-12 mb-2 border'>
 					<tr>
 						<td><center>{{$fixture->time->format('d/m/Y H:i')}}</center></td>
 						<td><a href="/teams/{{$fixture->home_team_id}}"><center>{{$fixture->homeTeam->name}}</center></a></td>
