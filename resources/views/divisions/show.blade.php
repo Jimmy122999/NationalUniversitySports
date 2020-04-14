@@ -31,11 +31,14 @@
 
        @endforeach
 
-
+      
     
        
       </tbody>
     </table>
+    {{-- <form METHOD ="POST" action="/sports/{{$sport->name}}/{{$sport->division->id}}/season">
+      @csrf --}}
+    <a class="btn btn-primary" href="/sports/{{$sport->name}}/{{$division->id}}/season" role="button">Create New Post</a>
 </div>
 @endsection
 

@@ -139,7 +139,7 @@ class TeamsTest extends TestCase
     }
 
     /** @test */
-    public function An_Admin_Cannot_Create_Teams_With_Nuemerical_Characters()
+    public function An_Admin_Can_Create_Teams_With_Nuemerical_Characters()
     {
         
         $this->addSport();
@@ -151,7 +151,7 @@ class TeamsTest extends TestCase
             'name' => 'test12',
             'division_id' => $division->id
         ]);
-        $this->assertCount(0 , Team::all());
+        $this->assertCount(1 , Team::all());
         
     }
 

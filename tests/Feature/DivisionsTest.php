@@ -150,7 +150,7 @@ class DivisionsTest extends TestCase
     }
 
     /** @test */
-    public function An_Admin_Cannot_Create_Divisions_With_Numbers()
+    public function An_Admin_Can_Create_Divisions_With_Numbers()
     {
         // $this->withoutExceptionHandling();
         $this->addSport();
@@ -162,7 +162,7 @@ class DivisionsTest extends TestCase
             'name' => 'test2',
             'sport_id' => $sport->id
         ]);
-        $this->assertCount(0 , Division::all());
+        $this->assertCount(1 , Division::all());
         
     }
 

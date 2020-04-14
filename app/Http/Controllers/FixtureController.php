@@ -19,7 +19,7 @@ class FixtureController extends Controller
      */
     public function index()
     {
-        $fixtures = Fixture::all()->where('played' , 0);
+        $fixtures = Fixture::all()->where('played' , 0)->sortBy('time');
         $results = Fixture::all()->where('played' , 1);
         return view('fixtures/index', compact('fixtures' , $fixtures) , compact('results' , $results));
     }
@@ -35,6 +35,53 @@ class FixtureController extends Controller
         $sports = Sport::all(['id', 'name']);
         return view('fixtures/create' , compact('sports' , $sports));
     }
+
+    public function generateSeason(Sport $sport , Division $division)
+    {
+        $homeTeams = Team::all()->where('division_id' , $division->id)->pluck('name' , 'id');
+        $awayTeams = Team::all()->where('division_id' , $division->id)->pluck('name' , 'id');
+
+      
+        // $teams = [Team::all()->where('division_id' , $division->id)];
+        $seasonStart = new Carbon();
+
+        // foreach ($teams as $team) {
+        //     dd($team);
+        // }
+
+
+
+       
+
+        foreach ($homeTeams as $homeTeamId => $value) {
+
+            $seasonStart = Carbon::now();
+            foreach ($awayTeams as $awayTeamId => $value) {
+               
+                if($homeTeamId !== $awayTeamId)
+                {
+                    
+                    Fixture::create([
+                        'home_team_id' => $homeTeamId,
+                        'away_team_id' => $awayTeamId,
+                        'time' => $seasonStart->copy()->addMonths(1),
+                        'notes' => 'test',
+                        'played' => 0
+                    ]);
+                    $seasonStart->addWeeks(1);
+                    
+                    
+                }
+
+                
+            
+        }
+        
+        
+
+        
+    }
+}
 
     /**
      * Store a newly created resource in storage.
