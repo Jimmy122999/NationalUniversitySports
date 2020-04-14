@@ -49,34 +49,31 @@ class FixtureController extends Controller
         //     dd($team);
         // }
 
-
-
-       
-
         foreach ($homeTeams as $homeTeamId => $value) {
-
-            $seasonStart = Carbon::now();
             foreach ($awayTeams as $awayTeamId => $value) {
-               
                 if($homeTeamId !== $awayTeamId)
                 {
                     
                     Fixture::create([
                         'home_team_id' => $homeTeamId,
                         'away_team_id' => $awayTeamId,
-                        'time' => $seasonStart->copy()->addMonths(1),
+                        'division_id' => $division->id,
+                        'time' => $seasonStart,
                         'notes' => 'test',
                         'played' => 0
                     ]);
-                    $seasonStart->addWeeks(1);
-                    
-                    
+                   
                 }
-
-                
             
         }
-        
+
+        $fixtures = Fixture::all()->where('division_id' , $division);
+ 
+
+
+      
+
+
         
 
         
@@ -101,6 +98,7 @@ class FixtureController extends Controller
         Fixture::create([
             'home_team_id' => request('homeTeam'),
             'away_team_id' => request('awayTeam'),
+            'division_id' => request('division_id'),
             'time' => Carbon::parse(request('time')),
             'notes' => request('notes'),
             'played' => 0

@@ -15,6 +15,7 @@ class CreateFixturesTable extends Migration
     {
         Schema::create('fixtures', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('division_id');
             $table->unsignedBigInteger('home_team_id');
             $table->unsignedBigInteger('away_team_id');
             $table->dateTime('time');
@@ -22,6 +23,10 @@ class CreateFixturesTable extends Migration
             $table->boolean('played');
             $table->timestamps();
 
+            $table->foreign('division_id')
+            ->references('id')
+            ->on('divisions')
+            ->onDelete('cascade');
 
             $table->foreign('home_team_id')
             ->references('id')
