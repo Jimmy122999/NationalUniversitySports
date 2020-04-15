@@ -109,8 +109,7 @@
     </tbody>
   </table>
   {{$fixtures->links()}}
-    {{-- <form METHOD ="POST" action="/sports/{{$sport->name}}/{{$sport->division->id}}/season">
-      @csrf --}}
+
     
 </div>
   

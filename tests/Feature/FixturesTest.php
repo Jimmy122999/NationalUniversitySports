@@ -87,6 +87,7 @@ class FixturesTest extends TestCase
         Fixture::create([
             'home_team_id' => 1,
             'away_team_id' => 2,
+            'division_id' => 1,
             'time' => '2020-04-09 10:20:31',
             'notes' => 'testing',
             'played' => 0
@@ -214,6 +215,7 @@ class FixturesTest extends TestCase
             $response = $this->post('/fixtures/create', [
                 'homeTeam' => 1,
                 'awayTeam' => 2,
+                'division_id' => 1,
                 'time' => '2020-04-09 10:20:31',
                 'notes' => 'testing',
                 
@@ -233,6 +235,7 @@ class FixturesTest extends TestCase
             $response = $this->post('/fixtures/create', [
                 'homeTeam' => 1,
                 'awayTeam' => 2,
+                'division_id' => 1,
                 'time' => '2020-04-09 10:20:31',
                 'notes' => 'testing',
                 
@@ -253,6 +256,7 @@ class FixturesTest extends TestCase
                 $response = $this->post('/fixtures/create', [
                     'homeTeam' => 1,
                     'awayTeam' => 2,
+                    'division_id' => 1,
                     'time' => '2020-04-09 10:20:31',
                     'notes' => 'testing',
                    

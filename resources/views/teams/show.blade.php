@@ -21,7 +21,7 @@
 
 
 			</div>
-			<div class='col-md-6 border'><h1>{{$team->name}}</h1> 
+			<div class='col-md-6 border'><h1 class="font-weight-bold"><center>{{$team->name}} - {{$team->division->name}}</center></h1>
 					<div class="container">
 						@if(isset($user))
 						@if($user->hasTeam == 0)
