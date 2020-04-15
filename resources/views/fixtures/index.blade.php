@@ -20,6 +20,9 @@
 				<td><center><a class="btn btn-primary ml-auto" href="/fixtures/{{$fixture->id}}/edit" role="button">Edit</a></center></td>
 				@endcan
 				@endcan
+				@can('captainEdit' , [App\Fixture::class , $fixture])
+				<td><center><a class="btn btn-primary ml-auto" href="/fixtures/{{$fixture->id}}/edit-information" role="button">Add Information</a></center></td>
+				@endcan
 			</tr>		
 			
 			
@@ -27,6 +30,7 @@
 
 			@endforeach
 		</tbody>
+		{{$fixtures->links()}}
 
 	</table>
 	@can('create' , App\Fixture::class)

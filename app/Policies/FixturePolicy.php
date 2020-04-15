@@ -62,6 +62,16 @@ class FixturePolicy
         }
     }
 
+    public function captainEdit(User $user , Fixture $fixture)
+    {
+        if($fixture->homeTeam->captain_id == $user->id)
+        {
+            return true;
+        }
+        
+        
+    }
+
     /**
      * Determine whether the user can delete the fixture.
      *

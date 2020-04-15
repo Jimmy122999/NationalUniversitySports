@@ -117,7 +117,9 @@ Route::get('/fixtures/create' , 'FixtureController@create')->middleware('admin')
 Route::post('/fixtures/create' , 'FixtureController@store')->middleware('admin');
 Route::post('/fixtures/create/fetch' , 'TeamController@teamFetch')->name('teamcontroller.teamfetch');
 Route::get('/fixtures/{fixture}/edit' , 'FixtureController@edit')->middleware('admin');
+Route::get('/fixtures/{fixture}/edit{slug}' , 'FixtureController@captainEdit');
 Route::patch('/fixtures/{fixture}/edit' , 'FixtureController@update')->middleware('admin');
+Route::patch('/fixtures/{fixture}/captainEdit' , 'FixtureController@captainUpdate');
 Route::delete('/fixtures/{fixture}' , 'FixtureController@destroy')->middleware('admin');
 
 //Fixture Results

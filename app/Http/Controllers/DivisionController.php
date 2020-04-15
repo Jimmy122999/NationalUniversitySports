@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Division;
 use App\Sport;
+use App\Fixture;
+
 use Illuminate\Http\Request;
 
 class DivisionController extends Controller
@@ -62,8 +64,10 @@ class DivisionController extends Controller
     public function show(Sport $sport, Division $division)
     {
         $teams = $division->team->sortByDesc('points');
+
+        $fixtures = Fixture::where('division_id' , $division->id)->paginate(4);
         
-        return view ('divisions/show' , compact('sport') , compact('division'))->with(compact('teams' , $teams));
+        return view ('divisions/show' , compact('fixtures' , $fixtures) , compact('division'))->with(compact('teams' , $teams));
     }
 
    

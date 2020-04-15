@@ -19,7 +19,7 @@ class FixtureController extends Controller
      */
     public function index()
     {
-        $fixtures = Fixture::all()->where('played' , 0)->sortBy('time');
+        $fixtures = Fixture::where('played' , 0)->paginate(5);
         $results = Fixture::all()->where('played' , 1);
         return view('fixtures/index', compact('fixtures' , $fixtures) , compact('results' , $results));
     }
@@ -44,41 +44,37 @@ class FixtureController extends Controller
       
         // $teams = [Team::all()->where('division_id' , $division->id)];
         $seasonStart = new Carbon();
+        $noDateSet = Carbon::create(0000, 1, 1, 0, 0, 0);
 
         // foreach ($teams as $team) {
         //     dd($team);
         // }
 
         foreach ($homeTeams as $homeTeamId => $value) {
+
             foreach ($awayTeams as $awayTeamId => $value) {
                 if($homeTeamId !== $awayTeamId)
                 {
+
                     
                     Fixture::create([
                         'home_team_id' => $homeTeamId,
                         'away_team_id' => $awayTeamId,
                         'division_id' => $division->id,
-                        'time' => $seasonStart,
-                        'notes' => 'test',
+                        'time' => $noDateSet,
+                        'notes' => 'No Information Set',
                         'played' => 0
                     ]);
                    
                 }
+                
             
+            }
+
         }
 
-        $fixtures = Fixture::all()->where('division_id' , $division);
- 
-
-
-      
-
-
-        
-
-        
+        return back();
     }
-}
 
     /**
      * Store a newly created resource in storage.
@@ -129,6 +125,11 @@ class FixtureController extends Controller
         return view('fixtures/edit' , compact('fixture', $fixture) , compact('sports' , $sports));
     }
 
+    public function captainEdit(Fixture $fixture)
+    {
+       
+        return view('fixtures/captainEdit' , compact('fixture', $fixture));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -143,6 +144,17 @@ class FixtureController extends Controller
         $fixture->home_team_id = request('homeTeam');
         $fixture->away_team_id = request('awayTeam');
         $fixture->time = Carbon::parse(request('time'));
+        $fixture->notes = request('notes');
+        $fixture->save();
+        // return redirect('sports');
+        return redirect('/fixtures');
+
+    }
+
+    public function captainUpdate(Request $request, Fixture $fixture)
+    {
+
+        $this->authorize('captainEdit' , [Fixture::class , $fixture]);
         $fixture->notes = request('notes');
         $fixture->save();
         // return redirect('sports');
