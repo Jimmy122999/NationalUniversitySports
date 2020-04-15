@@ -149,12 +149,13 @@ class TeamController extends Controller
                 'user_profiles.image as userProfileImage' 
 
              ])
-             ->get();
+             ->paginate(3, ['*'], 'post');
              // dd($posts);
         $homeFixtures = $team->homeFixture()->get();
         $awayFixtures = $team->awayFixture()->get();
 
-        $allFixtures = $homeFixtures->merge($awayFixtures);
+        $allFixtures = $homeFixtures->merge($awayFixtures)->paginate(4);
+        
         
         
         

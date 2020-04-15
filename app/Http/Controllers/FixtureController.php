@@ -19,7 +19,7 @@ class FixtureController extends Controller
      */
     public function index()
     {
-        $fixtures = Fixture::where('played' , 0)->paginate(5);
+        $fixtures = Fixture::where('played' , 0)->orderBy('time')->paginate(5);
         $results = Fixture::all()->where('played' , 1);
         return view('fixtures/index', compact('fixtures' , $fixtures) , compact('results' , $results));
     }

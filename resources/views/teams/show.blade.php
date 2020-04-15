@@ -85,6 +85,7 @@
 					            </div>
 					           
 					            @endforeach
+					            {{$posts->links()}}
 					        </div>
 					    </div>
 					   
@@ -117,7 +118,9 @@
 
 					
 				</tbody>
+				{{$allFixtures->links()}}
 				</div>
+
 			</div>
 			<div class='col-1'></div> <!-- Pushing container in  -->
 		</div>

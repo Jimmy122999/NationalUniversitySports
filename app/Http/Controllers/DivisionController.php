@@ -65,7 +65,7 @@ class DivisionController extends Controller
     {
         $teams = $division->team->sortByDesc('points');
 
-        $fixtures = Fixture::where('division_id' , $division->id)->paginate(4);
+        $fixtures = Fixture::where('division_id' , $division->id)->where('played' , 0)->orderBy('time')->paginate(4);
         
         return view ('divisions/show' , compact('fixtures' , $fixtures) , compact('division'))->with(compact('teams' , $teams));
     }
