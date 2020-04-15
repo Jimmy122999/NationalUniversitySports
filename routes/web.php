@@ -63,7 +63,7 @@ Route::delete('/sports/{sport}', 'SportController@destroy')->middleware('admin')
 
 Route::get('/sports/{sport}/create', 'DivisionController@create')->middleware('admin');
 Route::post('/sports/{sport}', 'DivisionController@store')->middleware('admin');
-Route::get('/sports/{sport}/{division}', 'DivisionController@show');
+Route::get('/sports/{sport}/{division}', 'DivisionController@show')->name('divisionShow');
 Route::get('/sports/{sport}/{division}/edit', 'DivisionController@edit')->middleware('admin');
 Route::patch('/sports/{sport}/{division}/edit', 'DivisionController@update')->middleware('admin');
 Route::delete('/sports/{sport}/{division}', 'DivisionController@destroy')->middleware('admin');

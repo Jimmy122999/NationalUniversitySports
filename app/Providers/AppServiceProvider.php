@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
 
             });
 
-        Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page') {
+        Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'fixtures') {
                     $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
                     return new LengthAwarePaginator(
                         $this->forPage($page, $perPage),

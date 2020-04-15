@@ -168,7 +168,7 @@ class FixtureResultController extends Controller
         }
         $fixture->played = 1;
         $fixture->save();
-        return redirect('fixtures');
+        return redirect()->route('divisionShow' , [$fixture->homeTeam->division->sport->name , $fixture->division_id]);
     }
 
     /**

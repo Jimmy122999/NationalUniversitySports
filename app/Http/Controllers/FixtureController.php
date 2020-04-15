@@ -38,6 +38,17 @@ class FixtureController extends Controller
 
     public function generateSeason(Sport $sport , Division $division)
     {
+        Fixture::where('division_id' , $division->id)->delete();
+        Team::where('division_id' , $division->id)
+        ->update(['played' => '0',
+                'wins' => '0',
+                'draws' => '0',
+                'losses' => '0',
+                'points' => '0',]);
+
+   
+
+        
         $homeTeams = Team::all()->where('division_id' , $division->id)->pluck('name' , 'id');
         $awayTeams = Team::all()->where('division_id' , $division->id)->pluck('name' , 'id');
 

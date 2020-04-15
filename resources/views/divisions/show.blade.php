@@ -40,7 +40,45 @@
 
 
     </table>
-    <a class="btn btn-primary" href="/sports/{{$division->sport->name}}/{{$division->id}}/season" role="button">Generate Season</a>
+    <a class="btn btn-primary" id='season' href="/sports/{{$division->sport->name}}/{{$division->id}}/season" role="button">Generate Season</a>
+  </div>
+
+    <div class = container>
+      @if(empty($results))
+      @else
+      <h1 class="font-weight-bold"><center>Latest Results</center></h1>
+      <table class="table table-bordered">
+          <tbody>
+            
+            @foreach($results as $result)
+            <tr>
+              <td><a href="/teams/{{$result->homeTeam->id}}"><center>{{$result->homeTeam->name}}</center></a></td>
+              <td><center>{{$result->result->home_team_score}}</center></td>
+              <td><center>-</center></td>
+              <td><center>{{$result->result->away_team_score}}</center></td>
+              <td><a href="/teams/{{$result->awayTeam->id}}"><center>{{$result->awayTeam->name}}</center></a></td>
+              @can('update' , App\Fixture::class)
+              <td><center><a class="btn btn-primary ml-auto" href="/fixtures/{{$result->id}}/result/{{$result->result->id}}/edit" role="button">Edit</a></center></td>
+              @endcan
+              
+              
+            </tr> 
+
+            
+            
+
+
+            @endforeach
+            @endif
+          </tbody>
+
+        </table>
+       
+
+      {{$results->links()}}
+      {{-- <form METHOD ="POST" action="/sports/{{$sport->name}}/{{$sport->division->id}}/season">
+        @csrf --}}
+      
   </div>
   <div class = container>
 
@@ -69,18 +107,30 @@
 
       @endforeach
     </tbody>
-
-    {{$fixtures->links()}}
+  </table>
+  {{$fixtures->links()}}
     {{-- <form METHOD ="POST" action="/sports/{{$sport->name}}/{{$sport->division->id}}/season">
       @csrf --}}
     
 </div>
+  
 @endsection
 
 <script type="text/javascript">
-  $(document).ready(function() {
-      $('#fixtures').DataTable();
-  } );
+  window.onload = function(){
+  var del = document.getElementById('season');
 
+  del.onclick = function(){
+    var x = confirm('Are you sure you want to generate a new season? This will delete all previous Fixtures and results for this division');
+    if(x == true){
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+}
 </script>
+
 
