@@ -9,6 +9,7 @@
 
 
 <div class ="container">
+	@guest
 	<p>This is a sports league management app for universities competing against eachother</p>
 
 	<div class="container">
@@ -26,7 +27,7 @@
 	        
 	    </div>
 	</div>
-
+	@endguest
 </div>
 
 

@@ -47,7 +47,9 @@ Route::get('/player', 'PlayerController@index')->name('player')->middleware('pla
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::get('/mail-config',  function() {
+    return config('mail');
+});
 
 //Admin Sports
 

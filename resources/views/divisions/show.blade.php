@@ -40,7 +40,7 @@
 
 
     </table>
-    <a class="btn btn-primary" id='season' href="/sports/{{$division->sport->name}}/{{$division->id}}/season" role="button">Generate Season</a>
+    <a class="btn btn-primary" id='season' href="/sports/{{$division->sport->name}}/{{$division->id}}/season" role="button">Generate New Season</a>
   </div>
 
     <div class = container>
