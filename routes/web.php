@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'HomeController@homePage');
+    
+
 
 Route::get('/sports', 'SportController@index');
 Route::get('/football', function () {
