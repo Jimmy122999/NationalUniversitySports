@@ -79,7 +79,8 @@
 	    		 <div class="input-group-prepend dynamic" >
 	    		    <label class="input-group-text dynamic" >Date & Time</label>
 	    		 </div>
-	    			  <input type="datetime-local" name='time'>
+	    			  <input type="date" name='date'>
+	    			  <input type="time" name='time'>
 	    			
 	    			  
 	    			

@@ -97,7 +97,7 @@ class FixtureController extends Controller
     {
         $this->authorize('create' , Fixture::class);
         $validatedData = request()->validate([
-            'time' => 'required|date',
+            
             'notes' => 'required|max:300',
 
         ]);
@@ -106,7 +106,7 @@ class FixtureController extends Controller
             'home_team_id' => request('homeTeam'),
             'away_team_id' => request('awayTeam'),
             'division_id' => request('division_id'),
-            'time' => Carbon::parse(request('time')),
+            'time' => Carbon::parse(request('date') . request('time')),
             'notes' => request('notes'),
             'played' => 0
         ]);
@@ -154,7 +154,7 @@ class FixtureController extends Controller
         $this->authorize('update' , Fixture::class);
         $fixture->home_team_id = request('homeTeam');
         $fixture->away_team_id = request('awayTeam');
-        $fixture->time = Carbon::parse(request('time'));
+        $fixture->time = Carbon::parse(request('date') . request('time'));
         $fixture->notes = request('notes');
         $fixture->save();
         // return redirect('sports');
