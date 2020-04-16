@@ -48,6 +48,7 @@ class UserProfileTest extends TestCase
 
     private function populateData()
     {
+
        Sport::create([
             'name' => 'test'
         ]);
@@ -96,6 +97,18 @@ class UserProfileTest extends TestCase
     /** @test */
     public function An_Unauthenticated_User_Can_View_Profiles()
     {
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
+
         $this->populateData();
         $this->addProfile();
 
@@ -334,7 +347,17 @@ class UserProfileTest extends TestCase
     /** @test */
     public function A_Profile_Cannot_Submit_Invalid_Data()
     {
-        
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
         $this->populateData();
         $this->isPlayer();
         
@@ -449,12 +472,12 @@ class UserProfileTest extends TestCase
     /** @test */
     public function Captain_Can_Update_Own_Profile()
     {
-      
+        $this->isCaptain();
         
         $this->populateData();
         $this->addProfile();
 
-        $this->isCaptain();
+        
         
         
         $createdProfile = UserProfile::first();
@@ -473,11 +496,11 @@ class UserProfileTest extends TestCase
     public function Player_Can_Update_Own_Profile()
     {
       
-        
+        $this->isPlayer();
         $this->populateData();
         $this->addProfile();
 
-        $this->isPlayer();
+        
         
         
         $createdProfile = UserProfile::first();

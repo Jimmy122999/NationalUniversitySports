@@ -6,7 +6,16 @@
 	
 		<div class='row'>
 			<div class='col-md-1 '></div>  <!-- Pushing container in  -->
-			<div class='col border'><h1>Squad</h1>
+			<div class='col border'>
+				<div class="row border">
+					<div class="card" style="width: 18rem;">
+						<img src="/images/avatarPlaceHolder.jpg" class="card-img-top">
+					</div>
+				</div>
+				
+				<h1>Squad</h1>
+
+
 				<ul class="list-group">
 				@foreach ($team->member as $teamMember)
 				@if (isset($teamMember->profile->id))
@@ -20,7 +29,8 @@
 
 
 
-			</div>
+				</div>
+			
 			<div class='col-md-6 border'><h1 class="font-weight-bold"><center>{{$team->name}} - {{$team->division->name}}</center></h1>
 					<div class="container">
 						@if(isset($user))

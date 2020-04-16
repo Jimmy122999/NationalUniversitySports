@@ -20,6 +20,12 @@ class FixtureResultController extends Controller
         return view('fixtures/result/index', compact('results' , $results));
     }
 
+    public function homePage()
+    {
+            $results = FixtureResult::orderBy('created_at' , 'desc')->take(3)->get();
+            return view('index' , compact('results' , $results));
+    }
+
 
 
     /**

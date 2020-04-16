@@ -139,6 +139,17 @@ class TeamPostsTest extends TestCase
     /** @test */
     public function Team_Posts_Cannot_Be_Created_By_Unauthenticated_Users()
     {
+        User::create([
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
+            'remember_token' => 'asdfasf',
+            'user_group' => 3,
+            'hasTeam' => 0,
+            'hasProfile' => 0,
+
+        ]);
         $this->populateData();
         $this->addMember();
         

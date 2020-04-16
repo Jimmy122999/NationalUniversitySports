@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Division::class, function (Faker $faker) {
     return [
-    	'name' => $faker->domainWord,
+    	'name' => $faker->State,
     	'sport_id' => function(){
     		return factory('App\Sport')->create()->id;
     	}

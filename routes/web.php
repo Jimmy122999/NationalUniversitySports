@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'HomeController@homePage');
+
+Route::get('/', 'FixtureResultController@homePage');
     
 
 
