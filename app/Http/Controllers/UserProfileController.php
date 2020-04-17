@@ -80,7 +80,6 @@ class UserProfileController extends Controller
         }
 
 
-
         return redirect()->route('profileShow' , [$userProfile]);
 
     }

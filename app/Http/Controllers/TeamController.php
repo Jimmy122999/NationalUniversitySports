@@ -9,6 +9,7 @@ use App\Division;
 use App\Sport;
 use App\User;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 
 class TeamController extends Controller
@@ -99,7 +100,7 @@ class TeamController extends Controller
           $this->authorize('create' , Team::class);
 
           $data = request()->validate([
-                'name' => 'required|unique:teams|max:50',
+                'name' => 'required|max:50',
                 'division_id' => 'required',
 
           ]);
@@ -122,6 +123,32 @@ class TeamController extends Controller
 
 
         return redirect ('admin');
+    }
+
+    public function addImage(Team $team)
+    {
+
+        $this->authorize('addImage' , [Team::class , $team]);
+        if (request()->hasFile('image')) {
+            
+            
+           request()->validate([
+                'image' => 'file|image|max:5000'
+            ]);
+           $image = Image::make(request()->image->getRealPath())->fit(300 , 300);
+           
+           $image->save();
+           $team->update([
+
+            'image' => request()->image->store('uploads' , 'public')
+           ]);
+        }
+
+
+
+        return redirect()->route('teamShow' , [$team]);
+       
+
     }
 
     /**
@@ -151,8 +178,8 @@ class TeamController extends Controller
              ])
              ->paginate(3, ['*'], 'post');
              // dd($posts);
-        $homeFixtures = $team->homeFixture()->get();
-        $awayFixtures = $team->awayFixture()->get();
+        $homeFixtures = $team->homeFixture()->where('played' , 0)->get();
+        $awayFixtures = $team->awayFixture()->where('played' , 0)->get();
 
         $allFixtures = $homeFixtures->merge($awayFixtures)->paginate(4);
         

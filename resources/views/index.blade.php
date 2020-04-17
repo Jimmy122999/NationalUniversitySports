@@ -35,11 +35,11 @@
 		</div>
 		<div class="row ">
 			<div class="col-md-2 "></div>
-			<div class="col-md-2 "><img src="/images/avatarPlaceHolder.jpg" class="card-img-top"></div>
+			<div class="col-md-2 "><img src="/storage/{{$result->fixture->homeTeam->image}}" class="card-img-top"></div>
 			<div class="col-md-1 "><center><h1 class="bold">{{$result->home_team_score}}</h1></center></div>
 			<div class="col-md-1 "><center><h1 class="bold">-</h1></center></div>
 			<div class="col-md-1 "><center><h1 class="bold">{{$result->away_team_score}}</h1></center></div>
-			<div class="col-md-2 "><img src="/images/avatarPlaceHolder.jpg" class="card-img-top"></div>
+			<div class="col-md-2 "><img src="/storage/{{$result->fixture->awayTeam->image}}" class="card-img-top"></div>
 
 
 		</div>

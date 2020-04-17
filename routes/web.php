@@ -78,6 +78,7 @@ Route::get('/teams/create', 'TeamController@create')->middleware('admin');
 Route::get('/teams/{team}' , 'TeamController@show')->name('teamShow');
 Route::post('/teams/create/fetch', 'TeamController@fetch')->name("teamcontroller.fetch");
 Route::post('/teams', 'TeamController@store')->middleware('admin');
+Route::post('/teams/{team}/image' , 'TeamController@addImage');
 Route::get('/teams/{team}/edit', 'TeamController@edit')->middleware('admin');
 Route::patch('/teams/{team}/edit', 'TeamController@update')->middleware('admin');
 Route::delete('/teams/{team}', 'TeamController@destroy')->middleware('admin');

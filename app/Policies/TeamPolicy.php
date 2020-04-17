@@ -58,6 +58,15 @@ class TeamPolicy
         return in_array($user->user_group, ['1']);
     }
 
+    public function addImage(User $user , $team)
+    {
+        if($team->captain_id == $user->id)
+        {
+            return true;
+        }
+        return in_array($user->user_group, ['1']); //Looking for Admin or Captain user group
+    }
+
     public function viewApplications(User $user , $team)
     {
         if($team->captain_id == $user->id)

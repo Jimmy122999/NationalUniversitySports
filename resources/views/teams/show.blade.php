@@ -8,9 +8,33 @@
 			<div class='col-md-1 '></div>  <!-- Pushing container in  -->
 			<div class='col border'>
 				<div class="row border">
+					@if(isset($team->image))
+
+					<div class="card" style="width: 18rem;">
+						<img src="/storage/{{$team->image}}" class="card-img-top">
+						@can('addImage' , [App\Team::class , $team])
+						  	<form method="POST" action="/teams/{{$team->id}}/image" enctype="multipart/form-data">
+						  		@csrf
+							  	<input type="file" name="image">
+							  	<div>{{$errors->first('image')}}</div>
+							  	<input class="btn btn-primary" type="submit" value="Upload Team Picture">
+							 </form>
+						@endcan
+					</div>
+					@else
+
 					<div class="card" style="width: 18rem;">
 						<img src="/images/avatarPlaceHolder.jpg" class="card-img-top">
+						@can('addImage' , [App\Team::class , $team])
+						  	<form method="POST" action="/teams/{{$team->id}}/image" enctype="multipart/form-data">
+						  		@csrf
+							  	<input type="file" name="image">
+							  	<div>{{$errors->first('image')}}</div>
+							  	<input class="btn btn-primary" type="submit" value="Upload Team Picture">
+							 </form>
+						@endcan
 					</div>
+					@endif
 				</div>
 				
 				<h1>Squad</h1>
