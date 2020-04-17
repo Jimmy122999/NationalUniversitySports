@@ -42,7 +42,33 @@
 		<form METHOD ="POST" action="/profile/{{$userProfile->id}}">
 		  @csrf
 		  @method('delete')
-		<div class="col-sm-1"><input id='delete' class="btn btn-danger ml-3" type="submit" value="Delete"></div>
+		<div class="col-sm-1 ml-3"><a class="btn btn-danger" data-toggle="modal" data-target='#myModal' style="color: white">Delete</a></div>
+		    
+		     
+
+
+		    <!-- Modal -->
+		    <div id="myModal" class="modal fade" role="dialog">
+		      <div class="modal-dialog modal-dialog-centered">
+
+		        <!-- Modal content-->
+		        <div class="modal-content">
+		          <div class="modal-body">
+		            <p>Are you sure you want to delete this Profile?</p>
+		          </div>
+		          <div class="modal-footer">
+		            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		             <input id='delete' data-toggle="modal"  class="btn btn-danger ml-3" type="submit" value="Delete">
+		          </div>
+		        </div>
+
+		      </div>
+		    </div>
+
+
+
+
+
 		</form>
 	</div>
 

@@ -1,5 +1,5 @@
 @extends ('layout')
-
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 @section('content')
 <div class = container>
     <h1>Select a Captain to remove</h1>
@@ -25,11 +25,8 @@
 </div>
 
   @endforeach
-
+  {{$users->links()}}
   </ul>
+ </div>
 
-
-
- 
-</div>
 @endsection

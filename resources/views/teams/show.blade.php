@@ -42,11 +42,21 @@
 
 				<ul class="list-group">
 				@foreach ($team->member as $teamMember)
+
 				@if (isset($teamMember->profile->id))
-				<li class="list-group-item"><a href="/profile/{{$teamMember->profile->id}}">{{ $teamMember->name }}</a></li>
+
+				<li class="list-group-item"><a href="/profile/{{$teamMember->profile->id}}">{{ $teamMember->name }}</a> 
+					@if($teamMember->user->id === $team->captain_id)
+					(Captain)
+					@endif
+				</li>
 				
 				@else
-				<li class="list-group-item">{{ $teamMember->name }}</li>
+				<li class="list-group-item">{{ $teamMember->name }}
+					@if($teamMember->user->id === $team->captain_id)
+					(Captain)
+					@endif
+				</li>
 				@endif
 				@endforeach
 				</ul>
@@ -55,7 +65,7 @@
 
 				</div>
 			
-			<div class='col-md-6 border'><h1 class="font-weight-bold"><center>{{$team->name}} - {{$team->division->name}}</center></h1>
+			<div class='col-md-6 border'><h1 class="font-weight-bold"><center>{{$team->name}} - {{$team->division->sport->name}} - {{$team->division->name}}</center></h1>
 					<div class="container">
 						@if(isset($user))
 						@if($user->hasTeam == 0)

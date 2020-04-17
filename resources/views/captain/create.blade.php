@@ -25,6 +25,7 @@
 </div>
 
   @endforeach
+  {{$users->links()}}
 
   </ul>
 

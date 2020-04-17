@@ -15,7 +15,7 @@ class CaptainController extends Controller
      */
     public function index()
     {
-        $users = User::all()->where('user_group' , 2);
+        $users = User::where('user_group' , 2)->paginate(10);
         return view('captain/index' , compact('users' , $users));
     }
 
@@ -26,7 +26,7 @@ class CaptainController extends Controller
      */
     public function create()
     {
-        $users = User::all()->where('user_group' , 3);
+        $users = User::where('user_group' , 3)->paginate(10);
         return view('captain/create' , compact('users' , $users));
     }
 
