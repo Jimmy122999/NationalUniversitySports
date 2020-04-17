@@ -31,10 +31,10 @@
 		@foreach($results as $result)
 	<div class="container border mb-3">
 		<div class="row ">
-			<div class="col-md-12 "><h1><center>{{$result->fixture->homeTeam->division->sport->name}} - {{$result->fixture->homeTeam->division->name}}</center></h1></div>
+			<div class="col-md-11 "><h1><center>{{$result->fixture->homeTeam->division->sport->name}} - {{$result->fixture->homeTeam->division->name}}</center></h1></div>
 		</div>
 		<div class="row ">
-			<div class="col-md-2 "></div>
+			<div class="col-md-2"></div>
 			<div class="col-md-2 "><img src="/storage/{{$result->fixture->homeTeam->image}}" class="card-img-top"></div>
 			<div class="col-md-1 "><center><h1 class="bold">{{$result->home_team_score}}</h1></center></div>
 			<div class="col-md-1 "><center><h1 class="bold">-</h1></center></div>
@@ -46,10 +46,10 @@
 
 		<div class="row ">
 			<div class="col-md-2 "></div>
-			<div class="col-md-2 "><center><a href="/teams/{{$result->fixture->homeTeam->id}}"><p class="font-weight-bold">{{$result->fixture->homeTeam->name}}</p></a></center></div>
+			<div class="col-md-2 "><center><a href="/teams/{{$result->fixture->homeTeam->id}}"><h3 class="font-weight-bold">{{$result->fixture->homeTeam->name}}</h3></a></center></div>
 			<div class="col-md-1 "></div>
 			<div class="col-md-2 "></div>
-			<div class="col-md-2 "><center><a href="/teams/{{$result->fixture->awayTeam->id}}">{{$result->fixture->awayTeam->name}}</a></center></div>
+			<div class="col-md-2 "><center><a href="/teams/{{$result->fixture->awayTeam->id}}"><h3 class="font-weight-bold">{{$result->fixture->awayTeam->name}}</h3></a></center></div>
 
 
 		</div>

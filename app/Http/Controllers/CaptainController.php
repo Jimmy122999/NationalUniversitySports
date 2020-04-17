@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Captain;
+use App\User;
 use Illuminate\Http\Request;
 
 class CaptainController extends Controller
@@ -14,7 +15,8 @@ class CaptainController extends Controller
      */
     public function index()
     {
-        return view('captain/layout');
+        $users = User::all()->where('user_group' , 2);
+        return view('captain/index' , compact('users' , $users));
     }
 
     /**
@@ -24,7 +26,8 @@ class CaptainController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all()->where('user_group' , 3);
+        return view('captain/create' , compact('users' , $users));
     }
 
     /**
@@ -33,9 +36,13 @@ class CaptainController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request ,  User $player)
     {
-        //
+        
+       
+        $player->user_group = 2;
+        $player->save();
+        return back();
     }
 
     /**
@@ -67,9 +74,11 @@ class CaptainController extends Controller
      * @param  \App\Captain  $captain
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Captain $captain)
+    public function update(Request $request, User $captain)
     {
-        //
+        $captain->user_group = 3;
+        $captain->save();
+        return back();
     }
 
     /**

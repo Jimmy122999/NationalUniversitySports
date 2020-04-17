@@ -72,6 +72,14 @@ Route::patch('/sports/{sport}/{division}/edit', 'DivisionController@update')->mi
 Route::delete('/sports/{sport}/{division}', 'DivisionController@destroy')->middleware('admin');
 Route::get('/sports/{sport}/{division}/season', 'FixtureController@generateSeason');
 
+//Captains
+Route::get('/captains/create', 'CaptainController@create')->middleware('admin');
+Route::patch('/captains/{player}', 'CaptainController@store')->middleware('admin');
+Route::get('/captains/index', 'CaptainController@index')->middleware('admin');
+Route::patch('/captains/edit/{captain}', 'CaptainController@update')->middleware('admin');
+
+
+
 // Teams
 Route::get('/teams/index', 'TeamController@index');
 Route::get('/teams/create', 'TeamController@create')->middleware('admin');
