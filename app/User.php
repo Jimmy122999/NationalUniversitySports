@@ -50,4 +50,14 @@ class User extends Authenticatable
         
 
     }
+
+    public function application()
+    {
+
+        return $this->hasOne(TeamApplicant::class);
+
+        
+
+    }
+
 }

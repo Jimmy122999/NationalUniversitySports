@@ -40,7 +40,9 @@
 
 
     </table>
-    <a class="btn btn-primary" id='season' href="/sports/{{$division->sport->name}}/{{$division->id}}/season" role="button">Generate New Season</a>
+    @can('generateSeason' , App\Fixture::class)
+    <a class="btn btn-primary" id='season' href="/sports/{{$division->sport->name}}/{{$division->id}}/season" role="button">Start New Season</a>
+    @endcan
   </div>
 
     <div class = container>

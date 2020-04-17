@@ -9,10 +9,7 @@
   <div class="row">
   	<div class="col-sm-8 mb-1">
   <li class ='list-group-item'>
-  	<a href='/profile/{{$user->id}}'>
-  		{{ $application->name }}</a>
-
-      
+    {{ $application->name }} / {{$application->user->name}}
   </li>
 
   </div>

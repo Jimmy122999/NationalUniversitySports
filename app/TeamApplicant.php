@@ -20,5 +20,11 @@ class TeamApplicant extends Model
 
 		return $this->belongsTo(Team::class);
 	}
+
+	public function user()
+	{
+
+		return $this->hasOne(User::class , 'id' , 'user_id');
+	}
     //
 }

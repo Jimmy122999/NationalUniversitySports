@@ -38,6 +38,7 @@ class FixtureController extends Controller
 
     public function generateSeason(Sport $sport , Division $division)
     {
+        $this->authorize('generateSeason' , Fixture::class);
         Fixture::where('division_id' , $division->id)->delete();
         Team::where('division_id' , $division->id)
         ->update(['played' => '0',

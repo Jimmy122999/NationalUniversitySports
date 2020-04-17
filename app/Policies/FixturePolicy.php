@@ -62,6 +62,14 @@ class FixturePolicy
         }
     }
 
+    public function generateSeason(User $user)
+    {
+        if($user->user_group == 1)
+        {
+            return true;
+        }
+    }
+
     public function captainEdit(User $user , Fixture $fixture)
     {
         if($fixture->homeTeam->captain_id == $user->id)
