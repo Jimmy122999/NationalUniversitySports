@@ -41,10 +41,10 @@
 
     </table>
     @can('generateSeason' , App\Fixture::class)
-    <a class="btn btn-primary" id='season' href="/sports/{{$division->sport->name}}/{{$division->id}}/season" role="button">Start New Season</a>
+    <a class="btn btn-primary" data-toggle="modal" data-target='#myModal' style="color: white">Start New Season</a>
     @endcan
   </div>
-
+    @if($results->count() !== 0)
     <div class = container>
       @if(empty($results))
       @else
@@ -82,9 +82,12 @@
         @csrf --}}
       
   </div>
+  @endif
+  @if($fixtures->count() !== 0)
   <div class = container>
 
     <h1 class="font-weight-bold"><center>Upcoming Fixtures</center></h1>
+
     <table id='fixtures' class="table table-bordered">
     <tbody>
 
@@ -111,27 +114,32 @@
     </tbody>
   </table>
   {{$fixtures->links()}}
-
+@endif
     
 </div>
+
+
+    
+     
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>Are you sure you want to generate a new season? This will delete all previous Fixtures and results for this division?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             <a class="btn btn-primary" id='season' href="/sports/{{$division->sport->name}}/{{$division->id}}/season" role="button">Start New Season</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
   
 @endsection
-
-<script type="text/javascript">
-  window.onload = function(){
-  var del = document.getElementById('season');
-
-  del.onclick = function(){
-    var x = confirm('Are you sure you want to generate a new season? This will delete all previous Fixtures and results for this division');
-    if(x == true){
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-  }
-}
-</script>
-
 

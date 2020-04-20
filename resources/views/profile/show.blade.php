@@ -35,6 +35,7 @@
 			    <p class="card-text">Name: {{$userProfile->member->name}}</p>
 			    <p class="card-text">Team: <a href="/teams/{{$userProfile->member->team->id}}">{{$userProfile->member->team->name}}</p></a>
 			    <p class="card-text">Position: {{$userProfile->position}}</p>
+			    <p class="card-text">About me: {{$userProfile->bio}}</p>
 			  </div>
 			</div>	
 			
