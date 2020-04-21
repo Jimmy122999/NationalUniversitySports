@@ -31,10 +31,13 @@
 </head>
 <body>
     <div id="app">
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('National University Sports', 'National University Sports') }}
+                    {{-- {{ config('National University Sports', 'National University Sports') }} --}}
+
+                    <img src="/images/logo_size_new.jpg" class="img-fluid">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -113,6 +116,17 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+       {{--  Footer --}}
+        
+       <footer class="page-footer font-small blue" style="position: absolute;left: 0;right: 0;bottom: 0;">
+
+         <!-- Copyright -->
+         <div class="footer-copyright text-center py-3">© 2020 Copyright
+           National University Sports
+         </div>
+         <!-- Copyright -->
+
+       </footer>
+       
 </body>
 </html>

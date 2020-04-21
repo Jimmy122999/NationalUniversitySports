@@ -6,6 +6,7 @@
 	<div class="row">
 		<div class='col-md-11'><center><h1>Latest Results</h1><center></div>
 	</div>
+	<div class="panel panel-default">
 	<table class="table table-bordered">
 		<tbody>
 			@if(isset($results))
@@ -32,6 +33,7 @@
 		</tbody>
 
 	</table>
+	{{$results->links()}}
 	
 
 </div>

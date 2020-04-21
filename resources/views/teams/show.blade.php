@@ -37,7 +37,7 @@
 					@endif
 				</div>
 				
-				<h1>Squad</h1>
+				<h2 class="font-weight-bold"><center>Squad</center></h2>
 
 
 				<ul class="list-group">
@@ -141,7 +141,7 @@
 
 
 			</div>
-			<div class='col border'><h1>Upcoming Fixtures</h1>
+			<div class='col border'><h2 class="font-weight-bold"><center>Upcoming Fixtures</center></h2>
 				<div class="row">
 				<tbody>
 					

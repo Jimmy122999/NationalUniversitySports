@@ -24,14 +24,14 @@
 		@else
 	<div class="container">
 		
-		<div class="row border">
-			<div class="col-md-12 border mb-3"><h1 class="font-weight-bold"><center>Recent Results</center></h1></div>
+		<div class="row">
+			<div class="col-md-12 border mb-3 rounded-pill"><h1 class="font-weight-bold"><center>Recent Results</center></h1></div>
 		</div>
 		
 		@foreach($results as $result)
-	<div class="card mb-3">
+	<div class="card mb-3 rounded-lg">
 		<div class="row ">
-			<div class="col-md-11 "><h1><center>{{$result->fixture->homeTeam->division->sport->name}} - {{$result->fixture->homeTeam->division->name}}</center></h1></div>
+			<div class="col-md-11 "><h2><center><a class="text-reset text-decoration-none " href="/sports/{{$result->fixture->homeTeam->division->sport->name}}">{{$result->fixture->homeTeam->division->sport->name}}</a> - <a class="text-reset text-decoration-none" href="/sports/{{$result->fixture->homeTeam->division->sport->name}}/{{$result->fixture->homeTeam->division->id}}">{{$result->fixture->homeTeam->division->name}}</a></center></h2></div>
 		</div>
 		<div class="row ">
 			<div class="col-md-2"></div>
@@ -59,15 +59,16 @@
 
 		<div class="row ">
 			<div class="col-md-2 "></div>
-			<div class="col-md-2 "><center><a href="/teams/{{$result->fixture->homeTeam->id}}"><h3 class="font-weight-bold">{{$result->fixture->homeTeam->name}}</h3></a></center></div>
+			<div class="col-md-2 "><center><a class="text-reset text-decoration-none" href="/teams/{{$result->fixture->homeTeam->id}}"><h3 class="font-weight-bold">{{$result->fixture->homeTeam->name}}</h3></a></center></div>
 			<div class="col-md-1 "></div>
 			<div class="col-md-2 "></div>
-			<div class="col-md-2 "><center><a href="/teams/{{$result->fixture->awayTeam->id}}"><h3 class="font-weight-bold">{{$result->fixture->awayTeam->name}}</h3></a></center></div>
+			<div class="col-md-2 "><center><a class="text-reset text-decoration-none" href="/teams/{{$result->fixture->awayTeam->id}}"><h3 class="font-weight-bold">{{$result->fixture->awayTeam->name}}</h3></a></center></div>
 
 
 		</div>
 		</div>
 		@endforeach
+
 
 	</div>
 </div>

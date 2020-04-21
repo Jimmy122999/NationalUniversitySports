@@ -36,6 +36,56 @@ class FixtureController extends Controller
         return view('fixtures/create' , compact('sports' , $sports));
     }
 
+    // public function matchWeeks($teams)
+    // {
+      
+    //     $matchweeks = $teams * 2 - 2;
+        
+    //     return $matchweeks;
+
+    // }
+
+    // public function makeSeason(Sport $sport , Division $division)
+    // {
+    //     $matchweeks = $this->matchWeeks($division->team->count());
+    //     $noDateSet = Carbon::create(0000, 1, 1, 15, 0, 0);
+    //     $teams = Team::all()->where('division_id' , $division->id)->pluck('name' , 'id')->toArray();
+    //     $teamsPlayed = [];
+       
+     
+
+        
+    //     for ($i=0; $i < $matchweeks ; $i++) 
+    //     { 
+
+
+    //        foreach($teams as $teamId => $team)
+    //        {
+
+    //         if(!in_array($team, $teamsPlayed))
+    //         {
+    //             Fixture::create([
+    //                 'home_team_id' => $homeTeam =$teamId,
+    //                 'away_team_id' => $awayTeam = next($teams),
+    //                 'division_id' => $division->id,
+    //                 'time' => $noDateSet,
+    //                 'notes' => 'No Information Set',
+    //                 'played' => 0
+    //             ]);
+    //             array_push($teamsPlayed, $awayTeam);
+    //             array_push($teamsPlayed, $homeTeam);
+    //             dd($teamsPlayed);
+    //         }
+            
+
+    //        }
+
+    //        $noDateSet->addWeeks(2);
+    //     }
+       
+
+    // }
+
     public function generateSeason(Sport $sport , Division $division)
     {
         $this->authorize('generateSeason' , Fixture::class);

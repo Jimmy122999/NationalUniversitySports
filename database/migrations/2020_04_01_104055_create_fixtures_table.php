@@ -19,7 +19,7 @@ class CreateFixturesTable extends Migration
             $table->unsignedBigInteger('home_team_id');
             $table->unsignedBigInteger('away_team_id');
             $table->dateTime('time');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->boolean('played');
             $table->timestamps();
 

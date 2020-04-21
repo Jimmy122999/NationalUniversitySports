@@ -16,7 +16,7 @@ class FixtureResultController extends Controller
     public function index()
     {
     
-        $results = Fixture::all()->where('played' , 1);
+        $results = Fixture::where('played' , 1)->paginate(10);
         return view('fixtures/result/index', compact('results' , $results));
     }
 

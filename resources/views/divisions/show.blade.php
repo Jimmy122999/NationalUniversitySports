@@ -41,7 +41,9 @@
 
     </table>
     @can('generateSeason' , App\Fixture::class)
+    
     <a class="btn btn-primary" data-toggle="modal" data-target='#myModal' style="color: white">Start New Season</a>
+
     @endcan
   </div>
     @if($results->count() !== 0)
@@ -99,7 +101,7 @@
         @can('update' , App\Fixture::class)
         <td><center><a class="btn btn-primary ml-auto" href="/fixtures/{{$fixture->id}}/result" role="button">Enter Result</a></center></td>
         @can('create' , App\Fixture::class)
-        <td><center><a class="btn btn-primary ml-auto" href="/fixtures/{{$fixture->id}}/edit" role="button">Edit</a></center></td>
+        <td><center><a class="btn btn-primary ml-auto" href="/fixtures/{{$fixture->id}}/edit" role="button">Set Time and Information</a></center></td>
         @endcan
         @endcan
         @can('captainEdit' , [App\Fixture::class , $fixture])
