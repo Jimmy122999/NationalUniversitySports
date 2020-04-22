@@ -71,7 +71,9 @@ Route::get('/sports/{sport}/{division}/edit', 'DivisionController@edit')->middle
 Route::patch('/sports/{sport}/{division}/edit', 'DivisionController@update')->middleware('admin');
 Route::delete('/sports/{sport}/{division}', 'DivisionController@destroy')->middleware('admin');
 Route::get('/sports/{sport}/{division}/season', 'FixtureController@generateSeason');
-Route::get('/sports/{sport}/{division}/new', 'FixtureController@makeSeason');
+Route::post('/sports/{sport}/{division}/newseason', 'FixtureController@makeSeason')->middleware('admin');
+Route::get('/sports/{sport}/{division}/fixtures', 'FixtureController@index');
+
 
 //Captains
 Route::get('/captains/create', 'CaptainController@create')->middleware('admin');
@@ -125,7 +127,7 @@ Route::delete('/profile/{userProfile}/post/{userProfilePost}' , 'UserProfilePost
 
 // Fixtures
 
-Route::get('/fixtures' , 'FixtureController@index');
+
 Route::get('/fixtures/create' , 'FixtureController@create')->middleware('admin');
 Route::post('/fixtures/create' , 'FixtureController@store')->middleware('admin');
 Route::post('/fixtures/create/fetch' , 'TeamController@teamFetch')->name('teamcontroller.teamfetch');
@@ -134,6 +136,7 @@ Route::get('/fixtures/{fixture}/edit{slug}' , 'FixtureController@captainEdit');
 Route::patch('/fixtures/{fixture}/edit' , 'FixtureController@update')->middleware('admin');
 Route::patch('/fixtures/{fixture}/captainEdit' , 'FixtureController@captainUpdate');
 Route::delete('/fixtures/{fixture}' , 'FixtureController@destroy')->middleware('admin');
+
 
 //Fixture Results
 Route::get('/results', 'FixtureResultController@index');

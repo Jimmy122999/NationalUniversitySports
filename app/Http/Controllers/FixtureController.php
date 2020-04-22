@@ -17,11 +17,10 @@ class FixtureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Sport $sport , Division $division)
     {
-        $fixtures = Fixture::where('played' , 0)->orderBy('time')->paginate(5);
-        $results = Fixture::all()->where('played' , 1);
-        return view('fixtures/index', compact('fixtures' , $fixtures) , compact('results' , $results));
+        $fixtures = Fixture::where('division_id' , $division->id)->where('played' , 0)->orderBy('time')->paginate(5);
+        return view('fixtures/index', compact('fixtures' , $fixtures));
     }
 
     /**
@@ -39,57 +38,52 @@ class FixtureController extends Controller
     
 
 
-    public function makeSeason(Sport $sport , Division $division)
+    public function makeSeason(Sport $sport , Division $division, Request $request)
     {
+        $this->authorize('generateSeason' , Fixture::class);
         Fixture::where('division_id' , $division->id)->delete();
         $allTeams = Team::all()->where('division_id' , $division->id)->pluck('id')->toArray();
-      $noDateSet = Carbon::create(9999, 1, 1, 0, 0, 0);
+        $noDateSet = Carbon::parse(request('start'));
+        $noDateSet->hour = 13;
+        $noDateSet->minute = 0;
+
         $teams = sizeof($allTeams);
-
-
-       
-        // If odd number of teams add a "ghost".
-            $ghost = false;
+            
+           
+            $totalGames = $teams - 1;
+            $matchesPerRound = $teams / 2;
+            $games = [];
+            //Add an extra team if odd 
             if ($teams % 2 == 1) {
                 $teams++;
-                $ghost = true;
+               
             }
-
-            // Generate the fixtures using the cyclic algorithm.
-            $totalRounds = $teams - 1;
-            $matchesPerRound = $teams / 2;
-            $rounds = array();
-            for ($i = 0; $i < $totalRounds; $i++) {
-                $rounds[$i] = array();
+            for ($i = 0; $i < $totalGames; $i++) {
+                $games[$i] = [];
             }
-
-            for ($round = 0; $round < $totalRounds; $round++) {
+            //Set home and away teams
+            for ($round = 0; $round < $totalGames; $round++) {
                     for ($match = 0; $match < $matchesPerRound; $match++) {
                         $home = ($round + $match) % ($teams - 1);
                         $away = ($teams - 1 - $match + $round) % ($teams - 1);
-                        // Last team stays in the same place while the others
-                        // rotate around it.
+                        
                         if ($match == 0) {
                             $away = $teams - 1;
                         }
-                        $rounds[$round][$match] = [$home , $away];
+                        $games[$round][$match] = [$home , $away];
                      
 
-                        // dd($rounds[$round][$match], $rounds[$round][$match]);
+                     
 
-                        $homeTeam = $rounds[$round][$match][0];
-                        $awayTeam = $rounds[$round][$match][1];
+                        $homeTeam = $games[$round][$match][0];
+                        $awayTeam = $games[$round][$match][1];
 
                         
-                        
+                        //check
                         if($home >=  sizeof($allTeams) || $away >= sizeof($allTeams))
                         {
-                            
-                        
-                            
 
-                        
-                         }
+                        }
                          else
                          {
                             Fixture::create([
@@ -107,8 +101,8 @@ class FixtureController extends Controller
                   
                 $noDateSet->addWeeks(2);
             }
-
-            $secondHalf = array_reverse($rounds);
+            //Reverse fixtures for second half
+            $secondHalf = array_reverse($games);
        
             foreach ($secondHalf as $matchDay)
             {
@@ -116,11 +110,6 @@ class FixtureController extends Controller
                 {
                     if($game[0] >=  sizeof($allTeams) || $game[1] >= sizeof($allTeams))
                     {
-                        
-                    
-                        
-
-                    
                      }
                      else
                      {
@@ -135,8 +124,9 @@ class FixtureController extends Controller
                      }
                     
                 }
+                $noDateSet->addWeeks(2);
             }
-           
+           return back();
 
 
         
