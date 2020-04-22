@@ -25,11 +25,11 @@
 	<div class="container">
 		
 		<div class="row">
-			<div class="col-md-12 border mb-3 rounded-pill"><h1 class="font-weight-bold"><center>Recent Results</center></h1></div>
+			<div class="col-md-12 mb-3 rounded-pill border"><h1 class="font-weight-bold"><center>Recent Results</center></h1></div>
 		</div>
 		
 		@foreach($results as $result)
-	<div class="card mb-3 rounded-lg">
+	<div class="card mb-3  rounded-lg">
 		<div class="row ">
 			<div class="col-md-11 "><h2><center><a class="text-reset text-decoration-none " href="/sports/{{$result->fixture->homeTeam->division->sport->name}}">{{$result->fixture->homeTeam->division->sport->name}}</a> - <a class="text-reset text-decoration-none" href="/sports/{{$result->fixture->homeTeam->division->sport->name}}/{{$result->fixture->homeTeam->division->id}}">{{$result->fixture->homeTeam->division->name}}</a></center></h2></div>
 		</div>

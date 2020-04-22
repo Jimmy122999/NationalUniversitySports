@@ -34,57 +34,113 @@ class FixtureController extends Controller
         $this->authorize('create' , Fixture::class);
         $sports = Sport::all(['id', 'name']);
         return view('fixtures/create' , compact('sports' , $sports));
-    }
+    }   
 
-    // public function matchWeeks($teams)
-    // {
-      
-    //     $matchweeks = $teams * 2 - 2;
-        
-    //     return $matchweeks;
+    
 
-    // }
 
-    // public function makeSeason(Sport $sport , Division $division)
-    // {
-    //     $matchweeks = $this->matchWeeks($division->team->count());
-    //     $noDateSet = Carbon::create(0000, 1, 1, 15, 0, 0);
-    //     $teams = Team::all()->where('division_id' , $division->id)->pluck('name' , 'id')->toArray();
-    //     $teamsPlayed = [];
+    public function makeSeason(Sport $sport , Division $division)
+    {
+        Fixture::where('division_id' , $division->id)->delete();
+        $allTeams = Team::all()->where('division_id' , $division->id)->pluck('id')->toArray();
+      $noDateSet = Carbon::create(9999, 1, 1, 0, 0, 0);
+        $teams = sizeof($allTeams);
+
+
        
-     
+        // If odd number of teams add a "ghost".
+            $ghost = false;
+            if ($teams % 2 == 1) {
+                $teams++;
+                $ghost = true;
+            }
+
+            // Generate the fixtures using the cyclic algorithm.
+            $totalRounds = $teams - 1;
+            $matchesPerRound = $teams / 2;
+            $rounds = array();
+            for ($i = 0; $i < $totalRounds; $i++) {
+                $rounds[$i] = array();
+            }
+
+            for ($round = 0; $round < $totalRounds; $round++) {
+                    for ($match = 0; $match < $matchesPerRound; $match++) {
+                        $home = ($round + $match) % ($teams - 1);
+                        $away = ($teams - 1 - $match + $round) % ($teams - 1);
+                        // Last team stays in the same place while the others
+                        // rotate around it.
+                        if ($match == 0) {
+                            $away = $teams - 1;
+                        }
+                        $rounds[$round][$match] = [$home , $away];
+                     
+
+                        // dd($rounds[$round][$match], $rounds[$round][$match]);
+
+                        $homeTeam = $rounds[$round][$match][0];
+                        $awayTeam = $rounds[$round][$match][1];
+
+                        
+                        
+                        if($home >=  sizeof($allTeams) || $away >= sizeof($allTeams))
+                        {
+                            
+                        
+                            
+
+                        
+                         }
+                         else
+                         {
+                            Fixture::create([
+                                'home_team_id' => $allTeams[$homeTeam],
+                                'away_team_id' => $allTeams[$awayTeam],
+                                'division_id' => $division->id,
+                                'time' => $noDateSet,
+                                'notes' => 'No Information Set',
+                                'played' => 0
+                            ]);
+                         }
+                        
+                    
+                }
+                  
+                $noDateSet->addWeeks(2);
+            }
+
+            $secondHalf = array_reverse($rounds);
+       
+            foreach ($secondHalf as $matchDay)
+            {
+                foreach ($matchDay as $game)
+                {
+                    if($game[0] >=  sizeof($allTeams) || $game[1] >= sizeof($allTeams))
+                    {
+                        
+                    
+                        
+
+                    
+                     }
+                     else
+                     {
+                        Fixture::create([
+                            'home_team_id' => $allTeams[$game[1]],
+                            'away_team_id' => $allTeams[$game[0]],
+                            'division_id' => $division->id,
+                            'time' => $noDateSet,
+                            'notes' => 'No Information Set',
+                            'played' => 0
+                        ]);
+                     }
+                    
+                }
+            }
+           
+
 
         
-    //     for ($i=0; $i < $matchweeks ; $i++) 
-    //     { 
-
-
-    //        foreach($teams as $teamId => $team)
-    //        {
-
-    //         if(!in_array($team, $teamsPlayed))
-    //         {
-    //             Fixture::create([
-    //                 'home_team_id' => $homeTeam =$teamId,
-    //                 'away_team_id' => $awayTeam = next($teams),
-    //                 'division_id' => $division->id,
-    //                 'time' => $noDateSet,
-    //                 'notes' => 'No Information Set',
-    //                 'played' => 0
-    //             ]);
-    //             array_push($teamsPlayed, $awayTeam);
-    //             array_push($teamsPlayed, $homeTeam);
-    //             dd($teamsPlayed);
-    //         }
-            
-
-    //        }
-
-    //        $noDateSet->addWeeks(2);
-    //     }
-       
-
-    // }
+}
 
     public function generateSeason(Sport $sport , Division $division)
     {
@@ -106,7 +162,7 @@ class FixtureController extends Controller
       
         // $teams = [Team::all()->where('division_id' , $division->id)];
         $seasonStart = new Carbon();
-        $noDateSet = Carbon::create(0000, 1, 1, 0, 0, 0);
+        $noDateSet = Carbon::create(9999, 1, 1, 0, 0, 0);
 
         // foreach ($teams as $team) {
         //     dd($team);

@@ -41,7 +41,7 @@
 
     </table>
     @can('generateSeason' , App\Fixture::class)
-    
+    <a class="btn btn-primary" id='season' href="/sports/{{$division->sport->name}}/{{$division->id}}/new" role="button"> New Season</a>
     <a class="btn btn-primary" data-toggle="modal" data-target='#myModal' style="color: white">Start New Season</a>
 
     @endcan
