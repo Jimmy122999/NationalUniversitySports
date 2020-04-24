@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\FixtureResult;
 use Illuminate\Http\Request;
+use App\Sport;
+use App\Division;
 use App\Fixture;
 
 class FixtureResultController extends Controller
@@ -13,11 +15,12 @@ class FixtureResultController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Sport $sport, Division $division)
     {
     
-        $results = Fixture::where('played' , 1)->paginate(10);
-        return view('fixtures/result/index', compact('results' , $results));
+        $results = Fixture::where('played' , 1)->where('division_id' , $division->id)->paginate(2);
+        
+        return view('fixtures/result/index', compact('results' , $results), compact('division' , $division));
     }
 
     public function homePage()

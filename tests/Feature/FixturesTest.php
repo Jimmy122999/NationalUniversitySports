@@ -104,7 +104,7 @@ class FixturesTest extends TestCase
         
         $this->populateData();
         $this->addFixture();
-        $response = $this->get('/fixtures');
+        $response = $this->get('/sports/test/1/fixtures');
 
         $response->assertOk();
     }
@@ -115,7 +115,7 @@ class FixturesTest extends TestCase
         $this->isAdmin();
         $this->populateData();
         $this->addFixture();
-        $response = $this->get('/fixtures');
+        $response = $this->get('/sports/test/1/fixtures');
 
         $response->assertOk();
     }
@@ -126,7 +126,7 @@ class FixturesTest extends TestCase
         $this->isCaptain();
         $this->populateData();
         $this->addFixture();
-        $response = $this->get('/fixtures');
+        $response = $this->get('/sports/test/1/fixtures');
 
         $response->assertOk();
     }
@@ -138,7 +138,7 @@ class FixturesTest extends TestCase
         $this->isPlayer();
         $this->populateData();
         $this->addFixture();
-        $response = $this->get('/fixtures');
+        $response = $this->get('/sports/test/1/fixtures');
 
         $response->assertOk();
     }
@@ -266,6 +266,60 @@ class FixturesTest extends TestCase
                 $this->assertCount(0 , Fixture::all());
                 
             }
+
+            /** @test */
+                public function An_Admin_Can_Generate_A_New_Season()
+                {
+                   
+                    $this->isAdmin();
+                    $this->populateData();
+                     
+
+                    $response = $this->post('/sports/test/1/newseason', [
+                       
+                        'time' => '2020-04-09 10:20:31',
+                        
+                    ]);
+                    $this->assertCount(2 , Fixture::where('division_id' , 1)->get());
+                    
+                }
+
+                /** @test */
+                    public function A_Captain_Cannot_Generate_A_New_Season()
+                    {
+                       
+                        $this->isCaptain();
+                        $this->populateData();
+                         
+
+                        $response = $this->post('/sports/test/1/newseason', [
+                           
+                            'time' => '2020-04-09 10:20:31',
+                            
+                        ]);
+                        $this->assertCount(0 , Fixture::where('division_id' , 1)->get());
+                        
+                    }
+
+                /** @test */
+                    public function A_Player_Cannot_Generate_A_New_Season()
+                    {
+                       
+                        $this->isPlayer();
+                        $this->populateData();
+                         
+
+                        $response = $this->post('/sports/test/1/newseason', [
+                           
+                            'time' => '2020-04-09 10:20:31',
+                            
+                        ]);
+                        $this->assertCount(0 , Fixture::where('division_id' , 1)->get());
+                        
+                    }
+
+
+
 
 
 

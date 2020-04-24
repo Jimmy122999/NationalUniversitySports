@@ -73,6 +73,7 @@ Route::delete('/sports/{sport}/{division}', 'DivisionController@destroy')->middl
 Route::get('/sports/{sport}/{division}/season', 'FixtureController@generateSeason');
 Route::post('/sports/{sport}/{division}/newseason', 'FixtureController@makeSeason')->middleware('admin');
 Route::get('/sports/{sport}/{division}/fixtures', 'FixtureController@index');
+Route::get('/sports/{sport}/{division}/results', 'FixtureResultController@index');
 
 
 //Captains

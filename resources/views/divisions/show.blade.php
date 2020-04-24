@@ -49,7 +49,7 @@
     <div class = container>
       @if(empty($results))
       @else
-      <h1 class="font-weight-bold"><a href="/results/{{$division->sport->name}}/{{$division->id}}"><center>Upcoming Results</center></a></h1>
+      <h1 class="font-weight-bold"><a href="/sports/{{$division->sport->name}}/{{$division->id}}/results"><center>Results</center></a></h1>
       <table class="table table-bordered">
           <tbody>
             

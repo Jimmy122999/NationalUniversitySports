@@ -50,10 +50,14 @@
                           <a class="nav-link" href="/sports">Sports</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="/fixtures">Fixtures</a>
+                            @if(isset($user->member->team_id))
+                          <a class="nav-link" href="/sports/{{$user->member->team->division->sport->name}}/{{$user->member->team->division->id}}/fixtures">Fixtures</a>
+                            @endif
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="/results">Results</a>
+                            @if(isset($user->member->team_id))
+                          <a class="nav-link" href="/sports/{{$user->member->team->division->sport->name}}/{{$user->member->team->division->id}}/results">Results</a>
+                            @endif
                         </li>
                         <li class="nav-item">
                             @if(isset($user->member->team_id))
@@ -118,7 +122,7 @@
         </main>
        {{--  Footer --}}
         
-       <footer class="page-footer font-small blue" style="position: absolute;left: 0;right: 0;bottom: 0;">
+       {{-- <footer class="page-footer font-small blue" style="position: absolute;left: 0;right: 0;bottom: 0;">
 
          <!-- Copyright -->
          <div class="footer-copyright text-center py-3">© 2020 Copyright
@@ -127,6 +131,6 @@
          <!-- Copyright -->
 
        </footer>
-       
+        --}}
 </body>
 </html>
