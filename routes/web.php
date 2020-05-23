@@ -72,7 +72,7 @@ Route::patch('/sports/{sport}/{division}/edit', 'DivisionController@update')->mi
 Route::delete('/sports/{sport}/{division}', 'DivisionController@destroy')->middleware('admin');
 Route::get('/sports/{sport}/{division}/season', 'FixtureController@generateSeason');
 Route::post('/sports/{sport}/{division}/newseason', 'FixtureController@makeSeason')->middleware('admin');
-Route::get('/sports/{sport}/{division}/fixtures', 'FixtureController@index');
+Route::get('/sports/{sport}/{division}/fixtures', 'FixtureController@index')->name('fixtures');
 Route::get('/sports/{sport}/{division}/results', 'FixtureResultController@index');
 
 

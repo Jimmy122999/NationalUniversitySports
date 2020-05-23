@@ -80,14 +80,30 @@
 				    </div>
 
 			</div>
-			<div class='col-md border'><h1>{{$userProfile->member->name}}</h1>
-							<ul class="list-group">
-							  <li class="list-group-item">{{$userProfile->id}}</li>
-							  <li class="list-group-item">Dapibus ac facilisis in</li>
-							  <li class="list-group-item">Morbi leo risus</li>
-							  <li class="list-group-item">Porta ac consectetur ac</li>
-							  <li class="list-group-item">Vestibulum at eros</li>
-							</ul>
+			<div class='col border'><h2 class="font-weight-bold"><center>Upcoming Fixtures</center></h2>
+							<div class="row">
+							<tbody>
+								
+								
+								@foreach($allFixtures as $fixture)
+								<div class='col-md-12 mb-2 border'>
+								<tr>
+									<td><center>{{$fixture->time->format('d/m/Y H:i')}}</center></td>
+									<td><a href="/teams/{{$fixture->home_team_id}}"><center>{{$fixture->homeTeam->name}}</center></a></td>
+									<td><center>VS</center></td>
+									
+									<td><a href="/teams/{{$fixture->away_team_id}}"><center>{{$fixture->awayTeam->name}}</center></a></td>
+									<td><center>{{$fixture->notes}}</center></td>
+								</tr>		
+							</div>
+								@endforeach
+
+
+								
+							</tbody>
+							{{$allFixtures->links()}}
+							</div>
+
 						</div>
 		<div class='col-1'></div> <!-- Pushing container in  -->
 </div>

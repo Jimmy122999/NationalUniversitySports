@@ -94,8 +94,14 @@ class UserProfileController extends Controller
      */
     public function show(UserProfile $userProfile)
     {
+        $homeFixtures = $userProfile->member->team->homeFixture()->where('played' , 0)->get();
 
-        return view('profile/show', compact('userProfile' , $userProfile));
+        $awayFixtures = $userProfile->member->team->awayFixture()->where('played' , 0)->get();
+
+        $allFixtures = $homeFixtures->merge($awayFixtures)->paginate(4);
+        
+
+        return view('profile/show', compact('userProfile' , $userProfile) , compact('allFixtures' , $allFixtures));
     }
 
    

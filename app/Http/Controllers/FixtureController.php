@@ -135,64 +135,13 @@ class FixtureController extends Controller
                 }
                 $noDateSet->addWeeks(2);
             }
-           return back();
+           return redirect()->route('fixtures' , [$sport , $division]);
 
 
         
 }
 
-    // public function generateSeason(Sport $sport , Division $division)
-    // {
-    //     $this->authorize('generateSeason' , Fixture::class);
-    //     Fixture::where('division_id' , $division->id)->delete();
-    //     Team::where('division_id' , $division->id)
-    //     ->update(['played' => '0',
-    //             'wins' => '0',
-    //             'draws' => '0',
-    //             'losses' => '0',
-    //             'points' => '0',]);
-
-   
-
-        
-    //     $homeTeams = Team::all()->where('division_id' , $division->id)->pluck('name' , 'id');
-    //     $awayTeams = Team::all()->where('division_id' , $division->id)->pluck('name' , 'id');
-
-      
-    //     // $teams = [Team::all()->where('division_id' , $division->id)];
-    //     $seasonStart = new Carbon();
-    //     $noDateSet = Carbon::create(9999, 1, 1, 0, 0, 0);
-
-    //     // foreach ($teams as $team) {
-    //     //     dd($team);
-    //     // }
-
-    //     foreach ($homeTeams as $homeTeamId => $value) {
-
-    //         foreach ($awayTeams as $awayTeamId => $value) {
-    //             if($homeTeamId !== $awayTeamId)
-    //             {
-
-                    
-    //                 Fixture::create([
-    //                     'home_team_id' => $homeTeamId,
-    //                     'away_team_id' => $awayTeamId,
-    //                     'division_id' => $division->id,
-    //                     'time' => $noDateSet,
-    //                     'notes' => 'No Information Set',
-    //                     'played' => 0
-    //                 ]);
-                   
-    //             }
-                
-            
-    //         }
-
-    //     }
-
-    //     return back();
-    // }
-
+ 
     /**
      * Store a newly created resource in storage.
      *
