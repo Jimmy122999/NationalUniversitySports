@@ -287,7 +287,7 @@ class UserProfileTest extends TestCase
             'position' => "Goalkeeper",
             'bio' => "test"
         ]);
-        $this->assertCount(0 , UserProfile::all());
+        $this->assertCount(1 , UserProfile::all());
         
     }
 

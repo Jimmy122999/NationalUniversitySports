@@ -242,8 +242,8 @@ class FixtureResultController extends Controller
         {
             $this->processResult('draw' , $fixture);
         }
-        $fixture->save();
-        return redirect('results');
+        $fixtureResult->save();
+        return redirect()->route('divisionShow' , [$fixture->homeTeam->division->sport->name , $fixture->division_id]);
         
 
 
@@ -274,6 +274,6 @@ class FixtureResultController extends Controller
         $fixture->save();
 
         $fixtureResult->delete();
-        return redirect('results');
+        return redirect()->route('divisionShow' , [$fixture->homeTeam->division->sport->name , $fixture->division_id]);
     }
 }

@@ -104,7 +104,7 @@ class TeamController extends Controller
                 'division_id' => 'required',
 
           ]);
-          Team::create([
+         $team = Team::create([
                 'name' => request('name'),
                 'division_id' => request('division_id'),
                 'captain_id' => request('captain_id'),
@@ -122,7 +122,7 @@ class TeamController extends Controller
       
 
 
-        return redirect ('admin');
+        return redirect()->route('teamShow' , [$team]);
     }
 
     public function addImage(Team $team)

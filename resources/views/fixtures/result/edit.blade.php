@@ -65,6 +65,7 @@
 	<div class="col-sm-1">
 		<input class="btn btn-primary" type="submit" value="Update">
 	</div>
+	</form>
 	
 	<form METHOD ="POST" action="/fixtures/{{$fixtureResult->fixture->id}}/result/{{$fixtureResult->id}}">
 	  @csrf
@@ -97,5 +98,5 @@
 
 	
 
-</form>
+
 @endsection

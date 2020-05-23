@@ -213,7 +213,7 @@ class FixtureController extends Controller
         $fixture->notes = request('notes');
         $fixture->save();
         // return redirect('sports');
-        return redirect('/fixtures');
+        return redirect()->route('fixtures' , [$fixture->homeTeam->division->sport->name , $fixture->division_id]);
 
     }
 
@@ -238,7 +238,7 @@ class FixtureController extends Controller
     {
         $this->authorize('delete' , Fixture::class);
         $fixture->delete();
-        return redirect('/fixtures');
+        return redirect('/');
 
     }
 }
