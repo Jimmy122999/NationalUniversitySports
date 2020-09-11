@@ -18,7 +18,7 @@
 		  <hr class="my-4">
           <p>There is also builty in social tools for teams to communicate messages and even for players to have their own profiles</p>
 		  <p class="lead">
-		    <a class="btn btn-primary btn-lg" href="/register" role="button">Get Started</a>ssss
+		    <a class="btn btn-primary btn-lg" href="/register" role="button">Get Started</a>
 		  </p>
 		</div>
 		@else
