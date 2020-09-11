@@ -17,9 +17,8 @@
 		  <p class="lead">This is an application that is used to track the performance of university teams playing eachother across a season</p>
 		  <hr class="my-4">
           <p>There is also builty in social tools for teams to communicate messages and even for players to have their own profiles</p>
-          fdgdfgdfg
 		  <p class="lead">
-		    <a class="btn btn-primary btn-lg" href="/register" role="button">Get Started</a>
+		    <a class="btn btn-primary btn-lg" href="/register" role="button">Get Started</a>ssss
 		  </p>
 		</div>
 		@else
@@ -77,5 +76,7 @@
 
 
 </div>
+
+
 
 @endsection
