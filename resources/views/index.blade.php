@@ -3,10 +3,10 @@
 @section('content')
 
 <div id="header-wrapper">
-	
+
 	<div id="header-featured">
 		<div id="banner-wrapper">
-			
+
 	</div>
 </div>
 <div id="wrapper">
@@ -16,18 +16,19 @@
 		  <h1 class="display-4">Welcome to National University Sports</h1>
 		  <p class="lead">This is an application that is used to track the performance of university teams playing eachother across a season</p>
 		  <hr class="my-4">
-		  <p>There is also builty in social tools for teams to communicate messages and even for players to have their own profiles</p>
+          <p>There is also builty in social tools for teams to communicate messages and even for players to have their own profiles</p>
+          fdgdfgdfg
 		  <p class="lead">
 		    <a class="btn btn-primary btn-lg" href="/register" role="button">Get Started</a>
 		  </p>
 		</div>
 		@else
 	<div class="container">
-		
+
 		<div class="row">
 			<div class="col-md-12 mb-3 rounded-pill border"><h1 class="font-weight-bold"><center>Recent Results</center></h1></div>
 		</div>
-		
+
 		@foreach($results as $result)
 	<div class="card mb-3  rounded-lg">
 		<div class="row ">
@@ -35,7 +36,7 @@
 		</div>
 		<div class="row ">
 			<div class="col-md-2"></div>
-			
+
 			<div class="col-md-2 ">
 				@if(isset($result->fixture->homeTeam->image))
 				<img src="/storage/{{$result->fixture->homeTeam->image}}" class="card-img-top">
@@ -74,7 +75,7 @@
 </div>
 		@endguest
 
-	
+
 </div>
 
 @endsection
